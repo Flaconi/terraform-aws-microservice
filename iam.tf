@@ -53,7 +53,7 @@ resource "aws_iam_user" "this" {
   count         = "${var.iam_user_enabled ? 1 : 0}"
   name          = "${var.env}-microservice-${var.name}"
   path          = "${var.iam_user_path}"
-  force_destroy = "true"
+  force_destroy = true
   tags          = "${local.tags}"
 }
 

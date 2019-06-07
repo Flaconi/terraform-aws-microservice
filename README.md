@@ -27,10 +27,10 @@ module "microservice" {
 
   # iam_user_enabled creates an user with keys, with `iam_role_enabled` the user can switch into the role created by `iam_role_enabled`
   # For this example we're only creating a role with access to Dynamodb
-  iam_user_enabled = "false"
+  iam_user_enabled = false
 
   # iam_role_enabled creates a role.
-  iam_role_enabled = "true"
+  iam_role_enabled = true
 
   # Sample principal which can assume into this role
   #iam_role_principals_arns = ["arn:aws:iam::12374567890:root"]
@@ -40,7 +40,7 @@ module "microservice" {
   # This module re-uses an implementation of the module https://github.com/cloudposse/terraform-aws-dynamodb
   # -------------------------------------------------------------------------------------------------
   # `dynamodb_enabled` is set to true to enable Dynamodb
-  dynamodb_enabled = "true"
+  dynamodb_enabled = true
   dynamodb_hash_key  = "HashKey"
   dynamodb_range_key = "RangeKey"
 
@@ -65,7 +65,7 @@ module "ms_sample_redis" {
   }
 
   # redis_enabled - Set to false to prevent the module from creating any redis resources
-  redis_enabled = "true"
+  redis_enabled = true
   
   # redis_cluster_id_override - Use only lowercase, numbers and -, _., only use when it needs to be different from `var.name`
   # redis_cluster_id_override = ""
@@ -124,7 +124,7 @@ module "ms_sample_rds" {
   }
 
   # rds_enabled enables RDS
-  rds_enabled = "true"
+  rds_enabled = true
 
   # rds_allowed_subnet_cidrs specifices the allowed subnets
   #rds_allowed_subnet_cidrs = ["127.0.0.1/32"]
@@ -180,7 +180,7 @@ module "ms_sample_rds" {
   # rds_skip_final_snapshot Protect RDS instance from deletion
   rds_skip_final_snapshot = true
   # rds_storage_encrypted - enable encryption for RDS instance storage"
-  rds_storage_encrypted = "true"
+  rds_storage_encrypted = true
   # rds_kms_key_id - KMS key ARN for storage encryption, defaults to "" = RDS/KMS
   rds_kms_key_id = ""
   # rds_maintenance_window - Window of RDS Maintenance

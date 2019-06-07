@@ -27,7 +27,7 @@ variable "vpc_tag_filter" {
 # -------------------------------------------------------------------------------------------------
 variable "iam_role_enabled" {
   description = "Set to false to prevent iam role creation"
-  default     = "false"
+  default     = false
 }
 
 variable "iam_role_principals_arns" {
@@ -41,7 +41,7 @@ variable "iam_role_principals_arns" {
 # -------------------------------------------------------------------------------------------------
 variable "iam_user_enabled" {
   description = "Set to false to prevent iam user creation"
-  default     = "false"
+  default     = false
 }
 
 variable "iam_user_path" {
@@ -59,7 +59,7 @@ variable "aws_route53_record_ttl" {
 
 variable "aws_route53_zone_endpoints_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis private endpoint"
-  default     = "false"
+  default     = false
 }
 
 variable "aws_route53_zone_public_endpoint_enabled" {
@@ -82,7 +82,7 @@ variable "endpoints_domain" {
 # -------------------------------------------------------------------------------------------------
 variable "dynamodb_enabled" {
   description = "Set to false to prevent the module from creating any dynamodb resources"
-  default     = "false"
+  default     = false
 }
 
 variable "dynamodb_hash_key" {
@@ -120,7 +120,7 @@ variable "dynamodb_local_secondary_index_map" {
 # -------------------------------------------------------------------------------------------------
 variable "redis_enabled" {
   description = "Set to false to prevent the module from creating any redis resources"
-  default     = "false"
+  default     = false
 }
 
 variable "redis_cluster_id_override" {
@@ -170,12 +170,12 @@ variable "redis_auto_minor_version_upgrade" {
 
 variable "redis_at_rest_encryption_enabled" {
   description = "Redis encrypt storage"
-  default     = "false"
+  default     = false
 }
 
 variable "redis_transit_encryption_enabled" {
   description = "Redis encrypt transit TLS"
-  default     = "false"
+  default     = false
 }
 
 variable "redis_replicas_count" {
@@ -199,7 +199,7 @@ variable "redis_subnet_tag_filter" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_enabled" {
   description = "Set to false to prevent the module from creating any rds resources"
-  default     = "false"
+  default     = false
 }
 
 variable "rds_identifier_override" {
@@ -251,7 +251,6 @@ variable "rds_node_type" {
 
 variable "rds_multi_az" {
   description = "Replication settings"
-  type        = "string"
   default     = true
 }
 
@@ -336,13 +335,11 @@ variable "rds_backup_retention_period" {
 
 variable "rds_deletion_protection" {
   description = "Protect RDS instance from deletion"
-  type        = "string"
   default     = true
 }
 
 variable "rds_skip_final_snapshot" {
   description = "Skip final snapshot on deletion"
-  type        = "string"
   default     = false
 }
 
@@ -351,7 +348,6 @@ variable "rds_skip_final_snapshot" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_storage_encrypted" {
   description = "Enable encryption for RDS instance storage"
-  type        = "string"
   default     = true
 }
 
