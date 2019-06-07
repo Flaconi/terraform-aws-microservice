@@ -47,6 +47,10 @@ module "microservice" {
   # dynamodb_attributes = []
   # dynamodb_global_secondary_index_map = []
   # dynamodb_local_secondary_index_map = []
+
+  tags = {
+    Name = "sample"
+  }
 }
 ```
 
@@ -101,6 +105,10 @@ module "ms_sample_redis" {
   
   # redis_maintenance_window - Redis maintenance window
   # redis_maintenance_window = "mon:10:00-mon:12:00"
+
+  tags = {
+    Name = "sample"
+  }
 ```
 
 ### RDS
@@ -187,6 +195,10 @@ module "ms_sample_rds" {
   rds_maintenance_window = "Mon:16:00-Mon:18:00"
   # rds_backup_window - Backup Window
   rds_backup_window = "03:00-06:00"
+
+  tags = {
+    Name = "sample"
+  }
 }
 ```
 
@@ -208,6 +220,7 @@ The following resources _CAN_ be created:
 |------|-------------|:----:|:-----:|:-----:|
 | env | The environment name to which this project will be applied against (e.g.: common, dev, prod, testing) | string | n/a | yes |
 | name | The name of the microservice, the dependent resources will be created with this name interpolated | string | n/a | yes |
+| tags | tags to propagate to the resources | map | n/a | yes |
 | aws\_route53\_record\_ttl | Time to live for DNS record used by the endpoints | string | `"60"` | no |
 | aws\_route53\_zone\_endpoints\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint | string | `"false"` | no |
 | aws\_route53\_zone\_private\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true | string | `"true"` | no |
@@ -264,7 +277,6 @@ The following resources _CAN_ be created:
 | redis\_snapshot\_window | Redis snapshot window | string | `"00:00-05:00"` | no |
 | redis\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the Redis component of the Microservice resides | map | `{}` | no |
 | redis\_transit\_encryption\_enabled | Redis encrypt transit TLS | string | `"false"` | no |
-| tags | tags to propagate to the resources | map | `{}` | no |
 | vpc\_tag\_filter | The map of tags to match the VPC tags with where the RDS or Redis or other networked AWS component of the Microservice resides | map | `{}` | no |
 
 ## Outputs
