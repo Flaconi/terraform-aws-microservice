@@ -64,12 +64,12 @@ variable "aws_route53_zone_endpoints_enabled" {
 
 variable "aws_route53_zone_public_endpoint_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true"
-  default     = "true"
+  default     = true
 }
 
 variable "aws_route53_zone_private_endpoint_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true"
-  default     = "true"
+  default     = true
 }
 
 variable "endpoints_domain" {
@@ -165,7 +165,7 @@ variable "redis_maintenance_window" {
 
 variable "redis_auto_minor_version_upgrade" {
   description = "Redis allow auto minor version upgrade"
-  default     = "true"
+  default     = true
 }
 
 variable "redis_at_rest_encryption_enabled" {
@@ -252,7 +252,7 @@ variable "rds_node_type" {
 variable "rds_multi_az" {
   description = "Replication settings"
   type        = "string"
-  default     = "true"
+  default     = true
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -287,7 +287,7 @@ variable "rds_admin_pass" {
 
 variable "rds_use_random_password" {
   description = "with rds_use_random_password set to true the RDS database will be configured with a random password"
-  default     = "true"
+  default     = true
 }
 
 # -------------------------------------------------------------------------------------------------

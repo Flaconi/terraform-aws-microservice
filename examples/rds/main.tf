@@ -16,7 +16,7 @@ module "ms_sample_rds" {
   }
 
   # rds_enabled enables RDS 
-  rds_enabled = "true"
+  rds_enabled = true
 
   # rds_allowed_subnet_cidrs specifices the allowed subnets
   #rds_allowed_subnet_cidrs = ["127.0.0.1/32"]
@@ -86,7 +86,7 @@ module "ms_sample_rds" {
   # rds_skip_final_snapshot Protect RDS instance from deletion
   rds_skip_final_snapshot = true
   # rds_storage_encrypted - enable encryption for RDS instance storage"
-  rds_storage_encrypted = "true"
+  rds_storage_encrypted = true
   # rds_kms_key_id - KMS key ARN for storage encryption, defaults to "" = RDS/KMS
   rds_kms_key_id = ""
   # rds_maintenance_window - Window of RDS Maintenance

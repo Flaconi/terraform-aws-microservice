@@ -10,7 +10,7 @@ module "ms_sample_redis" {
   }
 
   # redis_enabled - Set to false to prevent the module from creating any redis resources
-  redis_enabled = "true"
+  redis_enabled = true
 
   # redis_cluster_id_override - Use only lowercase, numbers and -, _., only use when it needs to be different from `var.name`
   # redis_cluster_id_override = ""
@@ -50,11 +50,11 @@ module "ms_sample_redis" {
 
 
   # redis_auto_minor_version_upgrade - Redis allow auto minor version upgrade
-  # redis_auto_minor_version_upgrade = "true"
+  # redis_auto_minor_version_upgrade = true
 
   # redis_at_rest_encryption_enabled - Redis encrypt storage
-  redis_at_rest_encryption_enabled = "false"
+  redis_at_rest_encryption_enabled = false
 
   # redis_transit_encryption_enabled - Redis encrypt transit TLS
-  # redis_transit_encryption_enabled = "false"
+  # redis_transit_encryption_enabled = false
 }

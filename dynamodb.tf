@@ -3,7 +3,7 @@ resource "null_resource" "dynamodb_checker" {
     command = "echo 'Condition failed. Expected: DynamoDB enabled, but hash_key not set' && exit 1"
   }
 
-  count = "${var.dynamodb_enabled == "true" && length(var.dynamodb_hash_key) < 1 ? 1 : 0}"
+  count = "${var.dynamodb_enabled && length(var.dynamodb_hash_key) < 1 ? 1 : 0}"
 }
 
 module "dynamodb" {
@@ -15,7 +15,7 @@ module "dynamodb" {
   name      = "${var.name}"
   hash_key  = "${var.dynamodb_hash_key}"
   range_key = "${var.dynamodb_range_key}"
-  enabled   = "${var.dynamodb_enabled}"
+  enabled   = "${var.dynamodb_enabled ? "true" : "false"}"
 
   dynamodb_attributes        = "${var.dynamodb_attributes}"
   global_secondary_index_map = "${var.dynamodb_global_secondary_index_map}"

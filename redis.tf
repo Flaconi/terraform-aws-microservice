@@ -3,7 +3,7 @@ locals {
 }
 
 resource "aws_security_group" "allow_redis_communication" {
-  count       = "${var.redis_enabled == "true" ? 1 : 0 }"
+  count       = "${var.redis_enabled ? 1 : 0 }"
   vpc_id      = "${data.aws_vpc.this.id}"
   name        = "allow-communication-with-${local.redis_cluster_id}-redis"
   description = "Allow communication with Redis - ${local.redis_cluster_id}"
@@ -15,7 +15,7 @@ resource "aws_security_group" "allow_redis_communication" {
 }
 
 resource "aws_security_group_rule" "redis_ingress" {
-  count             = "${var.redis_enabled == "true" ? 1 : 0 }"
+  count             = "${var.redis_enabled ? 1 : 0 }"
   type              = "ingress"
   from_port         = "${var.redis_port}"
   to_port           = "${var.redis_port}"
@@ -25,7 +25,7 @@ resource "aws_security_group_rule" "redis_ingress" {
 }
 
 resource "aws_elasticache_subnet_group" "this" {
-  count = "${var.redis_enabled == "true" ? 1 : 0 }"
+  count = "${var.redis_enabled ? 1 : 0 }"
   name  = "${local.redis_cluster_id}-redis-subnet-group"
 
   # IDs of subnets where the cluster should be deployed
@@ -33,7 +33,7 @@ resource "aws_elasticache_subnet_group" "this" {
 }
 
 resource "aws_elasticache_replication_group" "this" {
-  count                         = "${var.redis_enabled == "true" ? 1 : 0 }"
+  count                         = "${var.redis_enabled ? 1 : 0 }"
   replication_group_id          = "${local.redis_cluster_id}"
   replication_group_description = "${local.redis_cluster_id} - TF Generated"
 

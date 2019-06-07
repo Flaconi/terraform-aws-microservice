@@ -1,6 +1,6 @@
 locals {
   rds_identifier = "${length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name}"
-  password       = "${var.rds_use_random_password == "true" ? join("",random_string.password.*.result) : var.rds_admin_pass}"
+  password       = "${var.rds_use_random_password ? join("",random_string.password.*.result) : var.rds_admin_pass}"
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -18,7 +18,7 @@ module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
   version = "2.17.0"
 
-  create = "${var.rds_enabled == "true"}"
+  create = "${var.rds_enabled}"
 
   name        = "${local.rds_identifier}-sg"
   description = "Security group for - ${local.rds_identifier}"
@@ -30,7 +30,7 @@ module "rds_sg" {
 
 # Random password generator
 resource "random_string" "password" {
-  count   = "${var.rds_enabled == "true" ? 1 : 0}"
+  count   = "${var.rds_enabled ? 1 : 0}"
   length  = 16
   special = false
 }
@@ -42,10 +42,10 @@ module "rds" {
   source  = "terraform-aws-modules/rds/aws"
   version = "1.28.0"
 
-  create_db_instance        = "${var.rds_enabled == "true" ? 1 : 0}"
-  create_db_option_group    = "${var.rds_enabled == "true" ? 1 : 0}"
-  create_db_parameter_group = "${var.rds_enabled == "true" ? 1 : 0}"
-  create_db_subnet_group    = "${var.rds_enabled == "true" ? 1 : 0}"
+  create_db_instance        = "${var.rds_enabled ? 1 : 0}"
+  create_db_option_group    = "${var.rds_enabled ? 1 : 0}"
+  create_db_parameter_group = "${var.rds_enabled ? 1 : 0}"
+  create_db_subnet_group    = "${var.rds_enabled ? 1 : 0}"
 
   option_group_name    = "${var.rds_option_group_name}"
   parameter_group_name = "${var.rds_parameter_group_name}"
