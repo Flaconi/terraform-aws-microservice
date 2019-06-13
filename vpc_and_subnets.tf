@@ -1,21 +1,22 @@
 data "aws_vpc" "this" {
-  count = "${var.redis_enabled || var.rds_enabled ? 1 : 0 }"
+  count = var.redis_enabled || var.rds_enabled ? 1 : 0
 
-  tags = "${var.vpc_tag_filter}"
+  tags = var.vpc_tag_filter
 }
 
 data "aws_subnet_ids" "redis" {
-  count = "${var.redis_enabled ? 1 : 0 }"
+  count = var.redis_enabled ? 1 : 0
 
-  vpc_id = "${data.aws_vpc.this.id}"
+  vpc_id = data.aws_vpc.this[0].id
 
-  tags = "${var.redis_subnet_tag_filter}"
+  tags = var.redis_subnet_tag_filter
 }
 
 data "aws_subnet_ids" "rds" {
-  count = "${var.rds_enabled ? 1 : 0 }"
+  count = var.rds_enabled ? 1 : 0
 
-  vpc_id = "${data.aws_vpc.this.id}"
+  vpc_id = data.aws_vpc.this[0].id
 
-  tags = "${var.rds_subnet_tag_filter}"
+  tags = var.rds_subnet_tag_filter
 }
+

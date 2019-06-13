@@ -32,7 +32,7 @@ variable "iam_role_enabled" {
 
 variable "iam_role_principals_arns" {
   description = "List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -87,31 +87,30 @@ variable "dynamodb_enabled" {
 
 variable "dynamodb_hash_key" {
   description = "DynamoDB table Hash Key"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "dynamodb_range_key" {
   description = "DynamoDB table Range Key"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "dynamodb_attributes" {
   description = "Additional DynamoDB attributes in the form of a list of mapped values"
-  type        = "list"
   default     = []
 }
 
 variable "dynamodb_global_secondary_index_map" {
   description = "Additional global secondary indexes in the form of a list of mapped values"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
 variable "dynamodb_local_secondary_index_map" {
   description = "Additional local secondary indexes in the form of a list of mapped values"
-  type        = "list"
+  type        = list(string)
   default     = []
 }
 
@@ -185,7 +184,7 @@ variable "redis_replicas_count" {
 
 variable "redis_allowed_subnet_cidrs" {
   description = "List of CIDRs/subnets which should be able to connect to the Redis cluster"
-  type        = "list"
+  type        = list(string)
   default     = ["127.0.0.1/32"]
 }
 
@@ -209,7 +208,7 @@ variable "rds_identifier_override" {
 
 variable "rds_allowed_subnet_cidrs" {
   description = "List of CIDRs/subnets which should be able to connect to the RDS instance"
-  type        = "list"
+  type        = list(string)
   default     = ["127.0.0.1/32"]
 }
 
@@ -218,25 +217,25 @@ variable "rds_allowed_subnet_cidrs" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_engine" {
   description = "RDS instance engine"
-  type        = "string"
+  type        = string
   default     = "mysql"
 }
 
 variable "rds_major_engine_version" {
   description = "RDS instance major engine version"
-  type        = "string"
+  type        = string
   default     = "5.7"
 }
 
 variable "rds_engine_version" {
   description = "RDS instance engine version"
-  type        = "string"
+  type        = string
   default     = "5.7.19"
 }
 
 variable "rds_family" {
   description = "Parameter Group"
-  type        = "string"
+  type        = string
   default     = "mysql5.7"
 }
 
@@ -245,7 +244,7 @@ variable "rds_family" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_node_type" {
   description = "VM type which should be taken for nodes in the RDS instance"
-  type        = "string"
+  type        = string
   default     = "db.t3.micro"
 }
 
@@ -259,13 +258,13 @@ variable "rds_multi_az" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_storage_type" {
   description = "Storage type"
-  type        = "string"
+  type        = string
   default     = "gp2"
 }
 
 variable "rds_allocated_storage" {
   description = "Storage size in Gb"
-  type        = "string"
+  type        = string
   default     = 20
 }
 
@@ -274,13 +273,13 @@ variable "rds_allocated_storage" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_admin_user" {
   description = "Admin user name, should default when empty"
-  type        = "string"
+  type        = string
   default     = "admin"
 }
 
 variable "rds_admin_pass" {
   description = "Admin user password. At least 8 characters."
-  type        = "string"
+  type        = string
   default     = ""
 }
 
@@ -294,13 +293,13 @@ variable "rds_use_random_password" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_parameter_group_name" {
   description = "Parameter group for database"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "rds_option_group_name" {
   description = "Option groups for database"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
@@ -309,13 +308,13 @@ variable "rds_option_group_name" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_port" {
   description = "TCP port where DB accept connections"
-  type        = "string"
+  type        = string
   default     = "3306"
 }
 
 variable "rds_db_subnet_group_name" {
   description = "Subnet groups for RDS instance"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
@@ -329,7 +328,7 @@ variable "rds_subnet_tag_filter" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_backup_retention_period" {
   description = "Retention period for DB snapshots in days"
-  type        = "string"
+  type        = string
   default     = 14
 }
 
@@ -353,18 +352,19 @@ variable "rds_storage_encrypted" {
 
 variable "rds_kms_key_id" {
   description = "KMS key ARN for storage encryption"
-  type        = "string"
+  type        = string
   default     = ""
 }
 
 variable "rds_maintenance_window" {
   description = "Window of RDS Maintenance"
-  type        = "string"
+  type        = string
   default     = "Mon:16:00-Mon:18:00"
 }
 
 variable "rds_backup_window" {
   description = "Backup window"
-  type        = "string"
+  type        = string
   default     = "03:00-06:00"
 }
+

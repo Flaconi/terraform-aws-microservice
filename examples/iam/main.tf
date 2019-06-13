@@ -12,4 +12,7 @@ module "ms_sample_iam" {
 
   # Sample principal which can assume into this role
   #iam_role_principals_arns = ["arn:aws:iam::12374567890:root"]
+
+  tags = {}
 }
+
