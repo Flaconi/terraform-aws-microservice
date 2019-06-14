@@ -90,6 +90,7 @@ data "aws_iam_policy_document" "dynamodb_full_access" {
 
     resources = [
       "arn:aws:dynamodb:*:*:table/${module.dynamodb.table_id}",
+      "arn:aws:dynamodb:*:*:table/${module.dynamodb.table_id}/*",
     ]
 
     actions = [
