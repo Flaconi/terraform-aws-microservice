@@ -26,6 +26,9 @@ module "ms_sample_iam_and_dynamodb" {
   # dynamodb_attributes = []
   # dynamodb_global_secondary_index_map = []
   # dynamodb_local_secondary_index_map = []
-  tags = {}
+
+  tags = {
+    Name = "sample"
+  }
 }
 

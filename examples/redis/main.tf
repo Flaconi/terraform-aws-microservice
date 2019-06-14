@@ -55,5 +55,9 @@ module "ms_sample_redis" {
   redis_at_rest_encryption_enabled = false
   # redis_transit_encryption_enabled - Redis encrypt transit TLS
   # redis_transit_encryption_enabled = false
+
+  tags = {
+    Name = "sample"
+  }
 }
 

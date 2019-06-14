@@ -15,7 +15,7 @@ module "ms_sample_rds" {
     "env"  = "dev"
   }
 
-  # rds_enabled enables RDS 
+  # rds_enabled enables RDS
   rds_enabled = true
 
   # rds_allowed_subnet_cidrs specifices the allowed subnets
@@ -86,6 +86,8 @@ module "ms_sample_rds" {
   # rds_backup_window - Backup Window
   rds_backup_window = "03:00-06:00"
 
-  tags = {}
+  tags = {
+    Name = "sample"
+  }
 }
 

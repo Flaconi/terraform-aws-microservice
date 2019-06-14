@@ -11,7 +11,7 @@ variable "name" {
 
 variable "tags" {
   description = "tags to propagate to the resources"
-  default     = {}
+  type        = "map"
 }
 
 # -------------------------------------------------------------------------------------------------
