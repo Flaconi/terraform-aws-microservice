@@ -15,4 +15,3 @@ output "ms_sample_iam_this_aws_iam_access_key_secret" {
   value     = module.ms_sample_iam.this_iam_role_arn
   sensitive = true
 }
-

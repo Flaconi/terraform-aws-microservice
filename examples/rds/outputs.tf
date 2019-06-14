@@ -61,4 +61,3 @@ output "ms_sample_rds_rds_this_db_parameter_group_id" {
 output "ms_sample_rds_rds_this_db_parameter_group_arn" {
   value = module.ms_sample_rds.rds_this_db_parameter_group_arn
 }
-

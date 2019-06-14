@@ -50,4 +50,3 @@ output "ms_sample_iam_and_dynamodb_dynamodb_table_stream_label" {
   value       = module.ms_sample_iam_and_dynamodb.dynamodb_table_stream_arn
   description = "DynamoDB table stream label"
 }
-

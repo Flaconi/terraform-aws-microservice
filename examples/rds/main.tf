@@ -90,4 +90,3 @@ module "ms_sample_rds" {
     Name = "sample"
   }
 }
-

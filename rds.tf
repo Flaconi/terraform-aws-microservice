@@ -87,4 +87,3 @@ module "rds" {
 
   multi_az = var.rds_multi_az
 }
-
