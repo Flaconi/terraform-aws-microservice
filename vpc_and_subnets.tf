@@ -19,4 +19,3 @@ data "aws_subnet_ids" "rds" {
 
   tags = var.rds_subnet_tag_filter
 }
-

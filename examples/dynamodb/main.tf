@@ -31,4 +31,3 @@ module "ms_sample_iam_and_dynamodb" {
     Name = "sample"
   }
 }
-

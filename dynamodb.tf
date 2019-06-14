@@ -25,4 +25,3 @@ module "dynamodb" {
 
   tags = local.tags
 }
-

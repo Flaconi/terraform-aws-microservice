@@ -17,4 +17,3 @@ module "ms_sample_iam" {
     Name = "sample"
   }
 }
-

@@ -130,4 +130,3 @@ resource "aws_iam_role_policy" "dynamodb_role_policy" {
   # This defines what permissions our role will be given
   policy = data.aws_iam_policy_document.dynamodb_full_access[0].json
 }
-

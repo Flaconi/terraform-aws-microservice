@@ -74,4 +74,3 @@ resource "aws_route53_record" "private_rds_endpoint" {
     evaluate_target_health = false
   }
 }
-

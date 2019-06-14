@@ -236,4 +236,3 @@ output "private_rds_endpoint_aws_route53_record" {
     0,
   )
 }
-

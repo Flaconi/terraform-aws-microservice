@@ -21,4 +21,3 @@ output "ms_sample_redis_public_redis_endpoint_aws_route53_record" {
 output "ms_sample_redis_private_redis_endpoint_aws_route53_record" {
   value = module.ms_sample_redis.private_redis_endpoint_aws_route53_record
 }
-

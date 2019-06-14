@@ -60,4 +60,3 @@ module "ms_sample_redis" {
     Name = "sample"
   }
 }
-
