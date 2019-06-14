@@ -1,6 +1,9 @@
 locals {
-  tags = "${merge(var.tags, map(
-    "Name", "${var.env}-${var.name}",
-    "Environment", "${var.env}"
-  ))}"
+  tags = merge(
+    var.tags,
+    {
+      "Name"        = "${var.env}-${var.name}"
+      "Environment" = var.env
+    },
+  )
 }

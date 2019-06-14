@@ -70,10 +70,10 @@ module "ms_sample_redis" {
 
   # redis_enabled - Set to false to prevent the module from creating any redis resources
   redis_enabled = true
-  
+
   # redis_cluster_id_override - Use only lowercase, numbers and -, _., only use when it needs to be different from `var.name`
   # redis_cluster_id_override = ""
-  
+
   # redis_subnet_tag_filter sets the datasource to match the subnet_id's where the RDS will be located
   redis_subnet_tag_filter = {
     "Name" = "dev-redis-subnet*"
@@ -87,22 +87,22 @@ module "ms_sample_redis" {
 
   # Number of replica nodes in each node group
   redis_replicas_count = 1
-  
+
   # redis_port - Redis Port
   # redis_port = 6379
-  
+
   # redis_instance_type - Redis instance type
   redis_instance_type = "cache.t2.micro"
-  
+
   # redis_group_engine_version - Redis engine version to be used
   # redis_group_engine_version = "5.0.0"
-  
+
   # redis_group_parameter_group_name - Redis parameter group name"
   # redis_group_parameter_group_name = "default.redis5.0.cluster.on"
-  
+
   # redis_snapshot_window - Redis snapshot window
   # redis_snapshot_window = "00:00-05:00"
-  
+
   # redis_maintenance_window - Redis maintenance window
   # redis_maintenance_window = "mon:10:00-mon:12:00"
 
@@ -220,26 +220,26 @@ The following resources _CAN_ be created:
 |------|-------------|:----:|:-----:|:-----:|
 | env | The environment name to which this project will be applied against (e.g.: common, dev, prod, testing) | string | n/a | yes |
 | name | The name of the microservice, the dependent resources will be created with this name interpolated | string | n/a | yes |
-| tags | tags to propagate to the resources | map | n/a | yes |
+| tags | tags to propagate to the resources | map(any) | n/a | yes |
 | aws\_route53\_record\_ttl | Time to live for DNS record used by the endpoints | string | `"60"` | no |
 | aws\_route53\_zone\_endpoints\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint | string | `"false"` | no |
 | aws\_route53\_zone\_private\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true | string | `"true"` | no |
 | aws\_route53\_zone\_public\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true | string | `"true"` | no |
 | dynamodb\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
 | dynamodb\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
-| dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
 | dynamodb\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
-| dynamodb\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
 | dynamodb\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | endpoints\_domain | The domain / route53 zone we need to add a record with | string | `""` | no |
 | iam\_role\_enabled | Set to false to prevent iam role creation | string | `"false"` | no |
-| iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list | `[]` | no |
+| iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list(string) | `[]` | no |
 | iam\_user\_enabled | Set to false to prevent iam user creation | string | `"false"` | no |
 | iam\_user\_path | Set the path for the iam user | string | `"/"` | no |
 | rds\_admin\_pass | Admin user password. At least 8 characters. | string | `""` | no |
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |
-| rds\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the RDS instance | list | `[ "127.0.0.1/32" ]` | no |
+| rds\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the RDS instance | list(string) | `[ "127.0.0.1/32" ]` | no |
 | rds\_backup\_retention\_period | Retention period for DB snapshots in days | string | `"14"` | no |
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
@@ -262,7 +262,7 @@ The following resources _CAN_ be created:
 | rds\_storage\_type | Storage type | string | `"gp2"` | no |
 | rds\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the RDS component of the Microservice resides | map | `{}` | no |
 | rds\_use\_random\_password | with rds_use_random_password set to true the RDS database will be configured with a random password | string | `"true"` | no |
-| redis\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the Redis cluster | list | `[ "127.0.0.1/32" ]` | no |
+| redis\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the Redis cluster | list(string) | `[ "127.0.0.1/32" ]` | no |
 | redis\_at\_rest\_encryption\_enabled | Redis encrypt storage | string | `"false"` | no |
 | redis\_auto\_minor\_version\_upgrade | Redis allow auto minor version upgrade | string | `"true"` | no |
 | redis\_cluster\_id\_override | Redis cluster ID. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
