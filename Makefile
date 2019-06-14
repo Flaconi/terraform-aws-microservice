@@ -4,8 +4,8 @@ CURRENT_DIR     = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 TF_EXAMPLES     = $(sort $(dir $(wildcard $(CURRENT_DIR)examples/*/)))
 TF_MODULES  = $(sort $(dir $(wildcard $(CURRENT_DIR)modules/*/)))
 
-TF_VERSION      = 0.11.14
-TF_DOCS_VERSION = 0.6.0-0.2
+TF_VERSION      = 0.12.2
+TF_DOCS_VERSION = 0.6.0
 
 # Adjust your delimiter here or overwrite via make arguments
 DELIM_START = <!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
@@ -71,7 +71,7 @@ test:
 		echo "------------------------------------------------------------"; \
 		if docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" hashicorp/terraform:$(TF_VERSION) \
 			validate \
-				-check-variables=true $(ARGS) \
+				$(ARGS) \
 				.; then \
 			echo "OK"; \
 			docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
@@ -88,11 +88,11 @@ _gen-main:
 	@echo "# Main module"
 	@echo "------------------------------------------------------------"
 	@if docker run --rm \
-		-v $(CURRENT_DIR):/docs \
+		-v $(CURRENT_DIR):/data \
 		-e DELIM_START='$(DELIM_START)' \
 		-e DELIM_CLOSE='$(DELIM_CLOSE)' \
 		cytopia/terraform-docs:${TF_DOCS_VERSION} \
-		terraform-docs-replace --sort-inputs-by-required --with-aggregate-type-defaults md README.md; then \
+		terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md README.md; then \
 		echo "OK"; \
 	else \
 		echo "Failed"; \
@@ -107,11 +107,11 @@ _gen-examples:
 		echo "# $${DOCKER_PATH}"; \
 		echo "------------------------------------------------------------"; \
 		if docker run --rm \
-			-v $(CURRENT_DIR):/docs \
+			-v $(CURRENT_DIR):/data \
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
 			cytopia/terraform-docs:${TF_DOCS_VERSION} \
-			terraform-docs-replace --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
+			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
 			echo "OK"; \
 		else \
 			echo "Failed"; \
@@ -127,11 +127,11 @@ _gen-modules:
 		echo "# $${DOCKER_PATH}"; \
 		echo "------------------------------------------------------------"; \
 		if docker run --rm \
-			-v $(CURRENT_DIR):/docs \
+			-v $(CURRENT_DIR):/data \
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
 			cytopia/terraform-docs:${TF_DOCS_VERSION} \
-			terraform-docs-replace --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
+			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
 			echo "OK"; \
 		else \
 			echo "Failed"; \

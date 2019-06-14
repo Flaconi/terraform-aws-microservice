@@ -7,7 +7,7 @@ resource "null_resource" "dynamodb_checker" {
 }
 
 module "dynamodb" {
-  source  = "git::https://github.com/Flaconi/terraform-aws-dynamodb.git?ref=v0.12.0"
+  source = "git::https://github.com/Flaconi/terraform-aws-dynamodb.git?ref=v0.12.0"
 
   namespace = ""
   stage     = ""

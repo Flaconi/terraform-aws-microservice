@@ -16,9 +16,9 @@ data "aws_iam_policy_document" "assume_role_service" {
 }
 
 data "aws_iam_policy_document" "assume_role_principals" {
-  count = ( var.iam_role_enabled ? signum(
+  count = (var.iam_role_enabled ? signum(
     var.iam_user_enabled ? 1 : 0 + length(var.iam_role_principals_arns),
-  ) : 0 )
+  ) : 0)
   source_json = element(
     concat(
       data.aws_iam_policy_document.assume_role_service.*.json,
@@ -45,7 +45,7 @@ resource "aws_iam_role" "this" {
   count = var.iam_role_enabled ? 1 : 0
   name  = "${var.env}-microservice-${var.name}"
 
-  assume_role_policy = length(var.iam_role_principals_arns) + tonumber( var.iam_user_enabled ? 1 : 0 ) > 0 ? element(
+  assume_role_policy = length(var.iam_role_principals_arns) + tonumber(var.iam_user_enabled ? 1 : 0) > 0 ? element(
     concat(
       data.aws_iam_policy_document.assume_role_principals.*.json,
       [""],
