@@ -85,7 +85,7 @@ _gen-main:
 		-v $(CURRENT_DIR):/data \
 		-e DELIM_START='$(DELIM_START)' \
 		-e DELIM_CLOSE='$(DELIM_CLOSE)' \
-		cytopia/terraform-docs:${TF_DOCS_VERSION} \
+		cytopia/terraform-docs:$(TF_DOCS_VERSION) \
 		terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md README.md; then \
 		echo "OK"; \
 	else \
@@ -104,7 +104,7 @@ _gen-examples:
 			-v $(CURRENT_DIR):/data \
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
-			cytopia/terraform-docs:${TF_DOCS_VERSION} \
+			cytopia/terraform-docs:$(TF_DOCS_VERSION) \
 			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
 			echo "OK"; \
 		else \
@@ -124,7 +124,7 @@ _gen-modules:
 			-v $(CURRENT_DIR):/data \
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
-			cytopia/terraform-docs:${TF_DOCS_VERSION} \
+			cytopia/terraform-docs:$(TF_DOCS_VERSION) \
 			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
 			echo "OK"; \
 		else \
