@@ -2,7 +2,7 @@ ifneq (,)
 .error This Makefile requires GNU Make.
 endif
 
-.PHONY: help gen lint test _gen-main _gen-examples _gen-modules _lint_files _lint_fmt
+.PHONY: help gen lint test _gen-main _gen-examples _gen-modules _lint_files _lint_fmt _pull-tf _pull-tf-docs
 
 CURRENT_DIR     = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 TF_EXAMPLES     = $(sort $(dir $(wildcard $(CURRENT_DIR)examples/*/)))
@@ -20,7 +20,7 @@ help:
 	@echo "lint       Static source code analysis"
 	@echo "test       Integration tests"
 
-gen:
+gen: _pull-tf-docs
 	@echo "################################################################################"
 	@echo "# Terraform-docs generate"
 	@echo "################################################################################"
@@ -28,11 +28,11 @@ gen:
 	@$(MAKE) --no-print-directory _gen-examples
 	@$(MAKE) --no-print-directory _gen-modules
 
-lint:
+lint: _pull-tf
 	@$(MAKE) --no-print-directory _lint_files
 	@$(MAKE) --no-print-directory _lint_fmt
 
-test:
+test: _pull-tf
 	@$(foreach example,\
 		$(TF_EXAMPLES),\
 		DOCKER_PATH="/t/examples/$(notdir $(patsubst %/,%,$(example)))"; \
@@ -195,3 +195,9 @@ _lint_fmt:
 		exit 1; \
 	fi;
 	@echo
+
+_pull-tf:
+	docker pull hashicorp/terraform:$(TF_VERSION)
+
+_pull-tf-docs:
+	docker pull cytopia/terraform-docs:$(TF_DOCS_VERSION)
