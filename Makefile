@@ -8,7 +8,7 @@ CURRENT_DIR     = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 TF_EXAMPLES     = $(sort $(dir $(wildcard $(CURRENT_DIR)examples/*/)))
 TF_MODULES      = $(sort $(dir $(wildcard $(CURRENT_DIR)modules/*/)))
 
-TF_VERSION      = 0.12.2
+TF_VERSION      = light
 TF_DOCS_VERSION = 0.6.0
 
 # Adjust your delimiter here or overwrite via make arguments
