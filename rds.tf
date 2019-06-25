@@ -26,6 +26,8 @@ module "rds_sg" {
 
   ingress_cidr_blocks = var.rds_allowed_subnet_cidrs
   ingress_rules       = [lookup(local.rds_sg_rule_name, var.rds_engine, "postgresql-tcp")]
+
+  tags = var.tags
 }
 
 # Random password generator
