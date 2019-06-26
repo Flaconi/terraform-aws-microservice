@@ -243,12 +243,13 @@ The following resources _CAN_ be created:
 | rds\_backup\_retention\_period | Retention period for DB snapshots in days | string | `"14"` | no |
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
+| rds\_dbname\_override | RDS DB Name override in case the identifier is not wished as db name | string | `""` | no |
 | rds\_deletion\_protection | Protect RDS instance from deletion | string | `"true"` | no |
 | rds\_enabled | Set to false to prevent the module from creating any rds resources | string | `"false"` | no |
 | rds\_engine | RDS instance engine | string | `"mysql"` | no |
 | rds\_engine\_version | RDS instance engine version | string | `"5.7.19"` | no |
 | rds\_family | Parameter Group | string | `"mysql5.7"` | no |
-| rds\_identifier\_override | Redis cluster ID. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
+| rds\_identifier\_override | RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
 | rds\_kms\_key\_id | KMS key ARN for storage encryption | string | `""` | no |
 | rds\_maintenance\_window | Window of RDS Maintenance | string | `"Mon:16:00-Mon:18:00"` | no |
 | rds\_major\_engine\_version | RDS instance major engine version | string | `"5.7"` | no |
