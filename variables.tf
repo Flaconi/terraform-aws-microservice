@@ -202,7 +202,12 @@ variable "rds_enabled" {
 }
 
 variable "rds_identifier_override" {
-  description = "Redis cluster ID. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
+  description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
+  default     = ""
+}
+
+variable "rds_dbname_override" {
+  description = "RDS DB Name override in case the identifier is not wished as db name"
   default     = ""
 }
 

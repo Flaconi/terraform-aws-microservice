@@ -1,5 +1,6 @@
 locals {
   rds_identifier = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
+  rds_db_name    = length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier
   password       = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
 }
 
@@ -64,7 +65,7 @@ module "rds" {
   allocated_storage    = var.rds_allocated_storage
   family               = var.rds_family
 
-  name     = local.rds_identifier
+  name     = local.rds_db_name
   username = var.rds_admin_user
   password = local.password
   port     = var.rds_port
