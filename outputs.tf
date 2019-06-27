@@ -74,6 +74,45 @@ output "dynamodb_table_stream_label" {
 }
 
 # -------------------------------------------------------------------------------------------------
+# DynamoDB 2
+# -------------------------------------------------------------------------------------------------
+output "dynamodb2_table_name" {
+  description = "DynamoDB table name"
+  value       = module.dynamodb2.table_name
+}
+
+output "dynamodb2_table_id" {
+  description = "DynamoDB table ID"
+  value       = module.dynamodb2.table_id
+}
+
+output "dynamodb2_table_arn" {
+  description = "DynamoDB table ARN"
+  value       = module.dynamodb2.table_arn
+}
+
+output "dynamodb2_global_secondary_index_names" {
+  description = "DynamoDB secondary index names"
+  value       = [module.dynamodb2.global_secondary_index_names]
+}
+
+output "dynamodb2_local_secondary_index_names" {
+  description = "DynamoDB local index names"
+  value       = [module.dynamodb2.local_secondary_index_names]
+}
+
+output "dynamodb2_table_stream_arn" {
+  description = "DynamoDB table stream ARN"
+  value       = module.dynamodb2.table_stream_arn
+}
+
+output "dynamodb2_table_stream_label" {
+  description = "DynamoDB table stream label"
+  value       = module.dynamodb2.table_stream_label
+}
+
+
+# -------------------------------------------------------------------------------------------------
 # Redis
 # -------------------------------------------------------------------------------------------------
 output "this_redis_subnet_group_id" {

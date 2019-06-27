@@ -1,3 +1,7 @@
+locals {
+  dynamodb_name = length(var.dynamodb_name_override) > 0 ? var.dynamodb_name_override : var.name
+}
+
 resource "null_resource" "dynamodb_checker" {
   provisioner "local-exec" {
     command = "echo 'Condition failed. Expected: DynamoDB enabled, but hash_key not set' && exit 1"
@@ -11,7 +15,7 @@ module "dynamodb" {
 
   namespace = ""
   stage     = ""
-  name      = var.name
+  name      = local.dynamodb_name_override
   hash_key  = var.dynamodb_hash_key
   range_key = var.dynamodb_range_key
   enabled   = var.dynamodb_enabled ? "true" : "false"

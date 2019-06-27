@@ -130,3 +130,57 @@ resource "aws_iam_role_policy" "dynamodb_role_policy" {
   # This defines what permissions our role will be given
   policy = data.aws_iam_policy_document.dynamodb_full_access[0].json
 }
+
+data "aws_iam_policy_document" "dynamodb2_full_access" {
+  count = var.dynamodb2_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListDynamoDB"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:dynamodb:*:*:table/${module.dynamodb2.table_id}",
+    ]
+
+    actions = [
+      "dynamodb:List*",
+      "dynamodb:DescribeReservedCapacity*",
+      "dynamodb:DescribeLimits",
+      "dynamodb:DescribeTimeToLive",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:dynamodb:*:*:table/${module.dynamodb2.table_id}",
+      "arn:aws:dynamodb:*:*:table/${module.dynamodb2.table_id}/*",
+    ]
+
+    actions = [
+      "dynamodb:BatchGet*",
+      "dynamodb:DescribeStream",
+      "dynamodb:DescribeTable",
+      "dynamodb:Get*",
+      "dynamodb:Query",
+      "dynamodb:Scan",
+      "dynamodb:BatchWrite*",
+      "dynamodb:CreateTable",
+      "dynamodb:DeleteItem",
+      "dynamodb:Update*",
+      "dynamodb:PutItem",
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "dynamodb_role_policy" {
+  count = var.dynamodb2_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "dynamodb2-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.dynamodb2_full_access[0].json
+}
