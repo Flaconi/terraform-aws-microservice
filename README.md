@@ -225,11 +225,19 @@ The following resources _CAN_ be created:
 | aws\_route53\_zone\_endpoints\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint | string | `"false"` | no |
 | aws\_route53\_zone\_private\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true | string | `"true"` | no |
 | aws\_route53\_zone\_public\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true | string | `"true"` | no |
+| dynamodb2\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb2\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
+| dynamodb2\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb2\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
+| dynamodb2\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb2\_name\_override | define dynamodb2_name_override to set a name differnt from var.name | string | `""` | no |
+| dynamodb2\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | dynamodb\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
 | dynamodb\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
 | dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
 | dynamodb\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
 | dynamodb\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb\_name\_override | define dynamodb_name_override to set a name differnt from var.name | string | `""` | no |
 | dynamodb\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | endpoints\_domain | The domain / route53 zone we need to add a record with | string | `""` | no |
 | iam\_role\_enabled | Set to false to prevent iam role creation | string | `"false"` | no |
@@ -284,6 +292,13 @@ The following resources _CAN_ be created:
 
 | Name | Description |
 |------|-------------|
+| dynamodb2\_global\_secondary\_index\_names | DynamoDB secondary index names |
+| dynamodb2\_local\_secondary\_index\_names | DynamoDB local index names |
+| dynamodb2\_table\_arn | DynamoDB table ARN |
+| dynamodb2\_table\_id | DynamoDB table ID |
+| dynamodb2\_table\_name | DynamoDB table name |
+| dynamodb2\_table\_stream\_arn | DynamoDB table stream ARN |
+| dynamodb2\_table\_stream\_label | DynamoDB table stream label |
 | dynamodb\_global\_secondary\_index\_names | DynamoDB secondary index names |
 | dynamodb\_local\_secondary\_index\_names | DynamoDB local index names |
 | dynamodb\_table\_arn | DynamoDB table ARN |
