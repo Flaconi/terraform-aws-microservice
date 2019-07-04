@@ -294,6 +294,16 @@ variable "rds_use_random_password" {
 }
 
 # -------------------------------------------------------------------------------------------------
+# RDS IAM settings
+# -------------------------------------------------------------------------------------------------
+
+variable "rds_iam_database_authentication_enabled" {
+  description = "Enable / disable IAM database authentication"
+  default     = "false"
+}
+
+
+# -------------------------------------------------------------------------------------------------
 # RDS instance settings
 # -------------------------------------------------------------------------------------------------
 variable "rds_parameter_group_name" {
