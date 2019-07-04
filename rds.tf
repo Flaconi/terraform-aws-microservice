@@ -70,7 +70,7 @@ module "rds" {
   password = local.password
   port     = var.rds_port
 
-  iam_database_authentication_enabled = false
+  iam_database_authentication_enabled = var.rds_iam_database_authentication_enabled
 
   vpc_security_group_ids = [module.rds_sg.this_security_group_id]
 
