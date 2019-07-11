@@ -152,6 +152,6 @@ data "aws_iam_policy_document" "this" {
 resource "aws_iam_role_policy" "this" {
   count  = var.iam_role_enabled ? length(var.inline_policies) : 0
   name   = lookup(var.inline_policies[count.index], "name")
-  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+  role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
   policy = data.aws_iam_policy_document.this[count.index].json
 }
