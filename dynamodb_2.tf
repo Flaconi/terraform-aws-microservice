@@ -21,7 +21,7 @@ module "dynamodb2" {
   range_key = var.dynamodb2_range_key
   enabled   = var.dynamodb2_enabled ? "true" : "false"
 
-  dynamodb_attributes       = var.dynamodb2_attributes
+  dynamodb_attributes        = var.dynamodb2_attributes
   global_secondary_index_map = var.dynamodb2_global_secondary_index_map
   local_secondary_index_map  = var.dynamodb2_local_secondary_index_map
 
