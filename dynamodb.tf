@@ -15,7 +15,7 @@ module "dynamodb" {
 
   namespace = ""
   stage     = ""
-  name      = local.dynamodb_name_override
+  name      = local.dynamodb_name
   hash_key  = var.dynamodb_hash_key
   range_key = var.dynamodb_range_key
   enabled   = var.dynamodb_enabled ? "true" : "false"
