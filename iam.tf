@@ -175,7 +175,7 @@ data "aws_iam_policy_document" "dynamodb2_full_access" {
   }
 }
 
-resource "aws_iam_role_policy" "dynamodb_role_policy" {
+resource "aws_iam_role_policy" "dynamodb2_role_policy" {
   count = var.dynamodb2_enabled && var.iam_role_enabled ? 1 : 0
   role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
 
