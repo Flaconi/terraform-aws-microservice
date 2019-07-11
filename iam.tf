@@ -130,3 +130,28 @@ resource "aws_iam_role_policy" "dynamodb_role_policy" {
   # This defines what permissions our role will be given
   policy = data.aws_iam_policy_document.dynamodb_full_access[0].json
 }
+
+##
+## IAM Extra inline policies
+##
+data "aws_iam_policy_document" "this" {
+  count = length(var.inline_policies)
+
+  dynamic statement {
+    for_each = var.inline_policies[count.index].statements
+
+    content {
+      sid       = lookup(statement.value, "sid", "")
+      effect    = lookup(statement.value, "effect", "Allow")
+      actions   = lookup(statement.value, "actions")
+      resources = statement.value.resources
+    }
+  }
+}
+
+resource "aws_iam_role_policy" "this" {
+  count  = length(var.inline_policies)
+  name   = lookup(var.inline_policies[count.index], "name")
+  role   = aws_iam_role.this.id
+  policy = data.aws_iam_policy_document.this[count.index].json
+}
