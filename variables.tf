@@ -49,6 +49,11 @@ variable "iam_user_path" {
   default     = "/"
 }
 
+variable "inline_policies" {
+  description = "Policies applied to the assuming role"
+  default     = []
+}
+
 # -------------------------------------------------------------------------------------------------
 # Route53
 # -------------------------------------------------------------------------------------------------
@@ -340,6 +345,16 @@ variable "rds_use_random_password" {
   description = "with rds_use_random_password set to true the RDS database will be configured with a random password"
   default     = true
 }
+
+# -------------------------------------------------------------------------------------------------
+# RDS IAM settings
+# -------------------------------------------------------------------------------------------------
+
+variable "rds_iam_database_authentication_enabled" {
+  description = "Enable / disable IAM database authentication"
+  default     = "false"
+}
+
 
 # -------------------------------------------------------------------------------------------------
 # RDS instance settings
