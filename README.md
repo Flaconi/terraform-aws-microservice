@@ -35,6 +35,32 @@ module "microservice" {
   # Sample principal which can assume into this role
   #iam_role_principals_arns = ["arn:aws:iam::12374567890:root"]
 
+  inline_policies = [
+   {
+     name = "s3-access"
+     statements = [
+       {
+         actions   = ["s3:ListBucket"]
+         resources = ["arn:aws:s3:::test"]
+       },
+       {
+         actions   = ["s3:get*"]
+         resources = ["arn:aws:s3:::test/*"]
+       }
+     ]
+   },
+   {
+     name = "kinesis-full-access"
+     statements = [
+       {
+         actions   = ["kinesis:*"]
+         resources = ["*"]
+       },
+     ]
+   }
+  ]
+
+
   # -------------------------------------------------------------------------------------------------
   # DynamoDB
   # This module re-uses an implementation of the module https://github.com/cloudposse/terraform-aws-dynamodb
@@ -236,6 +262,7 @@ The following resources _CAN_ be created:
 | iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list(string) | `[]` | no |
 | iam\_user\_enabled | Set to false to prevent iam user creation | string | `"false"` | no |
 | iam\_user\_path | Set the path for the iam user | string | `"/"` | no |
+| inline\_policies | Policies applied to the assuming role | list | `[]` | no |
 | rds\_admin\_pass | Admin user password. At least 8 characters. | string | `""` | no |
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |
