@@ -114,15 +114,29 @@ variable "dynamodb_attributes" {
 
 variable "dynamodb_global_secondary_index_map" {
   description = "Additional global secondary indexes in the form of a list of mapped values"
-  type        = list(string)
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
   default     = []
 }
 
 variable "dynamodb_local_secondary_index_map" {
   description = "Additional local secondary indexes in the form of a list of mapped values"
-  type        = list(string)
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
   default     = []
 }
+
 # -------------------------------------------------------------------------------------------------
 # DynamoDB 2 Allows for a second table in Dynamodb
 # -------------------------------------------------------------------------------------------------
@@ -156,13 +170,26 @@ variable "dynamodb2_attributes" {
 
 variable "dynamodb2_global_secondary_index_map" {
   description = "Additional global secondary indexes in the form of a list of mapped values"
-  type        = list(string)
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
   default     = []
 }
 
 variable "dynamodb2_local_secondary_index_map" {
   description = "Additional local secondary indexes in the form of a list of mapped values"
-  type        = list(string)
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
   default     = []
 }
 
