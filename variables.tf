@@ -396,3 +396,15 @@ variable "s3_identifier_override" {
   type        = string
   default     = ""
 }
+
+variable "s3_force_destroy" {
+  description = "S3 Force destroy"
+  type        = bool
+  default     = true
+}
+
+variable "s3_versioning_enabled" {
+  description = "S3 Versioning enabled"
+  type        = bool
+  default     = true
+}
