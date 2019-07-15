@@ -1,4 +1,4 @@
-# -------------------------------------------------------------------------------------------------
+ -------------------------------------------------------------------------------------------------
 # Environment (required)
 # -------------------------------------------------------------------------------------------------
 variable "env" {
@@ -473,8 +473,8 @@ variable "s3_enabled" {
   default     = true
 }
 
-variable "s3_identifier_override" {
-  description = "S3 naming overrride"
+variable "s3_identifier" {
+  description = "The S3 Bucket name"
   type        = string
   default     = ""
 }

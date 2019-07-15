@@ -316,7 +316,7 @@ The following resources _CAN_ be created:
 | redis\_transit\_encryption\_enabled | Redis encrypt transit TLS | string | `"false"` | no |
 | s3\_enabled | S3 bucket creation and iam policy creation enabled | bool | `"true"` | no |
 | s3\_force\_destroy | S3 Force destroy | bool | `"true"` | no |
-| s3\_identifier\_override | S3 naming overrride | string | `""` | no |
+| s3\_identifier | The S3 Bucket name | string | `""` | no |
 | s3\_versioning\_enabled | S3 Versioning enabled | bool | `"true"` | no |
 | vpc\_tag\_filter | The map of tags to match the VPC tags with where the RDS or Redis or other networked AWS component of the Microservice resides | map | `{}` | no |
 

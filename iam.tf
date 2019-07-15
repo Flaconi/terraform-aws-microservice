@@ -217,7 +217,7 @@ data "aws_iam_policy_document" "s3_kms_permissions" {
 }
 
 resource "aws_iam_role_policy" "s3_kms" {
-  count  = var.iam_role_enabled && var.iam_role_enabled ? 1 : 0
+  count  = var.iam_role_enabled && var.s3_enabled ? 1 : 0
   name   = "s3-kms-permissions"
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
   policy = element(concat(data.aws_iam_policy_document.s3_kms_permissions.*.json, [""]), 0)

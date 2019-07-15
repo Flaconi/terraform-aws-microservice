@@ -1,6 +1,10 @@
 locals {
-  s3_identifier = length(var.s3_identifier_override) > 0 ? var.s3_identifier_override : join("-", list("bucket", var.name, var.env))
+  # Local check used to make sure that s3_identifier is set
+  s3_identifier_check = {
+    signum(length(var.s3_identifier)) = var.s3_identifier
+  }
 }
+
 
 data "aws_kms_key" "s3" {
   count  = var.s3_enabled ? 1 : 0
@@ -8,9 +12,9 @@ data "aws_kms_key" "s3" {
 }
 
 resource "aws_s3_bucket" "this" {
-  count         = var.s3_enabled ? 1 : 0
-  bucket_prefix = local.s3_identifier
-  acl           = "private"
+  count  = var.s3_enabled ? 1 : 0
+  bucket = local.s3_identifier_check[1]
+  acl    = "private"
 
   force_destroy = var.s3_force_destroy
 
@@ -21,7 +25,6 @@ resource "aws_s3_bucket" "this" {
       }
     }
   }
-
 
   tags = local.tags
 
