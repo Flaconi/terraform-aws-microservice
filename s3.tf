@@ -4,35 +4,7 @@ locals {
 
 data "aws_kms_key" "s3" {
   count  = var.s3_enabled ? 1 : 0
-  key_id = "aws/s3"
-}
-
-data "aws_iam_policy_document" "s3_kms_permissions" {
-  count = var.s3_enabled ? 1 : 0
-
-  statement {
-    effect = "Allow"
-    actions = [
-      "kms:Encrypt",
-      "kms:Decrypt",
-      "kms:ReEncrypt*",
-      "kms:GenerateDataKey*",
-      "kms:DescribeKey"
-    ]
-    resources = [aws_kms_key.s3.id]
-  }
-
-  statement {
-    effect    = "Allow"
-    actions   = ["s3:ListBucket"]
-    resources = ["${format("arn:aws:s3:::%s", aws_s3_bucket.this.id)}"]
-  }
-
-  statement {
-    effect    = "Allow"
-    actions   = ["s3:*"]
-    resources = ["${format("arn:aws:s3:::%s", aws_s3_bucket.this.id)}/"]
-  }
+  key_id = "alias/aws/s3"
 }
 
 resource "aws_s3_bucket" "this" {
@@ -40,7 +12,7 @@ resource "aws_s3_bucket" "this" {
   bucket_prefix = local.s3_identifier
   acl           = "private"
 
- force_destroy = var.s3_force_destroy
+  force_destroy = var.s3_force_destroy
 
   server_side_encryption_configuration {
     rule {

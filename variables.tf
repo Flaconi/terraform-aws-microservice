@@ -466,6 +466,13 @@ variable "rds_backup_window" {
 # -------------------------------------------------------------------------------------------------
 # S3 Bucket Creation
 # -------------------------------------------------------------------------------------------------
+
+variable "s3_enabled" {
+  description = "S3 bucket creation and iam policy creation enabled"
+  type        = bool
+  default     = true
+}
+
 variable "s3_identifier_override" {
   description = "S3 naming overrride"
   type        = string

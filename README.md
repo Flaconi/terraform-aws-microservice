@@ -314,6 +314,10 @@ The following resources _CAN_ be created:
 | redis\_snapshot\_window | Redis snapshot window | string | `"00:00-05:00"` | no |
 | redis\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the Redis component of the Microservice resides | map | `{}` | no |
 | redis\_transit\_encryption\_enabled | Redis encrypt transit TLS | string | `"false"` | no |
+| s3\_enabled | S3 bucket creation and iam policy creation enabled | bool | `"true"` | no |
+| s3\_force\_destroy | S3 Force destroy | bool | `"true"` | no |
+| s3\_identifier\_override | S3 naming overrride | string | `""` | no |
+| s3\_versioning\_enabled | S3 Versioning enabled | bool | `"true"` | no |
 | vpc\_tag\_filter | The map of tags to match the VPC tags with where the RDS or Redis or other networked AWS component of the Microservice resides | map | `{}` | no |
 
 ## Outputs
@@ -357,6 +361,8 @@ The following resources _CAN_ be created:
 | redis\_port | Redis port |
 | this\_aws\_iam\_access\_key | IAM Access Key of the created user |
 | this\_aws\_iam\_access\_key\_secret | The secret key of the user |
+| this\_aws\_s3\_bucket\_arn | id of created S3 bucket |
+| this\_aws\_s3\_bucket\_id | id of created S3 bucket |
 | this\_iam\_role\_arn | iam role arn |
 | this\_iam\_role\_name | iam role name |
 | this\_redis\_replication\_group\_id | The AWS Elasticache replication group ID |

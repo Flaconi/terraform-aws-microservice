@@ -186,6 +186,44 @@ resource "aws_iam_role_policy" "dynamodb2_role_policy" {
 }
 
 ##
+## IAM S3 KMS permissions
+##
+data "aws_iam_policy_document" "s3_kms_permissions" {
+  count = var.s3_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    effect = "Allow"
+    actions = [
+      "kms:Encrypt",
+      "kms:Decrypt",
+      "kms:ReEncrypt*",
+      "kms:GenerateDataKey*",
+      "kms:DescribeKey"
+    ]
+    resources = [element(concat(data.aws_kms_key.s3.*.arn, [""]), 0)]
+  }
+
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:ListBucket"]
+    resources = ["${format("arn:aws:s3:::%s", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}"]
+  }
+
+  statement {
+    effect    = "Allow"
+    actions   = ["s3:*"]
+    resources = ["${format("arn:aws:s3:::%s", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}/"]
+  }
+}
+
+resource "aws_iam_role_policy" "s3_kms" {
+  count  = var.iam_role_enabled && var.iam_role_enabled ? 1 : 0
+  name   = "s3-kms-permissions"
+  role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
+  policy = element(concat(data.aws_iam_policy_document.s3_kms_permissions.*.json, [""]), 0)
+}
+
+##
 ## IAM Extra inline policies
 ##
 data "aws_iam_policy_document" "this" {
