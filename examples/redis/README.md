@@ -32,6 +32,7 @@
 | iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list(string) | `[]` | no |
 | iam\_user\_enabled | Set to false to prevent iam user creation | string | `"false"` | no |
 | iam\_user\_path | Set the path for the iam user | string | `"/"` | no |
+| kms\_enabled | Bool for creating KMS Key, alias/<env>/microservice/<name> | bool | `"false"` | no |
 | rds\_admin\_pass | Admin user password. At least 8 characters. | string | `""` | no |
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |
@@ -75,7 +76,7 @@
 | redis\_snapshot\_window | Redis snapshot window | string | `"00:00-05:00"` | no |
 | redis\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the Redis component of the Microservice resides | map | `{}` | no |
 | redis\_transit\_encryption\_enabled | Redis encrypt transit TLS | string | `"false"` | no |
-| s3\_enabled | S3 bucket creation and iam policy creation enabled | bool | `"true"` | no |
+| s3\_enabled | S3 bucket creation and iam policy creation enabled | bool | `"false"` | no |
 | s3\_force\_destroy | S3 Force destroy | bool | `"true"` | no |
 | s3\_identifier | The S3 Bucket name | string | `""` | no |
 | s3\_versioning\_enabled | S3 Versioning enabled | bool | `"true"` | no |
