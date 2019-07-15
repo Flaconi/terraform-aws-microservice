@@ -123,7 +123,7 @@ variable "dynamodb_global_secondary_index_map" {
     read_capacity      = number
     write_capacity     = number
   }))
-  default     = []
+  default = []
 }
 
 variable "dynamodb_local_secondary_index_map" {
@@ -134,7 +134,7 @@ variable "dynamodb_local_secondary_index_map" {
     projection_type    = string
     range_key          = string
   }))
-  default     = []
+  default = []
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -179,7 +179,7 @@ variable "dynamodb2_global_secondary_index_map" {
     read_capacity      = number
     write_capacity     = number
   }))
-  default     = []
+  default = []
 }
 
 variable "dynamodb2_local_secondary_index_map" {
@@ -190,7 +190,7 @@ variable "dynamodb2_local_secondary_index_map" {
     projection_type    = string
     range_key          = string
   }))
-  default     = []
+  default = []
 }
 
 
