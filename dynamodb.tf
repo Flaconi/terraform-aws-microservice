@@ -1,3 +1,7 @@
+locals {
+  dynamodb_name = length(var.dynamodb_name_override) > 0 ? var.dynamodb_name_override : var.name
+}
+
 resource "null_resource" "dynamodb_checker" {
   provisioner "local-exec" {
     command = "echo 'Condition failed. Expected: DynamoDB enabled, but hash_key not set' && exit 1"
@@ -7,11 +11,12 @@ resource "null_resource" "dynamodb_checker" {
 }
 
 module "dynamodb" {
-  source = "git::https://github.com/Flaconi/terraform-aws-dynamodb.git?ref=v0.12.0"
+  source  = "cloudposse/dynamodb/aws"
+  version = "0.10.0"
 
   namespace = ""
   stage     = ""
-  name      = var.name
+  name      = local.dynamodb_name
   hash_key  = var.dynamodb_hash_key
   range_key = var.dynamodb_range_key
   enabled   = var.dynamodb_enabled ? "true" : "false"
