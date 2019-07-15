@@ -462,3 +462,12 @@ variable "rds_backup_window" {
   type        = string
   default     = "03:00-06:00"
 }
+
+# -------------------------------------------------------------------------------------------------
+# S3 Bucket Creation
+# -------------------------------------------------------------------------------------------------
+variable "s3_identifier_override" {
+  description = "S3 naming overrride"
+  type        = string
+  default     = ""
+}

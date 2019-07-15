@@ -275,3 +275,23 @@ output "private_rds_endpoint_aws_route53_record" {
     0,
   )
 }
+
+
+#
+# S3
+#
+output "this_aws_s3_bucket_id" {
+  description = "id of created S3 bucket"
+  value = element(
+    concat(aws_s3_bucket.this.*.id, [""]),
+    0,
+  )
+}
+
+output "this_aws_s3_bucket_arn" {
+  description = "id of created S3 bucket"
+  value = element(
+    concat(aws_s3_bucket.this.*.arn, [""]),
+    0,
+  )
+}
