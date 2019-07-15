@@ -212,7 +212,7 @@ data "aws_iam_policy_document" "s3_kms_permissions" {
   statement {
     effect    = "Allow"
     actions   = ["s3:*"]
-    resources = ["${format("arn:aws:s3:::%s", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}/"]
+    resources = ["${format("arn:aws:s3:::%s/*", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}/"]
   }
 }
 
