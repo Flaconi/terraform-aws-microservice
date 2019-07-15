@@ -14,24 +14,24 @@
 | aws\_route53\_zone\_public\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true | string | `"true"` | no |
 | dynamodb2\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
 | dynamodb2\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
-| dynamodb2\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb2\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb2\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
-| dynamodb2\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb2\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb2\_name\_override | define dynamodb2_name_override to set a name differnt from var.name | string | `""` | no |
 | dynamodb2\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | dynamodb\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
 | dynamodb\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
-| dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
-| dynamodb\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | list(string) | `[]` | no |
+| dynamodb\_local\_secondary\_index\_map | Additional local secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb\_name\_override | define dynamodb_name_override to set a name differnt from var.name | string | `""` | no |
 | dynamodb\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | endpoints\_domain | The domain / route53 zone we need to add a record with | string | `""` | no |
+| iam\_inline\_policies | Policies applied to the assuming role | list | `[]` | no |
 | iam\_role\_enabled | Set to false to prevent iam role creation | string | `"false"` | no |
 | iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list(string) | `[]` | no |
 | iam\_user\_enabled | Set to false to prevent iam user creation | string | `"false"` | no |
 | iam\_user\_path | Set the path for the iam user | string | `"/"` | no |
-| inline\_policies | Policies applied to the assuming role | list | `[]` | no |
 | rds\_admin\_pass | Admin user password. At least 8 characters. | string | `""` | no |
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |

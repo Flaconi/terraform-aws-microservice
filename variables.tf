@@ -49,7 +49,7 @@ variable "iam_user_path" {
   default     = "/"
 }
 
-variable "inline_policies" {
+variable "iam_inline_policies" {
   description = "Policies applied to the assuming role"
   default     = []
 }

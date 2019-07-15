@@ -11,7 +11,8 @@ resource "null_resource" "dynamodb_checker" {
 }
 
 module "dynamodb" {
-  source = "git::https://github.com/cloudposse/terraform-aws-dynamodb.git?ref=0.10.0"
+  source  = "cloudposse/dynamodb/aws"
+  version = "0.10.0"
 
   namespace = ""
   stage     = ""

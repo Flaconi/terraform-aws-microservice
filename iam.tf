@@ -189,10 +189,10 @@ resource "aws_iam_role_policy" "dynamodb2_role_policy" {
 ## IAM Extra inline policies
 ##
 data "aws_iam_policy_document" "this" {
-  count = length(var.inline_policies)
+  count = length(var.iam_inline_policies)
 
   dynamic statement {
-    for_each = var.inline_policies[count.index].statements
+    for_each = var.iam_inline_policies[count.index].statements
 
     content {
       sid       = lookup(statement.value, "sid", "")
@@ -204,8 +204,8 @@ data "aws_iam_policy_document" "this" {
 }
 
 resource "aws_iam_role_policy" "this" {
-  count  = var.iam_role_enabled ? length(var.inline_policies) : 0
-  name   = lookup(var.inline_policies[count.index], "name")
+  count  = var.iam_role_enabled ? length(var.iam_inline_policies) : 0
+  name   = lookup(var.iam_inline_policies[count.index], "name")
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
   policy = data.aws_iam_policy_document.this[count.index].json
 }
