@@ -470,7 +470,7 @@ variable "rds_backup_window" {
 variable "s3_enabled" {
   description = "S3 bucket creation and iam policy creation enabled"
   type        = bool
-  default     = true
+  default     = false
 }
 
 variable "s3_identifier" {
@@ -489,4 +489,15 @@ variable "s3_versioning_enabled" {
   description = "S3 Versioning enabled"
   type        = bool
   default     = true
+}
+
+
+# -------------------------------------------------------------------------------------------------
+# KMS Key
+# -------------------------------------------------------------------------------------------------
+
+variable "kms_enabled" {
+  description = "Bool for creating KMS Key, alias/<env>/microservice/<name>"
+  type        = bool
+  default     = false
 }

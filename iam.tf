@@ -186,10 +186,10 @@ resource "aws_iam_role_policy" "dynamodb2_role_policy" {
 }
 
 ##
-## IAM S3 KMS permissions
+## IAM KMS permissions
 ##
-data "aws_iam_policy_document" "s3_kms_permissions" {
-  count = var.s3_enabled && var.iam_role_enabled ? 1 : 0
+data "aws_iam_policy_document" "kms_permissions" {
+  count = var.kms_enabled && var.iam_role_enabled ? 1 : 0
 
   statement {
     effect = "Allow"
@@ -200,27 +200,40 @@ data "aws_iam_policy_document" "s3_kms_permissions" {
       "kms:GenerateDataKey*",
       "kms:DescribeKey"
     ]
-    resources = [element(concat(data.aws_kms_key.s3.*.arn, [""]), 0)]
+    resources = [element(concat(aws_kms_key.this.*.arn, [""]), 0)]
   }
+}
 
+resource "aws_iam_role_policy" "kms" {
+  count  = var.iam_role_enabled && var.kms_enabled ? 1 : 0
+  name   = "kms-permissions"
+  role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
+  policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
+}
+
+
+##
+## IAM S3 permissions
+##
+data "aws_iam_policy_document" "s3_permissions" {
   statement {
     effect    = "Allow"
     actions   = ["s3:ListBucket"]
-    resources = ["${format("arn:aws:s3:::%s", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}"]
+    resources = [format("arn:aws:s3:::%s", element(concat(aws_s3_bucket.this.*.id, [""]), 0))]
   }
 
   statement {
     effect    = "Allow"
     actions   = ["s3:*"]
-    resources = ["${format("arn:aws:s3:::%s/*", element(concat(aws_s3_bucket.this.*.id, [""]), 0))}/"]
+    resources = [format("arn:aws:s3:::%s/*", element(concat(aws_s3_bucket.this.*.id, [""]), 0))]
   }
 }
 
-resource "aws_iam_role_policy" "s3_kms" {
+resource "aws_iam_role_policy" "s3" {
   count  = var.iam_role_enabled && var.s3_enabled ? 1 : 0
-  name   = "s3-kms-permissions"
+  name   = "s3-permissions"
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
-  policy = element(concat(data.aws_iam_policy_document.s3_kms_permissions.*.json, [""]), 0)
+  policy = element(concat(data.aws_iam_policy_document.s3_permissions.*.json, [""]), 0)
 }
 
 ##
