@@ -49,7 +49,7 @@ variable "iam_user_path" {
   default     = "/"
 }
 
-variable "inline_policies" {
+variable "iam_inline_policies" {
   description = "Policies applied to the assuming role"
   default     = []
 }
@@ -90,6 +90,11 @@ variable "dynamodb_enabled" {
   default     = false
 }
 
+variable "dynamodb_name_override" {
+  description = "define dynamodb_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
 variable "dynamodb_hash_key" {
   description = "DynamoDB table Hash Key"
   type        = string
@@ -109,15 +114,85 @@ variable "dynamodb_attributes" {
 
 variable "dynamodb_global_secondary_index_map" {
   description = "Additional global secondary indexes in the form of a list of mapped values"
-  type        = list(string)
-  default     = []
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
+  default = []
 }
 
 variable "dynamodb_local_secondary_index_map" {
   description = "Additional local secondary indexes in the form of a list of mapped values"
-  type        = list(string)
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
+  default = []
+}
+
+# -------------------------------------------------------------------------------------------------
+# DynamoDB 2 Allows for a second table in Dynamodb
+# -------------------------------------------------------------------------------------------------
+
+variable "dynamodb2_enabled" {
+  description = "Set to false to prevent the module from creating any dynamodb resources"
+  default     = false
+}
+
+variable "dynamodb2_name_override" {
+  description = "define dynamodb2_name_override to set a name differnt from var.name"
+  default     = ""
+}
+
+variable "dynamodb2_hash_key" {
+  description = "DynamoDB table Hash Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb2_range_key" {
+  description = "DynamoDB table Range Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb2_attributes" {
+  description = "Additional DynamoDB attributes in the form of a list of mapped values"
   default     = []
 }
+
+variable "dynamodb2_global_secondary_index_map" {
+  description = "Additional global secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
+  default = []
+}
+
+variable "dynamodb2_local_secondary_index_map" {
+  description = "Additional local secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
+  default = []
+}
+
 
 # -------------------------------------------------------------------------------------------------
 # Redis
