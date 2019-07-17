@@ -189,7 +189,7 @@ resource "aws_iam_role_policy" "dynamodb2_role_policy" {
 ## IAM KMS permissions
 ##
 data "aws_iam_policy_document" "kms_permissions" {
-  count = var.kms_enabled && var.iam_role_enabled ? 1 : 0
+  count = local.kms_enabled && var.iam_role_enabled ? 1 : 0
 
   statement {
     effect = "Allow"
@@ -205,7 +205,7 @@ data "aws_iam_policy_document" "kms_permissions" {
 }
 
 resource "aws_iam_role_policy" "kms" {
-  count  = var.iam_role_enabled && var.kms_enabled ? 1 : 0
+  count  = var.iam_role_enabled && local.kms_enabled ? 1 : 0
   name   = "kms-permissions"
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
   policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)

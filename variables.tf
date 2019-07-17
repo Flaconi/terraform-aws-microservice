@@ -490,14 +490,3 @@ variable "s3_versioning_enabled" {
   type        = bool
   default     = true
 }
-
-
-# -------------------------------------------------------------------------------------------------
-# KMS Key
-# -------------------------------------------------------------------------------------------------
-
-variable "kms_enabled" {
-  description = "Bool for creating KMS Key, alias/<env>/microservice/<name>"
-  type        = bool
-  default     = false
-}
