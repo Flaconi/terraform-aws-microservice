@@ -102,6 +102,7 @@ _gen-examples:
 		echo "------------------------------------------------------------"; \
 		if docker run --rm \
 			-v $(CURRENT_DIR):/data \
+			--workdir "/data/$${DOCKER_PATH}" \
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
 			cytopia/terraform-docs:$(TF_DOCS_VERSION) \
