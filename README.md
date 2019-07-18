@@ -271,7 +271,6 @@ The following resources _CAN_ be created:
 | iam\_role\_principals\_arns | List of ARNs to allow assuming the iam role. Could be AWS services or accounts, Kops nodes, IAM users or groups | list(string) | `[]` | no |
 | iam\_user\_enabled | Set to false to prevent iam user creation | string | `"false"` | no |
 | iam\_user\_path | Set the path for the iam user | string | `"/"` | no |
-| kms\_enabled | Bool for creating KMS Key, alias/<env>/microservice/<name> | bool | `"false"` | no |
 | rds\_admin\_pass | Admin user password. At least 8 characters. | string | `""` | no |
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |
