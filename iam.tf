@@ -260,23 +260,3 @@ resource "aws_iam_role_policy" "this" {
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
   policy = data.aws_iam_policy_document.this[count.index].json
 }
-
-data "aws_iam_policy_document" "ses_send_access" {
-  statement {
-    effect = "Allow"
-
-    actions = [
-      "ses:SendRawEmail",
-    ]
-
-    resources = ["*"]
-  }
-}
-
-resource "aws_iam_role_policy" "ses" {
-  count       = "${var.enabled ? 1 : 0}"
-  name_prefix = "${var.user_policy_name_prefix}"
-  user        = "${aws_iam_user.this.name}"
-
-  policy = "${data.aws_iam_policy_document.ses_send_access.json}"
-}
