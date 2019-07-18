@@ -1,5 +1,5 @@
 locals {
-  dynamodb2_name = length(var.dynamodb2_name_override) > 0 ? var.dynamodb2_name_override : var.name
+  dynamodb2_name = length(var.dynamodb2_name_override) > 0 ? var.dynamodb2_name_override : join("-", [var.name, "2"])
 }
 
 
