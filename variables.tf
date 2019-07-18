@@ -462,3 +462,31 @@ variable "rds_backup_window" {
   type        = string
   default     = "03:00-06:00"
 }
+
+# -------------------------------------------------------------------------------------------------
+# S3 Bucket Creation
+# -------------------------------------------------------------------------------------------------
+
+variable "s3_enabled" {
+  description = "S3 bucket creation and iam policy creation enabled"
+  type        = bool
+  default     = false
+}
+
+variable "s3_identifier" {
+  description = "The S3 Bucket name"
+  type        = string
+  default     = ""
+}
+
+variable "s3_force_destroy" {
+  description = "S3 Force destroy"
+  type        = bool
+  default     = true
+}
+
+variable "s3_versioning_enabled" {
+  description = "S3 Versioning enabled"
+  type        = bool
+  default     = true
+}
