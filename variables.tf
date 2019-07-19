@@ -219,7 +219,7 @@ variable "dynamodb2_local_secondary_index_map" {
 }
 
 # -------------------------------------------------------------------------------------------------
-# DynamoDB 3 Allows for a third dynamodb table 
+# DynamoDB 3 Allows for a third dynamodb table
 # -------------------------------------------------------------------------------------------------
 
 variable "dynamodb3_enabled" {
