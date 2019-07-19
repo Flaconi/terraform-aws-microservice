@@ -101,10 +101,23 @@ variable "dynamodb_hash_key" {
   default     = ""
 }
 
+variable "dynamodb_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+
 variable "dynamodb_range_key" {
   description = "DynamoDB table Range Key"
   type        = string
   default     = ""
+}
+
+variable "dynamodb_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
 }
 
 variable "dynamodb_attributes" {
@@ -157,10 +170,22 @@ variable "dynamodb2_hash_key" {
   default     = ""
 }
 
+variable "dynamodb2_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
 variable "dynamodb2_range_key" {
   description = "DynamoDB table Range Key"
   type        = string
   default     = ""
+}
+
+variable "dynamodb2_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
 }
 
 variable "dynamodb2_attributes" {

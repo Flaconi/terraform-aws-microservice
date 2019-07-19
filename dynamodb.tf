@@ -14,12 +14,14 @@ module "dynamodb" {
   source  = "cloudposse/dynamodb/aws"
   version = "0.10.0"
 
-  namespace = ""
-  stage     = ""
-  name      = local.dynamodb_name
-  hash_key  = var.dynamodb_hash_key
-  range_key = var.dynamodb_range_key
-  enabled   = var.dynamodb_enabled ? "true" : "false"
+  namespace      = ""
+  stage          = ""
+  name           = local.dynamodb_name
+  hash_key       = var.dynamodb_hash_key
+  hash_key_type  = var.dynamodb_hash_key_type
+  range_key      = var.dynamodb_range_key
+  range_key_type = var.dynamodb_range_key_type
+  enabled        = var.dynamodb_enabled ? "true" : "false"
 
   dynamodb_attributes        = var.dynamodb_attributes
   global_secondary_index_map = var.dynamodb_global_secondary_index_map
