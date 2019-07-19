@@ -101,10 +101,23 @@ variable "dynamodb_hash_key" {
   default     = ""
 }
 
+variable "dynamodb_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+
 variable "dynamodb_range_key" {
   description = "DynamoDB table Range Key"
   type        = string
   default     = ""
+}
+
+variable "dynamodb_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
 }
 
 variable "dynamodb_attributes" {
@@ -157,10 +170,22 @@ variable "dynamodb2_hash_key" {
   default     = ""
 }
 
+variable "dynamodb2_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
 variable "dynamodb2_range_key" {
   description = "DynamoDB table Range Key"
   type        = string
   default     = ""
+}
+
+variable "dynamodb2_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
 }
 
 variable "dynamodb2_attributes" {
@@ -192,6 +217,75 @@ variable "dynamodb2_local_secondary_index_map" {
   }))
   default = []
 }
+
+# -------------------------------------------------------------------------------------------------
+# DynamoDB 3 Allows for a third dynamodb table
+# -------------------------------------------------------------------------------------------------
+
+variable "dynamodb3_enabled" {
+  description = "Set to false to prevent the module from creating any dynamodb resources"
+  default     = false
+}
+
+variable "dynamodb3_name_override" {
+  description = "define dynamodb3_name_override to set a name differnt from var.name"
+  default     = ""
+}
+
+variable "dynamodb3_hash_key" {
+  description = "DynamoDB table Hash Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb3_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+variable "dynamodb3_range_key" {
+  description = "DynamoDB table Range Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb3_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+variable "dynamodb3_attributes" {
+  description = "Additional DynamoDB attributes in the form of a list of mapped values"
+  default     = []
+}
+
+variable "dynamodb3_global_secondary_index_map" {
+  description = "Additional global secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
+  default = []
+}
+
+variable "dynamodb3_local_secondary_index_map" {
+  description = "Additional local secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
+  default = []
+}
+
 
 
 # -------------------------------------------------------------------------------------------------
