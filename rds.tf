@@ -85,6 +85,8 @@ module "rds" {
   final_snapshot_identifier = "${var.env}-${local.rds_identifier}-snapshot"
   backup_retention_period   = var.rds_backup_retention_period
 
+  performance_insights_retention_period = null
+
   deletion_protection = var.rds_deletion_protection
   skip_final_snapshot = var.rds_skip_final_snapshot
 
