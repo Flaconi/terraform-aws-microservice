@@ -150,6 +150,48 @@ variable "dynamodb_local_secondary_index_map" {
   default = []
 }
 
+variable "dynamodb_autoscale_write_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB write autoscaling"
+}
+
+variable "dynamodb_autoscale_read_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB read autoscaling"
+}
+
+variable "dynamodb_autoscale_min_read_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min read capacity"
+}
+
+variable "dynamodb_autoscale_max_read_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max read capacity"
+}
+
+variable "dynamodb_autoscale_min_write_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min write capacity"
+}
+
+variable "dynamodb_autoscale_max_write_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max write capacity"
+}
+
+variable "dynamodb_enable_autoscaler" {
+  type        = string
+  default     = "true"
+  description = "Flag to enable/disable DynamoDB autoscaling"
+}
+
 # -------------------------------------------------------------------------------------------------
 # DynamoDB 2 Allows for a second table in Dynamodb
 # -------------------------------------------------------------------------------------------------
@@ -216,6 +258,48 @@ variable "dynamodb2_local_secondary_index_map" {
     range_key          = string
   }))
   default = []
+}
+
+variable "dynamodb2_autoscale_write_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB write autoscaling"
+}
+
+variable "dynamodb2_autoscale_read_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB read autoscaling"
+}
+
+variable "dynamodb2_autoscale_min_read_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min read capacity"
+}
+
+variable "dynamodb2_autoscale_max_read_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max read capacity"
+}
+
+variable "dynamodb2_autoscale_min_write_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min write capacity"
+}
+
+variable "dynamodb2_autoscale_max_write_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max write capacity"
+}
+
+variable "dynamodb2_enable_autoscaler" {
+  type        = string
+  default     = "true"
+  description = "Flag to enable/disable DynamoDB autoscaling"
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -286,6 +370,48 @@ variable "dynamodb3_local_secondary_index_map" {
   default = []
 }
 
+
+variable "dynamodb3_autoscale_write_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB write autoscaling"
+}
+
+variable "dynamodb3_autoscale_read_target" {
+  type        = number
+  default     = 50
+  description = "The target value (in %) for DynamoDB read autoscaling"
+}
+
+variable "dynamodb3_autoscale_min_read_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min read capacity"
+}
+
+variable "dynamodb3_autoscale_max_read_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max read capacity"
+}
+
+variable "dynamodb3_autoscale_min_write_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min write capacity"
+}
+
+variable "dynamodb3_autoscale_max_write_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max write capacity"
+}
+
+variable "dynamodb3_enable_autoscaler" {
+  type        = string
+  default     = "true"
+  description = "Flag to enable/disable DynamoDB autoscaling"
+}
 
 
 # -------------------------------------------------------------------------------------------------
