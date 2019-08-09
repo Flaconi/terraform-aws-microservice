@@ -35,7 +35,7 @@ module "dynamodb3" {
   autoscale_max_read_capacity  = var.dynamodb3_autoscale_max_read_capacity
   autoscale_min_write_capacity = var.dynamodb3_autoscale_min_write_capacity
   autoscale_max_write_capacity = var.dynamodb3_autoscale_max_write_capacity
-  enable_autoscaler            = var.dynamodb3_enable_autoscaler
+  enable_autoscaler            = var.dynamodb3_enable_autoscaler ? "true" : "false"
 
   tags = local.tags
 }

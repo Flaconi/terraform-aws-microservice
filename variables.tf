@@ -187,8 +187,8 @@ variable "dynamodb_autoscale_max_write_capacity" {
 }
 
 variable "dynamodb_enable_autoscaler" {
-  type        = string
-  default     = "true"
+  type        = bool
+  default     = true
   description = "Flag to enable/disable DynamoDB autoscaling"
 }
 
@@ -297,8 +297,8 @@ variable "dynamodb2_autoscale_max_write_capacity" {
 }
 
 variable "dynamodb2_enable_autoscaler" {
-  type        = string
-  default     = "true"
+  type        = bool
+  default     = true
   description = "Flag to enable/disable DynamoDB autoscaling"
 }
 
@@ -408,8 +408,8 @@ variable "dynamodb3_autoscale_max_write_capacity" {
 }
 
 variable "dynamodb3_enable_autoscaler" {
-  type        = string
-  default     = "true"
+  type        = bool
+  default     = true
   description = "Flag to enable/disable DynamoDB autoscaling"
 }
 

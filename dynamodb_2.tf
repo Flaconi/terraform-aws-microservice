@@ -35,7 +35,7 @@ module "dynamodb2" {
   autoscale_max_read_capacity  = var.dynamodb2_autoscale_max_read_capacity
   autoscale_min_write_capacity = var.dynamodb2_autoscale_min_write_capacity
   autoscale_max_write_capacity = var.dynamodb2_autoscale_max_write_capacity
-  enable_autoscaler            = var.dynamodb2_enable_autoscaler
+  enable_autoscaler            = var.dynamodb2_enable_autoscaler ? "true" : "false"
 
   tags = local.tags
 }
