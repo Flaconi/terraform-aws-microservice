@@ -153,13 +153,13 @@ variable "dynamodb_local_secondary_index_map" {
 variable "dynamodb_autoscale_write_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB write autoscaling"
+  description = "The target value for DynamoDB write autoscaling"
 }
 
 variable "dynamodb_autoscale_read_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB read autoscaling"
+  description = "The target value for DynamoDB read autoscaling"
 }
 
 variable "dynamodb_autoscale_min_read_capacity" {
@@ -263,13 +263,13 @@ variable "dynamodb2_local_secondary_index_map" {
 variable "dynamodb2_autoscale_write_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB write autoscaling"
+  description = "The target value for DynamoDB write autoscaling"
 }
 
 variable "dynamodb2_autoscale_read_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB read autoscaling"
+  description = "The target value for DynamoDB read autoscaling"
 }
 
 variable "dynamodb2_autoscale_min_read_capacity" {
@@ -374,13 +374,13 @@ variable "dynamodb3_local_secondary_index_map" {
 variable "dynamodb3_autoscale_write_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB write autoscaling"
+  description = "The target value for DynamoDB write autoscaling"
 }
 
 variable "dynamodb3_autoscale_read_target" {
   type        = number
   default     = 50
-  description = "The target value (in %) for DynamoDB read autoscaling"
+  description = "The target value for DynamoDB read autoscaling"
 }
 
 variable "dynamodb3_autoscale_min_read_capacity" {
