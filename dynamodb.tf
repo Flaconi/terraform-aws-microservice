@@ -27,8 +27,13 @@ module "dynamodb" {
   global_secondary_index_map = var.dynamodb_global_secondary_index_map
   local_secondary_index_map  = var.dynamodb_local_secondary_index_map
 
-  # We can always extend the defaults and add them
-  enable_autoscaler = false
+  autoscale_write_target       = var.dynamodb_autoscale_write_target
+  autoscale_read_target        = var.dynamodb_autoscale_read_target
+  autoscale_min_read_capacity  = var.dynamodb_autoscale_min_read_capacity
+  autoscale_max_read_capacity  = var.dynamodb_autoscale_max_read_capacity
+  autoscale_min_write_capacity = var.dynamodb_autoscale_min_write_capacity
+  autoscale_max_write_capacity = var.dynamodb_autoscale_max_write_capacity
+  enable_autoscaler            = var.dynamodb_enable_autoscaler ? "true" : "false"
 
   tags = local.tags
 }

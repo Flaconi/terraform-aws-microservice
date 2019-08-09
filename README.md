@@ -252,6 +252,13 @@ The following resources _CAN_ be created:
 | aws\_route53\_zone\_private\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true | string | `"true"` | no |
 | aws\_route53\_zone\_public\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true | string | `"true"` | no |
 | dynamodb2\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb2\_autoscale\_max\_read\_capacity | DynamoDB autoscaling max read capacity | number | `"20"` | no |
+| dynamodb2\_autoscale\_max\_write\_capacity | DynamoDB autoscaling max write capacity | number | `"20"` | no |
+| dynamodb2\_autoscale\_min\_read\_capacity | DynamoDB autoscaling min read capacity | number | `"5"` | no |
+| dynamodb2\_autoscale\_min\_write\_capacity | DynamoDB autoscaling min write capacity | number | `"5"` | no |
+| dynamodb2\_autoscale\_read\_target | The target value for DynamoDB read autoscaling | number | `"50"` | no |
+| dynamodb2\_autoscale\_write\_target | The target value for DynamoDB write autoscaling | number | `"50"` | no |
+| dynamodb2\_enable\_autoscaler | Flag to enable/disable DynamoDB autoscaling | bool | `"true"` | no |
 | dynamodb2\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
 | dynamodb2\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb2\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
@@ -261,6 +268,13 @@ The following resources _CAN_ be created:
 | dynamodb2\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | dynamodb2\_range\_key\_type | Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data | string | `"S"` | no |
 | dynamodb3\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb3\_autoscale\_max\_read\_capacity | DynamoDB autoscaling max read capacity | number | `"20"` | no |
+| dynamodb3\_autoscale\_max\_write\_capacity | DynamoDB autoscaling max write capacity | number | `"20"` | no |
+| dynamodb3\_autoscale\_min\_read\_capacity | DynamoDB autoscaling min read capacity | number | `"5"` | no |
+| dynamodb3\_autoscale\_min\_write\_capacity | DynamoDB autoscaling min write capacity | number | `"5"` | no |
+| dynamodb3\_autoscale\_read\_target | The target value for DynamoDB read autoscaling | number | `"50"` | no |
+| dynamodb3\_autoscale\_write\_target | The target value for DynamoDB write autoscaling | number | `"50"` | no |
+| dynamodb3\_enable\_autoscaler | Flag to enable/disable DynamoDB autoscaling | bool | `"true"` | no |
 | dynamodb3\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
 | dynamodb3\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb3\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
@@ -270,6 +284,13 @@ The following resources _CAN_ be created:
 | dynamodb3\_range\_key | DynamoDB table Range Key | string | `""` | no |
 | dynamodb3\_range\_key\_type | Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data | string | `"S"` | no |
 | dynamodb\_attributes | Additional DynamoDB attributes in the form of a list of mapped values | list | `[]` | no |
+| dynamodb\_autoscale\_max\_read\_capacity | DynamoDB autoscaling max read capacity | number | `"20"` | no |
+| dynamodb\_autoscale\_max\_write\_capacity | DynamoDB autoscaling max write capacity | number | `"20"` | no |
+| dynamodb\_autoscale\_min\_read\_capacity | DynamoDB autoscaling min read capacity | number | `"5"` | no |
+| dynamodb\_autoscale\_min\_write\_capacity | DynamoDB autoscaling min write capacity | number | `"5"` | no |
+| dynamodb\_autoscale\_read\_target | The target value for DynamoDB read autoscaling | number | `"50"` | no |
+| dynamodb\_autoscale\_write\_target | The target value for DynamoDB write autoscaling | number | `"50"` | no |
+| dynamodb\_enable\_autoscaler | Flag to enable/disable DynamoDB autoscaling | bool | `"true"` | no |
 | dynamodb\_enabled | Set to false to prevent the module from creating any dynamodb resources | string | `"false"` | no |
 | dynamodb\_global\_secondary\_index\_map | Additional global secondary indexes in the form of a list of mapped values | object | `[]` | no |
 | dynamodb\_hash\_key | DynamoDB table Hash Key | string | `""` | no |
