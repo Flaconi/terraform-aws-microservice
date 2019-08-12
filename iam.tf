@@ -131,6 +131,16 @@ resource "aws_iam_role_policy" "dynamodb_role_policy" {
   policy = data.aws_iam_policy_document.dynamodb_full_access[0].json
 }
 
+resource "aws_iam_user_policy" "dynamodb_role_policy" {
+  count = var.dynamodb_enabled && var.iam_user_enabled ? 1 : 0
+  user  = concat(aws_iam_user.this.*.name, [""])[0]
+
+  name = "dynamodb-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.dynamodb_full_access[0].json
+}
+
 data "aws_iam_policy_document" "dynamodb2_full_access" {
   count = var.dynamodb2_enabled && var.iam_role_enabled ? 1 : 0
 
@@ -185,6 +195,17 @@ resource "aws_iam_role_policy" "dynamodb2_role_policy" {
   policy = data.aws_iam_policy_document.dynamodb2_full_access[0].json
 }
 
+
+resource "aws_iam_user_policy" "dynamodb2_role_policy" {
+  count = var.dynamodb2_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "dynamodb2-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.dynamodb2_full_access[0].json
+}
+
 ##
 ## IAM KMS permissions
 ##
@@ -208,6 +229,13 @@ resource "aws_iam_role_policy" "kms" {
   count  = var.iam_role_enabled && local.kms_enabled ? 1 : 0
   name   = "kms-permissions"
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
+  policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
+}
+
+resource "aws_iam_user_policy" "kms" {
+  count  = var.iam_user_enabled && local.kms_enabled ? 1 : 0
+  name   = "kms-permissions"
+  user   = concat(aws_iam_user.this.*.name, [""])[0]
   policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
 }
 
@@ -236,6 +264,14 @@ resource "aws_iam_role_policy" "s3" {
   policy = element(concat(data.aws_iam_policy_document.s3_permissions.*.json, [""]), 0)
 }
 
+resource "aws_iam_user_policy" "s3" {
+  count  = var.iam_user_enabled && var.s3_enabled ? 1 : 0
+  name   = "s3-permissions"
+  user   = concat(aws_iam_user.this.*.name, [""])[0]
+  policy = element(concat(data.aws_iam_policy_document.s3_permissions.*.json, [""]), 0)
+}
+
+
 ##
 ## IAM Extra inline policies
 ##
@@ -258,5 +294,12 @@ resource "aws_iam_role_policy" "this" {
   count  = var.iam_role_enabled ? length(var.iam_inline_policies) : 0
   name   = lookup(var.iam_inline_policies[count.index], "name")
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
+  policy = data.aws_iam_policy_document.this[count.index].json
+}
+
+resource "aws_iam_user_policy" "this" {
+  count  = var.iam_user_enabled ? length(var.iam_inline_policies) : 0
+  name   = lookup(var.iam_inline_policies[count.index], "name")
+  user   = concat(aws_iam_user.this.*.name, [""])[0]
   policy = data.aws_iam_policy_document.this[count.index].json
 }
