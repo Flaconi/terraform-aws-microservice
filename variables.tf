@@ -710,3 +710,8 @@ variable "s3_versioning_enabled" {
   type        = bool
   default     = true
 }
+
+variable "s3_lifecycle_rules" {
+  description = "S3 Lifecycle rules"
+  default     = []
+}
