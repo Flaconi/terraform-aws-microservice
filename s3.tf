@@ -35,6 +35,21 @@ resource "aws_s3_bucket" "this" {
   versioning {
     enabled = var.s3_versioning_enabled
   }
+
+  dynamic "lifecycle_rule" {
+    for_each = var.s3_lifecycle_rules
+    iterator = rule
+
+    content {
+      id      = rule.value.id
+      enabled = rule.value.enabled
+      prefix  = rule.value.prefix
+      expiration {
+        days = rule.value.expiration_days
+      }
+    }
+  }
+
 }
 
 

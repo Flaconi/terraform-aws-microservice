@@ -10,6 +10,21 @@ module "ms_sample_s3" {
   s3_enabled    = true
   s3_identifier = "this-is-the-bucket-name"
 
+  s3_lifecycle_rules = [
+    {
+      id      = "all-cleanup"
+      enabled = true
+      prefix  = ""
+      expiration_days = 90
+    },
+    {
+      id      = "tmp"
+      enabled = true
+      prefix  = "tmp/"
+      expiration_days = 1
+    }
+  ]
+
   tags = {
     Name = "sample"
   }
