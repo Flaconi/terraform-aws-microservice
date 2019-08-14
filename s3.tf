@@ -42,7 +42,7 @@ resource "aws_s3_bucket" "this" {
 
     content {
       id      = rule.value.id
-      enabled = rule.value.enabled
+      enabled = lookup(rule.value, "enabled", true)
       prefix  = rule.value.prefix
       expiration {
         days = rule.value.expiration_days
