@@ -27,7 +27,7 @@ resource "aws_route53_record" "public_redis_endpoint" {
   type    = "CNAME"
   ttl     = var.aws_route53_record_ttl
   zone_id = data.aws_route53_zone.public_endpoint[0].zone_id
-  records = aws_elasticache_replication_group.this.*.configuration_endpoint_addres
+  records = aws_elasticache_replication_group.this.*.configuration_endpoint_address
 }
 
 resource "aws_route53_record" "private_redis_endpoint" {
@@ -36,7 +36,7 @@ resource "aws_route53_record" "private_redis_endpoint" {
   type    = "CNAME"
   ttl     = var.aws_route53_record_ttl
   zone_id = data.aws_route53_zone.private_endpoint[0].zone_id
-  records = aws_elasticache_replication_group.this.*.configuration_endpoint_addres
+  records = aws_elasticache_replication_group.this.*.configuration_endpoint_address
 }
 
 # -------------------------------------------------------------------------------------------------
