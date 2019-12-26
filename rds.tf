@@ -53,6 +53,7 @@ module "rds" {
   option_group_name    = var.rds_option_group_name
   parameter_group_name = var.rds_parameter_group_name
   db_subnet_group_name = var.rds_db_subnet_group_name
+  ca_cert_identifier   = var.rds_ca_cert_identifier
 
   identifier = local.rds_identifier
 

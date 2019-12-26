@@ -618,6 +618,12 @@ variable "rds_option_group_name" {
   default     = ""
 }
 
+variable "rds_ca_cert_identifier" {
+  description = "The identifier of the CA certificate for the DB instance."
+  type        = string
+  default     = "rds-ca-2019"
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance networking
 # -------------------------------------------------------------------------------------------------
