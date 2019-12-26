@@ -43,7 +43,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "v2.4.0"
+  version = "v2.6.0"
 
   create_db_instance        = var.rds_enabled
   create_db_option_group    = var.rds_enabled
