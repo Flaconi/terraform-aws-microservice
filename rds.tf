@@ -43,7 +43,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "v2.4.0"
+  version = "v2.6.0"
 
   create_db_instance        = var.rds_enabled
   create_db_option_group    = var.rds_enabled
@@ -53,6 +53,7 @@ module "rds" {
   option_group_name    = var.rds_option_group_name
   parameter_group_name = var.rds_parameter_group_name
   db_subnet_group_name = var.rds_db_subnet_group_name
+  ca_cert_identifier   = var.rds_ca_cert_identifier
 
   identifier = local.rds_identifier
 

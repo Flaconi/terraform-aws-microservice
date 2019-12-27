@@ -311,6 +311,7 @@ The following resources _CAN_ be created:
 | rds\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the RDS instance | list(string) | `[ "127.0.0.1/32" ]` | no |
 | rds\_backup\_retention\_period | Retention period for DB snapshots in days | string | `"14"` | no |
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
+| rds\_ca\_cert\_identifier | The identifier of the CA certificate for the DB instance. | string | `"rds-ca-2019"` | no |
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
 | rds\_dbname\_override | RDS DB Name override in case the identifier is not wished as db name | string | `""` | no |
 | rds\_deletion\_protection | Protect RDS instance from deletion | string | `"true"` | no |
