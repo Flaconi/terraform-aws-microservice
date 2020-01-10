@@ -327,7 +327,9 @@ The following resources _CAN_ be created:
 | rds\_multi\_az | Replication settings | string | `"true"` | no |
 | rds\_node\_type | VM type which should be taken for nodes in the RDS instance | string | `"db.t3.micro"` | no |
 | rds\_option\_group\_name | Option groups for database | string | `""` | no |
+| rds\_options | A list of RDS Options to apply | any | `[]` | no |
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
+| rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
 | rds\_skip\_final\_snapshot | Skip final snapshot on deletion | string | `"false"` | no |
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |

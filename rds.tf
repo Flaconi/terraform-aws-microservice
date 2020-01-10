@@ -92,4 +92,7 @@ module "rds" {
   skip_final_snapshot = var.rds_skip_final_snapshot
 
   multi_az = var.rds_multi_az
+
+  parameters = var.rds_parameters
+  options    = var.rds_options
 }
