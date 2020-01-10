@@ -612,10 +612,22 @@ variable "rds_parameter_group_name" {
   default     = ""
 }
 
+variable "rds_parameters" {
+  description = "List of RDS parameters to apply"
+  type        = list(map(string))
+  default     = []
+}
+
 variable "rds_option_group_name" {
   description = "Option groups for database"
   type        = string
   default     = ""
+}
+
+variable "rds_options" {
+  description = "A list of RDS Options to apply"
+  type        = any
+  default     = []
 }
 
 variable "rds_ca_cert_identifier" {
