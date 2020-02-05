@@ -106,7 +106,7 @@ _gen-examples:
 			-e DELIM_START='$(DELIM_START)' \
 			-e DELIM_CLOSE='$(DELIM_CLOSE)' \
 			cytopia/terraform-docs:$(TF_DOCS_VERSION) \
-			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md $${DOCKER_PATH}/README.md; then \
+			terraform-docs-replace-012 --sort-inputs-by-required --with-aggregate-type-defaults md README.md; then \
 			echo "OK"; \
 		else \
 			echo "Failed"; \
