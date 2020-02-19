@@ -65,6 +65,7 @@ module "rds" {
   instance_class       = var.rds_node_type
   allocated_storage    = var.rds_allocated_storage
   family               = var.rds_family
+  license_model        = var.rds_license_model
 
   name     = local.rds_db_name
   username = var.rds_admin_user
