@@ -1,6 +1,6 @@
 locals {
   rds_identifier = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
-  rds_db_name    = length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier
+  rds_db_name    = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
   password       = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
 }
 
@@ -17,7 +17,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.0.1"
+  version = "3.4.0"
 
   create = var.rds_enabled
 
@@ -43,7 +43,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "v2.6.0"
+  version = "2.14.0"
 
   create_db_instance        = var.rds_enabled
   create_db_option_group    = var.rds_enabled
@@ -65,6 +65,7 @@ module "rds" {
   instance_class       = var.rds_node_type
   allocated_storage    = var.rds_allocated_storage
   family               = var.rds_family
+  license_model        = var.rds_license_model
 
   name     = local.rds_db_name
   username = var.rds_admin_user

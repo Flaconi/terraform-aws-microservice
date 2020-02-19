@@ -636,6 +636,12 @@ variable "rds_ca_cert_identifier" {
   default     = "rds-ca-2019"
 }
 
+variable "rds_license_model" {
+  description = "License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1"
+  type        = string
+  default     = ""
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance networking
 # -------------------------------------------------------------------------------------------------
