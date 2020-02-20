@@ -9,9 +9,10 @@ locals {
 # -------------------------------------------------------------------------------------------------
 locals {
   rds_sg_rule_name = {
-    mysql    = "mysql-tcp"
-    postgres = "postgresql-tcp"
-    default  = "postgresql-tcp"
+    mysql        = "mysql-tcp"
+    postgres     = "postgresql-tcp"
+    sqlserver-se = "mssql-tcp"
+    default      = "postgresql-tcp"
   }
 }
 
