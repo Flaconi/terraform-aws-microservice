@@ -12,6 +12,7 @@ locals {
     mysql        = "mysql-tcp"
     postgres     = "postgresql-tcp"
     sqlserver-se = "mssql-tcp"
+    oracle-se2   = "oracle-db-tcp"
     default      = "postgresql-tcp"
   }
 }
@@ -56,7 +57,7 @@ module "rds" {
   db_subnet_group_name = var.rds_db_subnet_group_name
   ca_cert_identifier   = var.rds_ca_cert_identifier
 
-  identifier = local.rds_identifier
+  identifier = lower(local.rds_identifier)
 
   publicly_accessible = false
 
