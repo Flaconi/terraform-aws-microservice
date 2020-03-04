@@ -315,7 +315,8 @@ The following resources _CAN_ be created:
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
 | rds\_dbname\_override | RDS DB Name override in case the identifier is not wished as db name | string | `""` | no |
 | rds\_deletion\_protection | Protect RDS instance from deletion | string | `"true"` | no |
-| rds\_enabled | Set to false to prevent the module from creating any rds resources | string | `"false"` | no |
+| rds\_enable\_s3\_dump | Set to false to prevent the module from creating any rds dump resources | bool | `"false"` | no |
+| rds\_enabled | Set to false to prevent the module from creating any rds resources | bool | `"false"` | no |
 | rds\_engine | RDS instance engine | string | `"mysql"` | no |
 | rds\_engine\_version | RDS instance engine version | string | `"5.7.19"` | no |
 | rds\_family | Parameter Group | string | `"mysql5.7"` | no |
@@ -332,6 +333,7 @@ The following resources _CAN_ be created:
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
+| rds\_s3\_dump\_name\_prefix | The S3 name prefix | string | `""` | no |
 | rds\_skip\_final\_snapshot | Skip final snapshot on deletion | string | `"false"` | no |
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |
 | rds\_storage\_type | Storage type | string | `"gp2"` | no |
