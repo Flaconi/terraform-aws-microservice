@@ -112,6 +112,7 @@ locals {
 # S3 bucket which will be used to store DB dumps
 resource "aws_s3_bucket" "rds_dumps" {
   count = local.rds_dumps_enabled ? 1 : 0
+
   bucket = "flaconi-${var.rds_s3_dump_name_prefix}-${local.rds_identifier}-rds-dumps"
   acl    = "private"
 
@@ -207,6 +208,7 @@ data "aws_iam_policy_document" "rds_dumps" {
 # Marry S3 bucket with policy
 resource "aws_s3_bucket_policy" "rds_dumps" {
   count = local.rds_dumps_enabled ? 1 : 0
+
   bucket = aws_s3_bucket.rds_dumps[0].id
   policy = data.aws_iam_policy_document.rds_dumps[0].json
 }
