@@ -498,7 +498,26 @@ variable "redis_subnet_tag_filter" {
 # -------------------------------------------------------------------------------------------------
 variable "rds_enabled" {
   description = "Set to false to prevent the module from creating any rds resources"
+  type        = bool
   default     = false
+}
+
+variable "rds_enable_s3_dump" {
+  description = "Set to false to prevent the module from creating any rds dump resources"
+  type        = bool
+  default     = false
+}
+
+variable "rds_s3_dump_name_prefix" {
+  description = "The S3 name prefix"
+  type        = string
+  default     = ""
+}
+
+variable "rds_s3_dump_allowed_ips" {
+  description = "List of IPs allowed to access data on the S3 bucket for RDS DB dumps"
+  type        = list(string)
+  default     = []
 }
 
 variable "rds_identifier_override" {
