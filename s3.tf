@@ -8,7 +8,7 @@ locals {
   }
 }
 
-
+# TODO: remove if this is obsolete
 data "aws_kms_key" "s3" {
   count  = var.s3_enabled ? 1 : 0
   key_id = "alias/aws/s3"

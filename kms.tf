@@ -1,6 +1,6 @@
 locals {
   ## An OR condition can be created to enable KMS whenever we have a resource which uses it.
-  kms_enabled = var.s3_enabled
+  kms_enabled = var.s3_enabled || (var.rds_enabled && var.rds_enable_s3_dump)
 }
 
 resource "aws_kms_key" "this" {
