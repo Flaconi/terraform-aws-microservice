@@ -172,6 +172,36 @@ data "aws_iam_policy_document" "rds_dumps" {
       variable = "s3:x-amz-server-side-encryption"
     }
   }
+
+  # Allow to read by specific IPs only if those IPs were defined
+  dynamic "statement" {
+    for_each = length(var.rds_s3_dump_allowed_ips) > 0 ? ["1"] : []
+
+    content {
+      sid = "AllowIP"
+
+      principals {
+        identifiers = ["*"]
+        type        = "*"
+      }
+
+      actions = [
+        "s3:GetObject",
+        "s3:ListBucket",
+      ]
+
+      resources = [
+        aws_s3_bucket.rds_dumps[0].arn,
+        "${aws_s3_bucket.rds_dumps[0].arn}/*",
+      ]
+
+      condition {
+        test     = "IpAddress"
+        variable = "aws:SourceIp"
+        values   = var.rds_s3_dump_allowed_ips
+      }
+    }
+  }
 }
 
 # Marry S3 bucket with policy

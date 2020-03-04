@@ -333,6 +333,7 @@ The following resources _CAN_ be created:
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
+| rds\_s3\_dump\_allowed\_ips | List of IPs allowed to access data on the S3 bucket for RDS DB dumps | list(string) | `[]` | no |
 | rds\_s3\_dump\_name\_prefix | The S3 name prefix | string | `""` | no |
 | rds\_skip\_final\_snapshot | Skip final snapshot on deletion | string | `"false"` | no |
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |

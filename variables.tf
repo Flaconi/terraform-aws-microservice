@@ -514,6 +514,12 @@ variable "rds_s3_dump_name_prefix" {
   default     = ""
 }
 
+variable "rds_s3_dump_allowed_ips" {
+  description = "List of IPs allowed to access data on the S3 bucket for RDS DB dumps"
+  type        = list(string)
+  default     = []
+}
+
 variable "rds_identifier_override" {
   description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""
