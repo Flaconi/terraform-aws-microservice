@@ -503,7 +503,7 @@ variable "rds_enabled" {
 }
 
 variable "rds_enable_s3_dump" {
-  description = "Set to false to prevent the module from creating any rds dump resources"
+  description = "Set to true to allow the module to create RDS DB dump resources."
   type        = bool
   default     = false
 }
@@ -515,7 +515,7 @@ variable "rds_s3_dump_name_prefix" {
 }
 
 variable "rds_s3_dump_allowed_ips" {
-  description = "List of IPs allowed to access data on the S3 bucket for RDS DB dumps"
+  description = "List of CIDRs allowed to access data on the S3 bucket for RDS DB dumps"
   type        = list(string)
   default     = []
 }
