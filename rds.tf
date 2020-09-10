@@ -19,7 +19,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.4.0"
+  version = "3.14.0"
 
   create = var.rds_enabled
 
@@ -45,7 +45,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "2.14.0"
+  version = "2.18.0"
 
   create_db_instance        = var.rds_enabled
   create_db_option_group    = var.rds_enabled
