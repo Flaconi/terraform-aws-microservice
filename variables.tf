@@ -14,6 +14,12 @@ variable "tags" {
   type        = map(any)
 }
 
+variable "rds_copy_tags_to_snapshot" {
+  description = "On delete, copy all Instance tags to the final snapshot (if final_snapshot_identifier is specified)"
+  type        = bool
+  default     = true
+}
+
 # -------------------------------------------------------------------------------------------------
 # VPC and Networking
 # -------------------------------------------------------------------------------------------------
@@ -596,6 +602,12 @@ variable "rds_allocated_storage" {
   description = "Storage size in Gb"
   type        = string
   default     = 20
+}
+
+variable "rds_max_allocated_storage" {
+  description = "Specifies the value for Storage Autoscaling"
+  type        = number
+  default     = 0
 }
 
 # -------------------------------------------------------------------------------------------------
