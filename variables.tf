@@ -22,6 +22,12 @@ variable "vpc_tag_filter" {
   default     = {}
 }
 
+variable "additional_sg_names_for_rds" {
+  description = "Name(s) of the additional VPC Security Group(s) to be attached to the RDS instance."
+  default     = []
+  type        = list
+}
+
 # -------------------------------------------------------------------------------------------------
 # IAM Role
 # -------------------------------------------------------------------------------------------------

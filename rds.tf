@@ -76,7 +76,7 @@ module "rds" {
 
   iam_database_authentication_enabled = var.rds_iam_database_authentication_enabled
 
-  vpc_security_group_ids = [module.rds_sg.this_security_group_id]
+  vpc_security_group_ids = local.rds_security_group_ids
 
   storage_encrypted = var.rds_storage_encrypted
   kms_key_id        = var.rds_kms_key_id
