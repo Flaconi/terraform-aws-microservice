@@ -61,13 +61,14 @@ module "rds" {
 
   publicly_accessible = false
 
-  engine               = var.rds_engine
-  engine_version       = var.rds_engine_version
-  major_engine_version = var.rds_major_engine_version
-  instance_class       = var.rds_node_type
-  allocated_storage    = var.rds_allocated_storage
-  family               = var.rds_family
-  license_model        = var.rds_license_model
+  engine                = var.rds_engine
+  engine_version        = var.rds_engine_version
+  major_engine_version  = var.rds_major_engine_version
+  instance_class        = var.rds_node_type
+  allocated_storage     = var.rds_allocated_storage
+  max_allocated_storage = var.rds_max_allocated_storage
+  family                = var.rds_family
+  license_model         = var.rds_license_model
 
   name     = local.rds_db_name
   username = var.rds_admin_user
@@ -85,6 +86,7 @@ module "rds" {
   backup_window      = var.rds_backup_window
 
   tags                      = local.tags
+  copy_tags_to_snapshot     = var.rds_copy_tags_to_snapshot
   subnet_ids                = flatten(data.aws_subnet_ids.rds.*.ids)
   final_snapshot_identifier = "${var.env}-${local.rds_identifier}-snapshot"
   backup_retention_period   = var.rds_backup_retention_period

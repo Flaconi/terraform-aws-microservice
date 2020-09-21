@@ -313,6 +313,7 @@ The following resources _CAN_ be created:
 | rds\_backup\_retention\_period | Retention period for DB snapshots in days | string | `"14"` | no |
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
 | rds\_ca\_cert\_identifier | The identifier of the CA certificate for the DB instance. | string | `"rds-ca-2019"` | no |
+| rds\_copy\_tags\_to\_snapshot | On delete, copy all Instance tags to the final snapshot (if final_snapshot_identifier is specified) | bool | `"true"` | no |
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
 | rds\_dbname\_override | RDS DB Name override in case the identifier is not wished as db name | string | `""` | no |
 | rds\_deletion\_protection | Protect RDS instance from deletion | string | `"true"` | no |
@@ -327,6 +328,7 @@ The following resources _CAN_ be created:
 | rds\_license\_model | License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1 | string | `""` | no |
 | rds\_maintenance\_window | Window of RDS Maintenance | string | `"Mon:16:00-Mon:18:00"` | no |
 | rds\_major\_engine\_version | RDS instance major engine version | string | `"5.7"` | no |
+| rds\_max\_allocated\_storage | Specifies the value for Storage Autoscaling | number | `"0"` | no |
 | rds\_multi\_az | Replication settings | string | `"true"` | no |
 | rds\_node\_type | VM type which should be taken for nodes in the RDS instance | string | `"db.t3.micro"` | no |
 | rds\_option\_group\_name | Option groups for database | string | `""` | no |
