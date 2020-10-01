@@ -21,7 +21,7 @@ data "aws_subnet_ids" "rds" {
 }
 
 data "aws_security_groups" "for_rds" {
-  count = var.rds_enabled ? 1 : 0
+  count = var.rds_enabled && length(var.additional_sg_names_for_rds) >= 1 ? 1 : 0
   dynamic "filter" {
     for_each = var.additional_sg_names_for_rds
     content {
