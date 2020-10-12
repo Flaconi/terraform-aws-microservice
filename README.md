@@ -463,7 +463,7 @@ The following resources _CAN_ be created:
 | sqs5\_queue\_arn | SQS queue ARN |
 | sqs5\_queue\_id | SQS queue ID |
 | sqs5\_queue\_name | SQS queue name |
-| sqs\_queue\_arn | SQS queue ARN |
+| sqs1\_queue\_arn | SQS queue ARN |
 | sqs\_queue\_id | SQS queue ID |
 | sqs\_queue\_name | SQS queue name |
 | this\_aws\_iam\_access\_key | IAM Access Key of the created user |
