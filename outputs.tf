@@ -348,7 +348,7 @@ output "sqs1_queue_id" {
   value       = module.sqs1.this_sqs_queue_id
 }
 
-output "sqs_queue_arn" {
+output "sqs1_queue_arn" {
   description = "SQS queue ARN"
   value       = module.sqs1.this_sqs_queue_arn
 }
