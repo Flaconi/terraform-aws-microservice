@@ -465,7 +465,7 @@ The following resources _CAN_ be created:
 | sqs5\_queue\_name | SQS queue name |
 | sqs1\_queue\_arn | SQS queue ARN |
 | sqs1\_queue\_id | SQS queue ID |
-| sqs\_queue\_name | SQS queue name |
+| sqs1\_queue\_name | SQS queue name |
 | this\_aws\_iam\_access\_key | IAM Access Key of the created user |
 | this\_aws\_iam\_access\_key\_secret | The secret key of the user |
 | this\_aws\_s3\_bucket\_arn | id of created S3 bucket |
