@@ -820,6 +820,11 @@ variable "sqs1_visibility_timeout_seconds" {
   default     = 30
 }
 
+variable "sqs1_dlq_enabled" {
+  description = "Set to false to prevent the module from creating any sqs-dql resources"
+  default     = false
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS (2)
 # -------------------------------------------------------------------------------------------------
@@ -861,6 +866,11 @@ variable "sqs2_redrive_policy" {
 variable "sqs2_visibility_timeout_seconds" {
   description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
   default     = 30
+}
+
+variable "sqs2_dlq_enabled" {
+  description = "Set to false to prevent the module from creating any sqs-dql resources"
+  default     = false
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -906,6 +916,11 @@ variable "sqs3_visibility_timeout_seconds" {
   default     = 30
 }
 
+variable "sqs3_dlq_enabled" {
+  description = "Set to false to prevent the module from creating any sqs-dql resources"
+  default     = false
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS (4)
 # -------------------------------------------------------------------------------------------------
@@ -949,6 +964,11 @@ variable "sqs4_visibility_timeout_seconds" {
   default     = 30
 }
 
+variable "sqs4_dlq_enabled" {
+  description = "Set to false to prevent the module from creating any sqs-dql resources"
+  default     = false
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS (5)
 # -------------------------------------------------------------------------------------------------
@@ -990,4 +1010,9 @@ variable "sqs5_redrive_policy" {
 variable "sqs5_visibility_timeout_seconds" {
   description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
   default     = 30
+}
+
+variable "sqs5_dlq_enabled" {
+  description = "Set to false to prevent the module from creating any sqs-dql resources"
+  default     = false
 }
