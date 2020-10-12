@@ -338,7 +338,7 @@ output "this_aws_s3_bucket_arn" {
 # -------------------------------------------------------------------------------------------------
 # SQS 1
 # -------------------------------------------------------------------------------------------------
-output "sqs_queue_name" {
+output "sqs1_queue_name" {
   description = "SQS queue name"
   value       = module.sqs1.this_sqs_queue_name
 }
