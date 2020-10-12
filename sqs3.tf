@@ -1,5 +1,5 @@
 locals {
-  sqs3_name = length(var.sqs3_name_override) > 0 ? var.sqs3_name_override : join("-", [var.name, "1"])
+  sqs3_name = length(var.sqs3_name_override) > 0 ? var.sqs3_name_override : join("-", [var.name, "3"])
 }
 
 module "sqs3" {
