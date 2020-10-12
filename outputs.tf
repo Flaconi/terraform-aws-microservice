@@ -343,7 +343,7 @@ output "sqs1_queue_name" {
   value       = module.sqs1.this_sqs_queue_name
 }
 
-output "sqs_queue_id" {
+output "sqs1_queue_id" {
   description = "SQS queue ID"
   value       = module.sqs1.this_sqs_queue_id
 }
