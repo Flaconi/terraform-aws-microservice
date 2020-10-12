@@ -363,6 +363,46 @@ The following resources _CAN_ be created:
 | s3\_identifier | The S3 Bucket name | string | `""` | no |
 | s3\_lifecycle\_rules | S3 Lifecycle rules | list | `[]` | no |
 | s3\_versioning\_enabled | S3 Versioning enabled | bool | `"true"` | no |
+| sqs1\_delay\_seconds | define sqs1_delay_seconds | string | `"0"` | no |
+| sqs1\_enabled | Set to false to prevent the module from creating any sqs resources | string | `"false"` | no |
+| sqs1\_fifo\_queue | Boolean designating a FIFO queue | string | `"false"` | no |
+| sqs1\_max\_message\_size | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days) | string | `"262144"` | no |
+| sqs1\_name\_override | define sqs1_name_override to set a name differnt from var.name | string | `""` | no |
+| sqs1\_receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds) | string | `"0"` | no |
+| sqs1\_redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5") | string | `""` | no |
+| sqs1\_visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours) | string | `"30"` | no |
+| sqs2\_delay\_seconds | define sqs2_delay_seconds | string | `"0"` | no |
+| sqs2\_enabled | Set to false to prevent the module from creating any sqs resources | string | `"false"` | no |
+| sqs2\_fifo\_queue | Boolean designating a FIFO queue | string | `"false"` | no |
+| sqs2\_max\_message\_size | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days) | string | `"262144"` | no |
+| sqs2\_name\_override | define sqs2_name_override to set a name differnt from var.name | string | `""` | no |
+| sqs2\_receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds) | string | `"0"` | no |
+| sqs2\_redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5") | string | `""` | no |
+| sqs2\_visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours) | string | `"30"` | no |
+| sqs3\_delay\_seconds | define sqs3_delay_seconds | string | `"0"` | no |
+| sqs3\_enabled | Set to false to prevent the module from creating any sqs resources | string | `"false"` | no |
+| sqs3\_fifo\_queue | Boolean designating a FIFO queue | string | `"false"` | no |
+| sqs3\_max\_message\_size | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days) | string | `"262144"` | no |
+| sqs3\_name\_override | define sqs3_name_override to set a name differnt from var.name | string | `""` | no |
+| sqs3\_receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds) | string | `"0"` | no |
+| sqs3\_redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5") | string | `""` | no |
+| sqs3\_visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours) | string | `"30"` | no |
+| sqs4\_delay\_seconds | define sqs4_delay_seconds | string | `"0"` | no |
+| sqs4\_enabled | Set to false to prevent the module from creating any sqs resources | string | `"false"` | no |
+| sqs4\_fifo\_queue | Boolean designating a FIFO queue | string | `"false"` | no |
+| sqs4\_max\_message\_size | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days) | string | `"262144"` | no |
+| sqs4\_name\_override | define sqs4_name_override to set a name differnt from var.name | string | `""` | no |
+| sqs4\_receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds) | string | `"0"` | no |
+| sqs4\_redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5") | string | `""` | no |
+| sqs4\_visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours) | string | `"30"` | no |
+| sqs5\_delay\_seconds | define sqs5_delay_seconds | string | `"0"` | no |
+| sqs5\_enabled | Set to false to prevent the module from creating any sqs resources | string | `"false"` | no |
+| sqs5\_fifo\_queue | Boolean designating a FIFO queue | string | `"false"` | no |
+| sqs5\_max\_message\_size | The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days) | string | `"262144"` | no |
+| sqs5\_name\_override | define sqs5_name_override to set a name differnt from var.name | string | `""` | no |
+| sqs5\_receive\_wait\_time\_seconds | The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds) | string | `"0"` | no |
+| sqs5\_redrive\_policy | The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string ("5") | string | `""` | no |
+| sqs5\_visibility\_timeout\_seconds | The visibility timeout for the queue. An integer from 0 to 43200 (12 hours) | string | `"30"` | no |
 | vpc\_tag\_filter | The map of tags to match the VPC tags with where the RDS or Redis or other networked AWS component of the Microservice resides | map | `{}` | no |
 
 ## Outputs
@@ -411,6 +451,21 @@ The following resources _CAN_ be created:
 | rds\_this\_db\_subnet\_group\_arn | The ARN of the db subnet group |
 | rds\_this\_db\_subnet\_group\_id | The db subnet group name |
 | redis\_port | Redis port |
+| sqs1\_queue\_arn | SQS queue ARN |
+| sqs1\_queue\_id | SQS queue ID |
+| sqs1\_queue\_name | SQS queue name |
+| sqs2\_queue\_arn | SQS queue ARN |
+| sqs2\_queue\_id | SQS queue ID |
+| sqs2\_queue\_name | SQS queue name |
+| sqs3\_queue\_arn | SQS queue ARN |
+| sqs3\_queue\_id | SQS queue ID |
+| sqs3\_queue\_name | SQS queue name |
+| sqs4\_queue\_arn | SQS queue ARN |
+| sqs4\_queue\_id | SQS queue ID |
+| sqs4\_queue\_name | SQS queue name |
+| sqs5\_queue\_arn | SQS queue ARN |
+| sqs5\_queue\_id | SQS queue ID |
+| sqs5\_queue\_name | SQS queue name |
 | this\_aws\_iam\_access\_key | IAM Access Key of the created user |
 | this\_aws\_iam\_access\_key\_secret | The secret key of the user |
 | this\_aws\_s3\_bucket\_arn | id of created S3 bucket |

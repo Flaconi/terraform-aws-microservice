@@ -776,3 +776,218 @@ variable "s3_lifecycle_rules" {
   description = "S3 Lifecycle rules"
   default     = []
 }
+
+# -------------------------------------------------------------------------------------------------
+# SQS (1)
+# -------------------------------------------------------------------------------------------------
+variable "sqs1_enabled" {
+  description = "Set to false to prevent the module from creating any sqs resources"
+  default     = false
+}
+
+variable "sqs1_name_override" {
+  description = "define sqs1_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
+variable "sqs1_delay_seconds" {
+  description = "define sqs1_delay_seconds "
+  default     = 0
+}
+
+variable "sqs1_fifo_queue" {
+  description = "Boolean designating a FIFO queue"
+  default     = false
+}
+
+variable "sqs1_max_message_size" {
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  default     = 262144
+}
+
+variable "sqs1_receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
+  default     = 0
+}
+
+variable "sqs1_redrive_policy" {
+  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
+  default     = ""
+}
+
+variable "sqs1_visibility_timeout_seconds" {
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
+  default     = 30
+}
+
+# -------------------------------------------------------------------------------------------------
+# SQS (2)
+# -------------------------------------------------------------------------------------------------
+variable "sqs2_enabled" {
+  description = "Set to false to prevent the module from creating any sqs resources"
+  default     = false
+}
+
+variable "sqs2_name_override" {
+  description = "define sqs2_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
+variable "sqs2_delay_seconds" {
+  description = "define sqs2_delay_seconds "
+  default     = 0
+}
+
+variable "sqs2_fifo_queue" {
+  description = "Boolean designating a FIFO queue"
+  default     = false
+}
+
+variable "sqs2_max_message_size" {
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  default     = 262144
+}
+
+variable "sqs2_receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
+  default     = 0
+}
+
+variable "sqs2_redrive_policy" {
+  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
+  default     = ""
+}
+
+variable "sqs2_visibility_timeout_seconds" {
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
+  default     = 30
+}
+
+# -------------------------------------------------------------------------------------------------
+# SQS (3)
+# -------------------------------------------------------------------------------------------------
+variable "sqs3_enabled" {
+  description = "Set to false to prevent the module from creating any sqs resources"
+  default     = false
+}
+
+variable "sqs3_name_override" {
+  description = "define sqs3_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
+variable "sqs3_delay_seconds" {
+  description = "define sqs3_delay_seconds "
+  default     = 0
+}
+
+variable "sqs3_fifo_queue" {
+  description = "Boolean designating a FIFO queue"
+  default     = false
+}
+
+variable "sqs3_max_message_size" {
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  default     = 262144
+}
+
+variable "sqs3_receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
+  default     = 0
+}
+
+variable "sqs3_redrive_policy" {
+  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
+  default     = ""
+}
+
+variable "sqs3_visibility_timeout_seconds" {
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
+  default     = 30
+}
+
+# -------------------------------------------------------------------------------------------------
+# SQS (4)
+# -------------------------------------------------------------------------------------------------
+variable "sqs4_enabled" {
+  description = "Set to false to prevent the module from creating any sqs resources"
+  default     = false
+}
+
+variable "sqs4_name_override" {
+  description = "define sqs4_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
+variable "sqs4_delay_seconds" {
+  description = "define sqs4_delay_seconds "
+  default     = 0
+}
+
+variable "sqs4_fifo_queue" {
+  description = "Boolean designating a FIFO queue"
+  default     = false
+}
+
+variable "sqs4_max_message_size" {
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  default     = 262144
+}
+
+variable "sqs4_receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
+  default     = 0
+}
+
+variable "sqs4_redrive_policy" {
+  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
+  default     = ""
+}
+
+variable "sqs4_visibility_timeout_seconds" {
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
+  default     = 30
+}
+
+# -------------------------------------------------------------------------------------------------
+# SQS (5)
+# -------------------------------------------------------------------------------------------------
+variable "sqs5_enabled" {
+  description = "Set to false to prevent the module from creating any sqs resources"
+  default     = false
+}
+
+variable "sqs5_name_override" {
+  description = "define sqs5_name_override to set a name differnt from var.name "
+  default     = ""
+}
+
+variable "sqs5_delay_seconds" {
+  description = "define sqs5_delay_seconds "
+  default     = 0
+}
+
+variable "sqs5_fifo_queue" {
+  description = "Boolean designating a FIFO queue"
+  default     = false
+}
+
+variable "sqs5_max_message_size" {
+  description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
+  default     = 262144
+}
+
+variable "sqs5_receive_wait_time_seconds" {
+  description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
+  default     = 0
+}
+
+variable "sqs5_redrive_policy" {
+  description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
+  default     = ""
+}
+
+variable "sqs5_visibility_timeout_seconds" {
+  description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
+  default     = 30
+}

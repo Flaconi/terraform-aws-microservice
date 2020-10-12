@@ -338,6 +338,311 @@ resource "aws_iam_user_policy" "s3" {
 
 
 ##
+## SQS 1
+##
+
+data "aws_iam_policy_document" "sqs1_full_access" {
+  count = var.sqs1_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListQueue"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs1.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:List*",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs1.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:DeleteMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "sqs1_role_policy" {
+  count = var.sqs1_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "sqs1-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs1_full_access[0].json
+}
+
+
+resource "aws_iam_user_policy" "sqs1_role_policy" {
+  count = var.sqs1_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "sqs1-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs1_full_access[0].json
+}
+
+##
+## SQS 2
+##
+
+data "aws_iam_policy_document" "sqs2_full_access" {
+  count = var.sqs2_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListQueue"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs2.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:List*",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs2.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:DeleteMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "sqs2_role_policy" {
+  count = var.sqs2_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "sqs2-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs2_full_access[0].json
+}
+
+
+resource "aws_iam_user_policy" "sqs2_role_policy" {
+  count = var.sqs2_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "sqs2-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs2_full_access[0].json
+}
+
+##
+## SQS 3
+##
+
+data "aws_iam_policy_document" "sqs3_full_access" {
+  count = var.sqs3_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListQueue"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs3.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:List*",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs3.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:DeleteMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "sqs3_role_policy" {
+  count = var.sqs3_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "sqs3-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs3_full_access[0].json
+}
+
+
+resource "aws_iam_user_policy" "sqs3_role_policy" {
+  count = var.sqs3_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "sqs3-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs3_full_access[0].json
+}
+
+##
+## SQS 4
+##
+
+data "aws_iam_policy_document" "sqs4_full_access" {
+  count = var.sqs4_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListQueue"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs4.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:List*",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs4.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:DeleteMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags"
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "sqs4_role_policy" {
+  count = var.sqs4_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "sqs4-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs4_full_access[0].json
+}
+
+
+resource "aws_iam_user_policy" "sqs4_role_policy" {
+  count = var.sqs4_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "sqs4-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs4_full_access[0].json
+}
+
+##
+## SQS 5
+##
+
+data "aws_iam_policy_document" "sqs5_full_access" {
+  count = var.sqs5_enabled && var.iam_role_enabled ? 1 : 0
+
+  statement {
+    sid    = "ListQueue"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs5.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:List*",
+    ]
+  }
+
+  statement {
+    sid    = "FullAccess"
+    effect = "Allow"
+
+    resources = [
+      "arn:aws:sqs:*:*:${module.sqs5.this_sqs_queue_name}",
+    ]
+
+    actions = [
+      "sqs:DeleteMessage",
+      "sqs:SendMessage",
+      "sqs:GetQueueUrl",
+      "sqs:ListDeadLetterSourceQueues",
+      "sqs:ReceiveMessage",
+      "sqs:GetQueueAttributes",
+      "sqs:ListQueueTags",
+    ]
+  }
+}
+
+resource "aws_iam_role_policy" "sqs5_role_policy" {
+  count = var.sqs5_enabled && var.iam_role_enabled ? 1 : 0
+  role  = element(concat(aws_iam_role.this.*.name, [""]), 0)
+
+  name = "sqs5-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs5_full_access[0].json
+}
+
+
+resource "aws_iam_user_policy" "sqs5_role_policy" {
+  count = var.sqs5_enabled && var.iam_user_enabled ? 1 : 0
+
+  user = concat(aws_iam_user.this.*.name, [""])[0]
+  name = "sqs5-policy"
+
+  # This defines what permissions our role will be given
+  policy = data.aws_iam_policy_document.sqs5_full_access[0].json
+}
+
+##
 ## IAM Extra inline policies
 ##
 data "aws_iam_policy_document" "this" {
