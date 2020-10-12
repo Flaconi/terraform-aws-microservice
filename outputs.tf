@@ -353,6 +353,11 @@ output "sqs1_queue_arn" {
   value       = module.sqs1.this_sqs_queue_arn
 }
 
+output "sqs1_dlq_queue_arn" {
+  description = "SQS queue ARN"
+  value       = module.sqs1-dlq.this_sqs_queue_arn
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS 2
 # -------------------------------------------------------------------------------------------------
@@ -369,6 +374,11 @@ output "sqs2_queue_id" {
 output "sqs2_queue_arn" {
   description = "SQS queue ARN"
   value       = module.sqs2.this_sqs_queue_arn
+}
+
+output "sqs2_dlq_queue_arn" {
+  description = "SQS queue ARN"
+  value       = module.sqs2-dlq.this_sqs_queue_arn
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -389,6 +399,11 @@ output "sqs3_queue_arn" {
   value       = module.sqs3.this_sqs_queue_arn
 }
 
+output "sqs3_dlq_queue_arn" {
+  description = "SQS queue ARN"
+  value       = module.sqs3-dlq.this_sqs_queue_arn
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS 4
 # -------------------------------------------------------------------------------------------------
@@ -407,6 +422,11 @@ output "sqs4_queue_arn" {
   value       = module.sqs4.this_sqs_queue_arn
 }
 
+output "sqs4_dlq_queue_arn" {
+  description = "SQS queue ARN"
+  value       = module.sqs4-dlq.this_sqs_queue_arn
+}
+
 # -------------------------------------------------------------------------------------------------
 # SQS 5
 # -------------------------------------------------------------------------------------------------
@@ -423,4 +443,9 @@ output "sqs5_queue_id" {
 output "sqs5_queue_arn" {
   description = "SQS queue ARN"
   value       = module.sqs5.this_sqs_queue_arn
+}
+
+output "sqs5_dlq_queue_arn" {
+  description = "SQS queue ARN"
+  value       = module.sqs5-dlq.this_sqs_queue_arn
 }
