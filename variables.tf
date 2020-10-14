@@ -652,7 +652,7 @@ variable "rds_iam_database_authentication_enabled" {
 variable "rds_parameter_group_name" {
   description = "Parameter group for database"
   type        = string
-  default     = ""
+  default     = "default"
 }
 
 variable "rds_parameters" {
@@ -664,7 +664,7 @@ variable "rds_parameters" {
 variable "rds_option_group_name" {
   description = "Option groups for database"
   type        = string
-  default     = ""
+  default     = "default"
 }
 
 variable "rds_options" {
