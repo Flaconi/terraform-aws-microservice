@@ -731,7 +731,7 @@ variable "rds_skip_final_snapshot" {
 }
 
 # -------------------------------------------------------------------------------------------------
-# RDS instance ecnryption settings
+# RDS instance encryption settings
 # -------------------------------------------------------------------------------------------------
 variable "rds_storage_encrypted" {
   description = "Enable encryption for RDS instance storage"
