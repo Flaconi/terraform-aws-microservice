@@ -563,6 +563,12 @@ variable "rds_major_engine_version" {
   default     = "5.7"
 }
 
+variable "rds_auto_minor_version_upgrade" {
+  description = "Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window"
+  type        = bool
+  default     = false
+}
+
 variable "rds_engine_version" {
   description = "RDS instance engine version"
   type        = string
@@ -677,6 +683,12 @@ variable "rds_license_model" {
   description = "License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1"
   type        = string
   default     = ""
+}
+
+variable "rds_enabled_cloudwatch_logs_exports" {
+  description = "List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL), upgrade (PostgreSQL)."
+  type        = list(string)
+  default     = []
 }
 
 # -------------------------------------------------------------------------------------------------

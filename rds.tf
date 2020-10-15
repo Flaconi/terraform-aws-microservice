@@ -85,11 +85,14 @@ module "rds" {
   maintenance_window = var.rds_maintenance_window
   backup_window      = var.rds_backup_window
 
-  tags                      = local.tags
-  copy_tags_to_snapshot     = var.rds_copy_tags_to_snapshot
-  subnet_ids                = flatten(data.aws_subnet_ids.rds.*.ids)
-  final_snapshot_identifier = "${var.env}-${local.rds_identifier}-snapshot"
-  backup_retention_period   = var.rds_backup_retention_period
+  tags                       = local.tags
+  copy_tags_to_snapshot      = var.rds_copy_tags_to_snapshot
+  subnet_ids                 = flatten(data.aws_subnet_ids.rds.*.ids)
+  final_snapshot_identifier  = "${var.env}-${local.rds_identifier}-snapshot"
+  backup_retention_period    = var.rds_backup_retention_period
+  auto_minor_version_upgrade = var.rds_auto_minor_version_upgrade
+
+  enabled_cloudwatch_logs_exports = var.rds_enabled_cloudwatch_logs_exports
 
   performance_insights_retention_period = null
 
