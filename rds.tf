@@ -1,6 +1,12 @@
 locals {
   rds_identifier = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
   rds_db_name    = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
+  rds_opt_name   = (
+    var.rds_option_group_name == "default" && module.rds.this_db_option_group_id != "" ?
+    module.rds.this_db_option_group_id : (
+      var.rds_option_group_name == "default" ? "${var.rds_option_group_name}:${var.rds_family}" : var.rds_option_group_name
+    )
+  )
   password       = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
 }
 
@@ -52,12 +58,7 @@ module "rds" {
   create_db_parameter_group = var.rds_enabled
   create_db_subnet_group    = var.rds_enabled
 
-  option_group_name    = (
-    var.rds_option_group_name == "default" && module.rds.this_db_option_group_id != "" ?
-    module.rds.module.db_option_group.this_db_option_group_id : (
-      var.rds_option_group_name == "default" ? "${var.rds_option_group_name}:${var.rds_family}" : var.rds_option_group_name
-    )
-  )
+  option_group_name    = local.rds_opt_name
   parameter_group_name = var.rds_parameter_group_name == "default" ? "${var.rds_parameter_group_name}:${var.rds_family}" : var.rds_parameter_group_name
   db_subnet_group_name = var.rds_db_subnet_group_name
   ca_cert_identifier   = var.rds_ca_cert_identifier
