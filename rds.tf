@@ -53,7 +53,7 @@ module "rds" {
   create_db_subnet_group    = var.rds_enabled
 
   option_group_name    = (
-    var.rds_option_group_name == "default" && module.rds.module.db_option_group.this_db_option_group_id != "" ?
+    var.rds_option_group_name == "default" && module.rds.this_db_option_group_id != "" ?
     module.rds.module.db_option_group.this_db_option_group_id : (
       var.rds_option_group_name == "default" ? "${var.rds_option_group_name}:${var.rds_family}" : var.rds_option_group_name
     )
