@@ -335,7 +335,7 @@ The following resources _CAN_ be created:
 | rds\_node\_type | VM type which should be taken for nodes in the RDS instance | string | `"db.t3.micro"` | no |
 | rds\_option\_group\_name | Option groups for database | string | `"default"` | no |
 | rds\_options | A list of RDS Options to apply | any | `[]` | no |
-| rds\_parameter\_group\_name | Parameter group for database | string | `"default"` | no |
+| rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
 | rds\_s3\_dump\_allowed\_ips | List of CIDRs allowed to access data on the S3 bucket for RDS DB dumps | list(string) | `[]` | no |
