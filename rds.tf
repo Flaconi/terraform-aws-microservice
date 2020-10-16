@@ -52,7 +52,7 @@ module "rds" {
   create_db_parameter_group = var.rds_enabled
   create_db_subnet_group    = var.rds_enabled
 
-  option_group_name    = var.rds_option_group_name
+  option_group_name    = var.rds_option_group_name != "default" ? var.rds_option_group_name : "${var.rds_option_group_name}:${var.rds_family}"
   parameter_group_name = var.rds_parameter_group_name
   db_subnet_group_name = var.rds_db_subnet_group_name
   ca_cert_identifier   = var.rds_ca_cert_identifier

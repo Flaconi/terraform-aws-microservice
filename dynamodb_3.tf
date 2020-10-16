@@ -22,7 +22,7 @@ module "dynamodb3" {
   hash_key_type  = var.dynamodb3_hash_key_type
   range_key      = var.dynamodb3_range_key
   range_key_type = var.dynamodb3_range_key_type
-  enabled        = var.dynamodb3_enabled ? "true" : "false"
+  enabled        = var.dynamodb3_enabled
 
   dynamodb_attributes        = var.dynamodb3_attributes
   global_secondary_index_map = var.dynamodb3_global_secondary_index_map
@@ -35,7 +35,7 @@ module "dynamodb3" {
   autoscale_max_read_capacity  = var.dynamodb3_autoscale_max_read_capacity
   autoscale_min_write_capacity = var.dynamodb3_autoscale_min_write_capacity
   autoscale_max_write_capacity = var.dynamodb3_autoscale_max_write_capacity
-  enable_autoscaler            = var.dynamodb3_enable_autoscaler ? "true" : "false"
+  enable_autoscaler            = var.dynamodb3_enable_autoscaler
 
   tags = local.tags
 }
