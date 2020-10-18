@@ -324,6 +324,7 @@ The following resources _CAN_ be created:
 | rds\_engine | RDS instance engine | string | `"mysql"` | no |
 | rds\_engine\_version | RDS instance engine version | string | `"5.7.19"` | no |
 | rds\_family | Parameter Group | string | `"mysql5.7"` | no |
+| rds\_final\_snapshot\_identifier\_override | RDS final snapshot identifier override. | string | `""` | no |
 | rds\_iam\_database\_authentication\_enabled | Enable / disable IAM database authentication | string | `"false"` | no |
 | rds\_identifier\_override | RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
 | rds\_kms\_key\_id | KMS key ARN for storage encryption | string | `""` | no |
