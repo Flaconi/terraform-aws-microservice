@@ -1,7 +1,8 @@
 locals {
-  rds_identifier = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
-  rds_db_name    = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
-  password       = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
+  rds_identifier                = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
+  rds_db_name                   = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
+  password                      = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
+  rds_final_snapshot_identifier = length(var.rds_final_snapshot_identifier_override) > 0 ? var.rds_final_snapshot_identifier_override : "${var.env}-${local.rds_identifier}-snapshot"
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -88,7 +89,7 @@ module "rds" {
   tags                       = local.tags
   copy_tags_to_snapshot      = var.rds_copy_tags_to_snapshot
   subnet_ids                 = flatten(data.aws_subnet_ids.rds.*.ids)
-  final_snapshot_identifier  = "${var.env}-${local.rds_identifier}-snapshot"
+  final_snapshot_identifier  = local.rds_final_snapshot_identifier
   backup_retention_period    = var.rds_backup_retention_period
   auto_minor_version_upgrade = var.rds_auto_minor_version_upgrade
 
