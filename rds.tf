@@ -2,7 +2,7 @@ locals {
   rds_identifier                = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
   rds_db_name                   = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
   password                      = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
-  rds_final_snapshot_identifier = length(var.rds_final_snapshot_identifier_override) > 0 ? "${var.rds_final_snapshot_identifier_override}-snapshot" : "${var.env}-${local.rds_identifier}-snapshot"
+  rds_final_snapshot_identifier = length(var.rds_final_snapshot_identifier_override) > 0 ? var.rds_final_snapshot_identifier_override : "${var.env}-${local.rds_identifier}-snapshot"
 }
 
 # -------------------------------------------------------------------------------------------------
