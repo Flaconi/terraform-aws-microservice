@@ -714,6 +714,11 @@ variable "rds_subnet_tag_filter" {
 # -------------------------------------------------------------------------------------------------
 # RDS instance backup settings
 # -------------------------------------------------------------------------------------------------
+variable "rds_final_snapshot_identifier_override" {
+  description = "RDS final snapshot identifier override."
+  default     = ""
+}
+
 variable "rds_backup_retention_period" {
   description = "Retention period for DB snapshots in days"
   type        = string
