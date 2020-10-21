@@ -71,7 +71,7 @@ resource "aws_elasticache_replication_group" "this" {
   at_rest_encryption_enabled = var.redis_at_rest_encryption_enabled
   transit_encryption_enabled = var.redis_transit_encryption_enabled
 
-  apply_immediately = true
+  apply_immediately = var.redis_apply_immediately
 
   tags = merge(
     {

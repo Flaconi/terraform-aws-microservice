@@ -505,6 +505,11 @@ variable "redis_subnet_tag_filter" {
   default     = {}
 }
 
+variable "redis_apply_immediately" {
+  description = "Specifies whether any modifications are applied immediately, or during the next maintenance window."
+  default     = false
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS
 # -------------------------------------------------------------------------------------------------

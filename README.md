@@ -347,6 +347,7 @@ The following resources _CAN_ be created:
 | rds\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the RDS component of the Microservice resides | map | `{}` | no |
 | rds\_use\_random\_password | with rds_use_random_password set to true the RDS database will be configured with a random password | string | `"true"` | no |
 | redis\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the Redis cluster | list(string) | `[ "127.0.0.1/32" ]` | no |
+| redis\_apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. | string | `"false"` | no |
 | redis\_at\_rest\_encryption\_enabled | Redis encrypt storage | string | `"false"` | no |
 | redis\_auto\_minor\_version\_upgrade | Redis allow auto minor version upgrade | string | `"true"` | no |
 | redis\_cluster\_id\_override | Redis cluster ID. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
