@@ -22,15 +22,13 @@ data "aws_subnet_ids" "rds" {
 
 data "aws_security_groups" "for_rds" {
   count = var.rds_enabled && length(var.additional_sg_names_for_rds) >= 1 ? 1 : 0
-  dynamic "filter" {
-    for_each = var.additional_sg_names_for_rds
-    content {
-      name   = "group-name"
-      values = [filter.value]
-    }
-  }
   filter {
     name   = "vpc-id"
     values = [data.aws_vpc.this[0].id]
+  }
+
+  filter {
+    name   = "group-name"
+    values = [for sg in var.additional_sg_names_for_rds : sg]
   }
 }
