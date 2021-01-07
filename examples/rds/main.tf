@@ -15,6 +15,8 @@ module "ms_sample_rds" {
     "env"  = "dev"
   }
 
+  apply_immediately = true
+
   # rds_enabled enables RDS
   rds_enabled = true
 

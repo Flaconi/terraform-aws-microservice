@@ -513,6 +513,12 @@ variable "redis_apply_immediately" {
 # -------------------------------------------------------------------------------------------------
 # RDS
 # -------------------------------------------------------------------------------------------------
+variable "rds_apply_immediately" {
+  description = "Specifies whether any database modifications are applied immediately, or during the next maintenance window"
+  type        = bool
+  default     = false
+}
+
 variable "rds_enabled" {
   description = "Set to false to prevent the module from creating any rds resources"
   type        = bool

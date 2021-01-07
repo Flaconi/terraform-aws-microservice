@@ -310,6 +310,7 @@ The following resources _CAN_ be created:
 | rds\_admin\_user | Admin user name, should default when empty | string | `"admin"` | no |
 | rds\_allocated\_storage | Storage size in Gb | string | `"20"` | no |
 | rds\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the RDS instance | list(string) | `[ "127.0.0.1/32" ]` | no |
+| rds\_apply\_immediately | Specifies whether any database modifications are applied immediately, or during the next maintenance window | bool | `"false"` | no |
 | rds\_auto\_minor\_version\_upgrade | Indicates that minor engine upgrades will be applied automatically to the DB instance during the maintenance window | bool | `"false"` | no |
 | rds\_backup\_retention\_period | Retention period for DB snapshots in days | string | `"14"` | no |
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
