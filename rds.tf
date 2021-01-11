@@ -48,6 +48,8 @@ module "rds" {
   source  = "terraform-aws-modules/rds/aws"
   version = "2.18.0"
 
+  apply_immediately = var.rds_apply_immediately
+
   create_db_instance        = var.rds_enabled
   create_db_option_group    = var.rds_enabled
   create_db_parameter_group = var.rds_enabled
