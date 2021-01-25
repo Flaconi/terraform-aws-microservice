@@ -335,7 +335,7 @@ The following resources _CAN_ be created:
 | rds\_max\_allocated\_storage | Specifies the value for Storage Autoscaling | number | `"0"` | no |
 | rds\_multi\_az | Replication settings | string | `"true"` | no |
 | rds\_node\_type | VM type which should be taken for nodes in the RDS instance | string | `"db.t3.micro"` | no |
-| rds\_option\_group\_name | Option groups for database | string | `"default"` | no |
+| rds\_option\_group\_name | Option groups for database | string | `""` | no |
 | rds\_options | A list of RDS Options to apply | any | `[]` | no |
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |

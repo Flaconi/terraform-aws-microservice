@@ -675,7 +675,7 @@ variable "rds_parameters" {
 variable "rds_option_group_name" {
   description = "Option groups for database"
   type        = string
-  default     = "default"
+  default     = ""
 }
 
 variable "rds_options" {
