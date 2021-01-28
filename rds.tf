@@ -214,7 +214,6 @@ data "aws_iam_policy_document" "rds_dumps_role" {
       "s3:PutObject",
       "s3:GetObject",
       "s3:ListBucket",
-      "s3:DeleteObject",
     ]
 
     resources = [
