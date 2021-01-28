@@ -147,38 +147,20 @@ data "aws_iam_policy_document" "rds_dumps" {
   count = local.rds_dumps_enabled ? 1 : 0
 
   statement {
-    sid       = "DenyIncorrectEncryptionHeader"
-    effect    = "Deny"
-    actions   = ["s3:PutObject"]
-    resources = ["${aws_s3_bucket.rds_dumps[0].arn}/*"]
+    sid       = "AllowReadWriteAccessWithRDSIAMRole"
+    actions   = [
+      "s3:PutObject",
+      "s3:GetObject",
+      "s3:ListBucket",
+    ]
+    resources = [
+      aws_s3_bucket.rds_dumps[0].arn,
+      "${aws_s3_bucket.rds_dumps[0].arn}/*",
+    ]
 
     principals {
-      identifiers = ["*"]
-      type        = "*"
-    }
-
-    condition {
-      test     = "StringNotEquals"
-      values   = ["aws:kms"]
-      variable = "s3:x-amz-server-side-encryption"
-    }
-  }
-
-  statement {
-    sid       = "DenyUnEncryptedObjectUploads"
-    effect    = "Deny"
-    actions   = ["s3:PutObject"]
-    resources = ["${aws_s3_bucket.rds_dumps[0].arn}/*"]
-
-    principals {
-      identifiers = ["*"]
-      type        = "*"
-    }
-
-    condition {
-      test     = "Null"
-      values   = ["true"]
-      variable = "s3:x-amz-server-side-encryption"
+      identifiers = [aws_iam_role.rds_dumps[0].arn]
+      type        = "AWS"
     }
   }
 
