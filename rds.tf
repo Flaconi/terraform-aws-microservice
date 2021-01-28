@@ -240,6 +240,19 @@ data "aws_iam_policy_document" "rds_dumps_role" {
       "${aws_s3_bucket.rds_dumps[0].arn}/*",
     ]
   }
+
+  statement {
+    sid = "AllowDumpS3BucketObjectEncryption"
+
+    actions = [
+      "kms:GenerateDataKey",
+      "kms:Encrypt",
+      "kms:DescribeKey",
+      "kms:Decrypt",
+    ]
+
+    resources = [aws_kms_key.this[0].arn]
+  }
 }
 
 # Trust policy for RDS role
