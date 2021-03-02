@@ -97,7 +97,8 @@ module "rds" {
 
   enabled_cloudwatch_logs_exports = var.rds_enabled_cloudwatch_logs_exports
 
-  performance_insights_retention_period = null
+  performance_insights_enabled          = var.rds_performance_insights_enabled
+  performance_insights_retention_period = var.rds_performance_insights_retention_period
 
   deletion_protection = var.rds_deletion_protection
   skip_final_snapshot = var.rds_skip_final_snapshot

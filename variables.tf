@@ -702,6 +702,18 @@ variable "rds_enabled_cloudwatch_logs_exports" {
   default     = []
 }
 
+variable "rds_performance_insights_enabled" {
+  description = "Specifies whether Performance Insights are enabled"
+  type        = bool
+  default     = false
+}
+
+variable "rds_performance_insights_retention_period" {
+  description = "The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years)."
+  type        = number
+  default     = 7
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance networking
 # -------------------------------------------------------------------------------------------------
