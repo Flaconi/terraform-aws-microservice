@@ -94,6 +94,11 @@ variable "endpoints_domain" {
   default     = ""
 }
 
+variable "aws_route53_rds_subdomain_override" {
+  description = "To set a custom RDS DNS record subdomain instead of the RDS instance ID"
+  default     = ""
+}
+
 # -------------------------------------------------------------------------------------------------
 # DynamoDB
 # -------------------------------------------------------------------------------------------------

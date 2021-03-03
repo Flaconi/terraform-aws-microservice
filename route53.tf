@@ -4,6 +4,7 @@
 locals {
   public_endpoint_enabled  = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_public_endpoint_enabled
   private_endpoint_enabled = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_private_endpoint_enabled
+  subdomain_name           = length(var.aws_route53_rds_subdomain_override) > 0 ? var.aws_route53_rds_subdomain_override : join(".", [module.rds.this_db_instance_id, local.rds_dns_subdomains[var.rds_engine]])
 }
 
 data "aws_route53_zone" "public_endpoint" {
@@ -44,14 +45,15 @@ resource "aws_route53_record" "private_redis_endpoint" {
 # -------------------------------------------------------------------------------------------------
 locals {
   rds_dns_subdomains = {
-    mysql    = "mysql"
-    postgres = "pgsql"
+    mysql        = "mysql"
+    postgres     = "pgsql"
+    sqlserver-se = "sqlserver"
   }
 }
 
 resource "aws_route53_record" "public_rds_endpoint" {
   count   = var.rds_enabled && local.public_endpoint_enabled ? 1 : 0
-  name    = "${module.rds.this_db_instance_id}.${local.rds_dns_subdomains[var.rds_engine]}.${var.endpoints_domain}"
+  name    = "${local.subdomain_name}.${var.endpoints_domain}"
   type    = "A"
   zone_id = data.aws_route53_zone.public_endpoint[0].zone_id
 
@@ -64,7 +66,7 @@ resource "aws_route53_record" "public_rds_endpoint" {
 
 resource "aws_route53_record" "private_rds_endpoint" {
   count   = var.rds_enabled && local.private_endpoint_enabled ? 1 : 0
-  name    = "${module.rds.this_db_instance_id}.${local.rds_dns_subdomains[var.rds_engine]}.${var.endpoints_domain}"
+  name    = "${local.subdomain_name}.${var.endpoints_domain}"
   type    = "A"
   zone_id = data.aws_route53_zone.private_endpoint[0].zone_id
 

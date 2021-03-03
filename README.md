@@ -248,6 +248,7 @@ The following resources _CAN_ be created:
 | name | The name of the microservice, the dependent resources will be created with this name interpolated | string | n/a | yes |
 | tags | tags to propagate to the resources | map(any) | n/a | yes |
 | additional\_sg\_names\_for\_rds | Name(s) of the additional VPC Security Group(s) to be attached to the RDS instance. | list | `[]` | no |
+| aws\_route53\_rds\_subdomain\_override | To set a custom RDS DNS record subdomain instead of the RDS instance ID | string | `""` | no |
 | aws\_route53\_record\_ttl | Time to live for DNS record used by the endpoints | string | `"60"` | no |
 | aws\_route53\_zone\_endpoints\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint | string | `"false"` | no |
 | aws\_route53\_zone\_private\_endpoint\_enabled | To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true | string | `"true"` | no |
