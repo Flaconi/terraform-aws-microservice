@@ -1,8 +1,10 @@
 locals {
-  rds_identifier                = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
-  rds_db_name                   = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
-  password                      = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
-  rds_final_snapshot_identifier = length(var.rds_final_snapshot_identifier_override) > 0 ? var.rds_final_snapshot_identifier_override : "${var.env}-${local.rds_identifier}-snapshot"
+  rds_identifier                  = length(var.rds_identifier_override) > 0 ? var.rds_identifier_override : var.name
+  rds_db_name                     = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
+  password                        = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
+  rds_final_snapshot_identifier   = length(var.rds_final_snapshot_identifier_override) > 0 ? var.rds_final_snapshot_identifier_override : "${var.env}-${local.rds_identifier}-snapshot"
+  create_enhanced_monitoring_role = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? true : false
+  enhanced_monitoring_role_name   = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? "${var.env}-${local.rds_identifier}-monitoring" : null
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -99,6 +101,10 @@ module "rds" {
 
   performance_insights_enabled          = var.rds_performance_insights_enabled
   performance_insights_retention_period = var.rds_performance_insights_retention_period
+
+  monitoring_interval    = var.rds_enhanced_monitoring_interval
+  create_monitoring_role = local.create_enhanced_monitoring_role
+  monitoring_role_name   = local.enhanced_monitoring_role_name
 
   deletion_protection = var.rds_deletion_protection
   skip_final_snapshot = var.rds_skip_final_snapshot
