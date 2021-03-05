@@ -325,6 +325,7 @@ The following resources _CAN_ be created:
 | rds\_enabled\_cloudwatch\_logs\_exports | List of log types to enable for exporting to CloudWatch logs. If omitted, no logs will be exported. Valid values (depending on engine): alert, audit, error, general, listener, slowquery, trace, postgresql (PostgreSQL), upgrade (PostgreSQL). | list(string) | `[]` | no |
 | rds\_engine | RDS instance engine | string | `"mysql"` | no |
 | rds\_engine\_version | RDS instance engine version | string | `"5.7.19"` | no |
+| rds\_enhanced\_monitoring\_interval | The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0. Valid Values: 0, 1, 5, 10, 15, 30, 60. | number | `"0"` | no |
 | rds\_family | Parameter Group | string | `"mysql5.7"` | no |
 | rds\_final\_snapshot\_identifier\_override | RDS final snapshot identifier override. | string | `""` | no |
 | rds\_iam\_database\_authentication\_enabled | Enable / disable IAM database authentication | string | `"false"` | no |
@@ -340,6 +341,8 @@ The following resources _CAN_ be created:
 | rds\_options | A list of RDS Options to apply | any | `[]` | no |
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
+| rds\_performance\_insights\_enabled | Specifies whether Performance Insights are enabled | bool | `"false"` | no |
+| rds\_performance\_insights\_retention\_period | The amount of time in days to retain Performance Insights data. Either 7 (7 days) or 731 (2 years). | number | `"7"` | no |
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
 | rds\_s3\_dump\_allowed\_ips | List of CIDRs allowed to access data on the S3 bucket for RDS DB dumps | list(string) | `[]` | no |
 | rds\_s3\_dump\_name\_prefix | The S3 name prefix | string | `""` | no |
