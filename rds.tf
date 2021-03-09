@@ -3,8 +3,9 @@ locals {
   rds_db_name                     = length(regexall("sqlserver-.*", var.rds_engine)) > 0 ? null : (length(var.rds_dbname_override) > 0 ? var.rds_dbname_override : local.rds_identifier)
   password                        = var.rds_use_random_password ? join("", random_string.password.*.result) : var.rds_admin_pass
   rds_final_snapshot_identifier   = length(var.rds_final_snapshot_identifier_override) > 0 ? var.rds_final_snapshot_identifier_override : "${var.env}-${local.rds_identifier}-snapshot"
-  create_enhanced_monitoring_role = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? true : false
-  enhanced_monitoring_role_name   = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? "${var.env}-${local.rds_identifier}-monitoring" : null
+  enhanced_monitoring_interval    = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? var.rds_enhanced_monitoring_interval : 0
+  create_enhanced_monitoring_role = local.enhanced_monitoring_interval > 0 ? true : false
+  enhanced_monitoring_role_name   = local.enhanced_monitoring_interval > 0 ? "${var.env}-${local.rds_identifier}-monitoring" : null
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -102,9 +103,8 @@ module "rds" {
   performance_insights_enabled          = var.rds_performance_insights_enabled
   performance_insights_retention_period = var.rds_performance_insights_retention_period
 
-  monitoring_interval    = var.rds_enhanced_monitoring_interval
-  create_monitoring_role = local.create_enhanced_monitoring_role
-  monitoring_role_name   = local.enhanced_monitoring_role_name
+  monitoring_interval = local.enhanced_monitoring_interval
+  monitoring_role_arn = local.enhanced_monitoring_interval > 0 ? aws_iam_role.enhanced_monitoring[0].arn : ""
 
   deletion_protection = var.rds_deletion_protection
   skip_final_snapshot = var.rds_skip_final_snapshot
@@ -259,6 +259,20 @@ data "aws_iam_policy_document" "rds_dumps_role_trust" {
   }
 }
 
+# Policy for enhanced monitoring role
+data "aws_iam_policy_document" "enhanced_monitoring" {
+  statement {
+    actions = [
+      "sts:AssumeRole",
+    ]
+
+    principals {
+      type        = "Service"
+      identifiers = ["monitoring.rds.amazonaws.com"]
+    }
+  }
+}
+
 # Marry RDS role with policies
 resource "aws_iam_role_policy" "rds_dumps_role" {
   count = local.rds_dumps_enabled ? 1 : 0
@@ -284,4 +298,20 @@ resource "aws_db_instance_role_association" "this" {
   db_instance_identifier = module.rds.this_db_instance_id
   feature_name           = "S3_INTEGRATION"
   role_arn               = aws_iam_role.rds_dumps[0].arn
+}
+
+resource "aws_iam_role" "enhanced_monitoring" {
+  count = local.create_enhanced_monitoring_role ? 1 : 0
+
+  name               = local.enhanced_monitoring_role_name
+  assume_role_policy = data.aws_iam_policy_document.enhanced_monitoring.json
+
+  tags = var.tags
+}
+
+resource "aws_iam_role_policy_attachment" "enhanced_monitoring" {
+  count = local.create_enhanced_monitoring_role ? 1 : 0
+
+  role       = aws_iam_role.enhanced_monitoring[0].name
+  policy_arn = "arn:aws:iam::aws:policy/service-role/AmazonRDSEnhancedMonitoringRole"
 }
