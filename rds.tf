@@ -300,6 +300,9 @@ resource "aws_db_instance_role_association" "this" {
   role_arn               = aws_iam_role.rds_dumps[0].arn
 }
 
+# The "enhanced_monitoring" resources can be removed once this PR gets merged
+# https://github.com/terraform-aws-modules/terraform-aws-rds/pull/311 and you
+# bump the version of the module
 resource "aws_iam_role" "enhanced_monitoring" {
   count = local.create_enhanced_monitoring_role ? 1 : 0
 
