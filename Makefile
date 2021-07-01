@@ -8,7 +8,7 @@ CURRENT_DIR     = $(dir $(abspath $(lastword $(MAKEFILE_LIST))))
 TF_EXAMPLES     = $(sort $(dir $(wildcard $(CURRENT_DIR)examples/*/)))
 TF_MODULES      = $(sort $(dir $(wildcard $(CURRENT_DIR)modules/*/)))
 
-TF_VERSION      = 0.12.29
+TF_VERSION      = 1.0.0
 TF_DOCS_VERSION = 0.6.0
 
 # Adjust your delimiter here or overwrite via make arguments
@@ -45,36 +45,16 @@ test: _pull-tf
 		echo "------------------------------------------------------------"; \
 		if docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" hashicorp/terraform:$(TF_VERSION) \
 			init \
-				-verify-plugins=true \
-				-lock=false \
 				-upgrade=true \
 				-reconfigure \
 				-input=false \
-				-get-plugins=true \
-				-get=true \
-				.; then \
+				-get=true; then \
 			echo "OK"; \
 		else \
 			echo "Failed"; \
 			docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
 			exit 1; \
 		fi; \
-		echo; \
-		echo "------------------------------------------------------------"; \
-		echo "# Terraform validate"; \
-		echo "------------------------------------------------------------"; \
-		if docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" hashicorp/terraform:$(TF_VERSION) \
-			validate \
-				$(ARGS) \
-				.; then \
-			echo "OK"; \
-			docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
-		else \
-			echo "Failed"; \
-			docker run -it --rm -v "$(CURRENT_DIR):/t" --workdir "$${DOCKER_PATH}" --entrypoint=rm hashicorp/terraform:$(TF_VERSION) -rf .terraform/ || true; \
-			exit 1; \
-		fi; \
-		echo; \
 	)
 
 _gen-main:

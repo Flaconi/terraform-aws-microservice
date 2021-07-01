@@ -23,7 +23,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "3.14.0"
+  version = "4.3.0"
 
   create = var.rds_enabled
 
@@ -49,7 +49,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "2.18.0"
+  version = "3.2.0"
 
   apply_immediately = var.rds_apply_immediately
 
@@ -295,7 +295,7 @@ resource "aws_iam_role" "rds_dumps" {
 resource "aws_db_instance_role_association" "this" {
   count = local.rds_dumps_enabled ? 1 : 0
 
-  db_instance_identifier = module.rds.this_db_instance_id
+  db_instance_identifier = module.rds.db_instance_id
   feature_name           = "S3_INTEGRATION"
   role_arn               = aws_iam_role.rds_dumps[0].arn
 }

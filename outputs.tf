@@ -220,83 +220,84 @@ output "redis_port" {
 # -------------------------------------------------------------------------------------------------
 output "rds_this_db_instance_address" {
   description = "The address of the RDS instance"
-  value       = module.rds.this_db_instance_address
+  value       = module.rds.db_instance_address
 }
 
 output "rds_this_db_instance_arn" {
   description = "The ARN of the RDS instance"
-  value       = module.rds.this_db_instance_arn
+  value       = module.rds.db_instance_arn
 }
 
 output "rds_this_db_instance_availability_zone" {
   description = "The availability zone of the RDS instance"
-  value       = module.rds.this_db_instance_availability_zone
+  value       = module.rds.db_instance_availability_zone
 }
 
 output "rds_this_db_instance_endpoint" {
   description = "The connection endpoint"
-  value       = module.rds.this_db_instance_endpoint
+  value       = module.rds.db_instance_endpoint
 }
 
 output "rds_this_db_instance_hosted_zone_id" {
   description = "The canonical hosted zone ID of the DB instance (to be used in a Route 53 Alias record)"
-  value       = module.rds.this_db_instance_hosted_zone_id
+  value       = module.rds.db_instance_hosted_zone_id
 }
 
 output "rds_this_db_instance_id" {
   description = "The RDS instance ID"
-  value       = module.rds.this_db_instance_id
+  value       = module.rds.db_instance_id
 }
 
 output "rds_this_db_instance_resource_id" {
   description = "The RDS Resource ID of this instance"
-  value       = module.rds.this_db_instance_resource_id
+  value       = module.rds.db_instance_resource_id
 }
 
 output "rds_this_db_instance_status" {
   description = "The RDS instance status"
-  value       = module.rds.this_db_instance_status
+  value       = module.rds.db_instance_status
 }
 
 output "rds_this_db_instance_name" {
   description = "The database name"
-  value       = module.rds.this_db_instance_name
+  value       = module.rds.db_instance_name
 }
 
 output "rds_this_db_instance_username" {
   description = "The master username for the database"
-  value       = module.rds.this_db_instance_username
+  value       = module.rds.db_instance_username
+  sensitive   = true
 }
 
 output "rds_this_db_instance_password" {
   description = "The database password (this password may be old, because Terraform doesn't track it after initial creation)"
-  value       = module.rds.this_db_instance_password
+  value       = module.rds.db_instance_password
   sensitive   = true
 }
 
 output "rds_this_db_instance_port" {
   description = "The database port"
-  value       = module.rds.this_db_instance_port
+  value       = module.rds.db_instance_port
 }
 
 output "rds_this_db_subnet_group_id" {
   description = "The db subnet group name"
-  value       = module.rds.this_db_subnet_group_id
+  value       = module.rds.db_subnet_group_id
 }
 
 output "rds_this_db_subnet_group_arn" {
   description = "The ARN of the db subnet group"
-  value       = module.rds.this_db_subnet_group_arn
+  value       = module.rds.db_subnet_group_arn
 }
 
 output "rds_this_db_parameter_group_id" {
   description = "The db parameter group id"
-  value       = module.rds.this_db_parameter_group_id
+  value       = module.rds.db_parameter_group_id
 }
 
 output "rds_this_db_parameter_group_arn" {
   description = "The ARN of the db parameter group"
-  value       = module.rds.this_db_parameter_group_arn
+  value       = module.rds.db_parameter_group_arn
 }
 
 output "public_rds_endpoint_aws_route53_record" {
