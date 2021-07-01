@@ -593,7 +593,7 @@ resource "aws_iam_role_policy" "sqs5_role_policy" {
 data "aws_iam_policy_document" "this" {
   count = length(var.iam_inline_policies)
 
-  dynamic statement {
+  dynamic "statement" {
     for_each = var.iam_inline_policies[count.index].statements
 
     content {

@@ -4,7 +4,7 @@
 locals {
   public_endpoint_enabled  = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_public_endpoint_enabled
   private_endpoint_enabled = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_private_endpoint_enabled
-  subdomain_name           = length(var.aws_route53_rds_subdomain_override) > 0 ? var.aws_route53_rds_subdomain_override : join(".", [module.rds.this_db_instance_id, local.rds_dns_subdomains[var.rds_engine]])
+  subdomain_name           = length(var.aws_route53_rds_subdomain_override) > 0 ? var.aws_route53_rds_subdomain_override : join(".", [module.rds.db_instance_id, local.rds_dns_subdomains[var.rds_engine]])
 }
 
 data "aws_route53_zone" "public_endpoint" {
@@ -58,8 +58,8 @@ resource "aws_route53_record" "public_rds_endpoint" {
   zone_id = data.aws_route53_zone.public_endpoint[0].zone_id
 
   alias {
-    name                   = module.rds.this_db_instance_address
-    zone_id                = module.rds.this_db_instance_hosted_zone_id
+    name                   = module.rds.db_instance_address
+    zone_id                = module.rds.db_instance_hosted_zone_id
     evaluate_target_health = false
   }
 }
@@ -71,8 +71,8 @@ resource "aws_route53_record" "private_rds_endpoint" {
   zone_id = data.aws_route53_zone.private_endpoint[0].zone_id
 
   alias {
-    name                   = module.rds.this_db_instance_address
-    zone_id                = module.rds.this_db_instance_hosted_zone_id
+    name                   = module.rds.db_instance_address
+    zone_id                = module.rds.db_instance_hosted_zone_id
     evaluate_target_health = false
   }
 }
