@@ -330,6 +330,7 @@ The following resources _CAN_ be created:
 | rds\_final\_snapshot\_identifier\_override | RDS final snapshot identifier override. | string | `""` | no |
 | rds\_iam\_database\_authentication\_enabled | Enable / disable IAM database authentication | string | `"false"` | no |
 | rds\_identifier\_override | RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name | string | `""` | no |
+| rds\_iops | The amount of provisioned IOPS. Setting this implies a storage_type of 'io1' | number | `"0"` | no |
 | rds\_kms\_key\_id | KMS key ARN for storage encryption | string | `""` | no |
 | rds\_license\_model | License model information for this DB instance. Optional, but required for some DB engines, i.e. Oracle SE1 | string | `""` | no |
 | rds\_maintenance\_window | Window of RDS Maintenance | string | `"Mon:16:00-Mon:18:00"` | no |
