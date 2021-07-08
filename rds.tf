@@ -6,6 +6,7 @@ locals {
   enhanced_monitoring_interval    = contains([1, 5, 10, 15, 30, 60], var.rds_enhanced_monitoring_interval) ? var.rds_enhanced_monitoring_interval : 0
   create_enhanced_monitoring_role = local.enhanced_monitoring_interval > 0 ? true : false
   enhanced_monitoring_role_name   = local.enhanced_monitoring_interval > 0 ? "${var.env}-${local.rds_identifier}-monitoring" : null
+  rds_storage_type                = var.rds_iops > 0 ? "io1" : var.rds_storage_type
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -71,6 +72,8 @@ module "rds" {
   engine_version        = var.rds_engine_version
   major_engine_version  = var.rds_major_engine_version
   instance_class        = var.rds_node_type
+  storage_type          = local.rds_storage_type
+  iops                  = var.rds_iops
   allocated_storage     = var.rds_allocated_storage
   max_allocated_storage = var.rds_max_allocated_storage
   family                = var.rds_family

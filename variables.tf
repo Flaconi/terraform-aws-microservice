@@ -632,6 +632,12 @@ variable "rds_max_allocated_storage" {
   default     = 0
 }
 
+variable "rds_iops" {
+  description = "The amount of provisioned IOPS. Setting this implies a storage_type of 'io1'"
+  type        = number
+  default     = 0
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance admin user & pass
 # -------------------------------------------------------------------------------------------------
