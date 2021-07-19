@@ -351,6 +351,7 @@ The following resources _CAN_ be created:
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |
 | rds\_storage\_type | Storage type | string | `"gp2"` | no |
 | rds\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the RDS component of the Microservice resides | map | `{}` | no |
+| rds\_timeouts | (Optional) Updated Terraform resource management timeouts. Applies to `aws_db_instance` in particular to permit resource management times | map(string) | `{ "create": "40m", "delete": "40m", "update": "80m" }` | no |
 | rds\_use\_random\_password | with rds_use_random_password set to true the RDS database will be configured with a random password | string | `"true"` | no |
 | redis\_allowed\_subnet\_cidrs | List of CIDRs/subnets which should be able to connect to the Redis cluster | list(string) | `[ "127.0.0.1/32" ]` | no |
 | redis\_apply\_immediately | Specifies whether any modifications are applied immediately, or during the next maintenance window. | string | `"false"` | no |
