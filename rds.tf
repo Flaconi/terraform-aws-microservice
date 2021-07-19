@@ -117,6 +117,8 @@ module "rds" {
 
   parameters = var.rds_parameters
   options    = var.rds_options
+
+  timeouts = var.rds_timeouts
 }
 
 

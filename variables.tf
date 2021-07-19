@@ -564,6 +564,16 @@ variable "rds_allowed_subnet_cidrs" {
   default     = ["127.0.0.1/32"]
 }
 
+variable "rds_timeouts" {
+  description = "(Optional) Updated Terraform resource management timeouts. Applies to `aws_db_instance` in particular to permit resource management times"
+  type        = map(string)
+  default = {
+    create = "40m"
+    update = "80m"
+    delete = "40m"
+  }
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance engine
 # -------------------------------------------------------------------------------------------------
