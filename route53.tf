@@ -48,6 +48,7 @@ locals {
     mysql        = "mysql"
     postgres     = "pgsql"
     sqlserver-se = "sqlserver"
+    sqlserver-ee = "sqlserver"
     oracle-se2   = "oracle"
   }
 }

@@ -17,6 +17,7 @@ locals {
     mysql        = "mysql-tcp"
     postgres     = "postgresql-tcp"
     sqlserver-se = "mssql-tcp"
+    sqlserver-ee = "mssql-tcp"
     oracle-se2   = "oracle-db-tcp"
     default      = "postgresql-tcp"
   }
