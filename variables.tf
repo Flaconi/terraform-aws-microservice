@@ -515,6 +515,12 @@ variable "redis_apply_immediately" {
   default     = false
 }
 
+variable "redis_multi_az_enabled" {
+  description = "Specifies whether to enable Multi-AZ Support for the replication group. If true, automatic_failover_enabled must also be enabled."
+  type        = bool
+  default     = false
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS
 # -------------------------------------------------------------------------------------------------

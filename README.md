@@ -361,6 +361,7 @@ The following resources _CAN_ be created:
 | redis\_group\_parameter\_group\_name | Redis parameter group name | string | `"default.redis5.0.cluster.on"` | no |
 | redis\_instance\_type | Redis instance type | string | `"cache.m4.large"` | no |
 | redis\_maintenance\_window | Redis snapshot window | string | `"mon:10:00-mon:12:00"` | no |
+| redis\_multi\_az\_enabled | Specifies whether to enable Multi-AZ Support for the replication group. If true, automatic_failover_enabled must also be enabled. | bool | `"false"` | no |
 | redis\_port | Redis port | string | `"6379"` | no |
 | redis\_replicas\_count | Number of replica nodes in each node group | string | `"1"` | no |
 | redis\_shards\_count | Number of shards | string | `"1"` | no |
