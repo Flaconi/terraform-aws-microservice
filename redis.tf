@@ -53,6 +53,7 @@ resource "aws_elasticache_replication_group" "this" {
   parameter_group_name = var.redis_group_parameter_group_name
 
   automatic_failover_enabled = true
+  multi_az_enabled           = var.redis_multi_az_enabled
 
   cluster_mode {
     # Number of shards
