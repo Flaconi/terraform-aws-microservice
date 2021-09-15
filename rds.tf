@@ -161,7 +161,7 @@ resource "aws_s3_bucket" "rds_dumps" {
   }
 }
 
-# Buckup S3 bucket policy
+# Backup S3 bucket policy
 data "aws_iam_policy_document" "rds_dumps" {
   count = local.rds_dumps_enabled ? 1 : 0
 
@@ -170,6 +170,8 @@ data "aws_iam_policy_document" "rds_dumps" {
     actions = [
       "s3:PutObject",
       "s3:GetObject",
+      "s3:ListMultipartUploadParts",
+      "s3:AbortMultipartUpload",
       "s3:ListBucket",
     ]
     resources = [
@@ -178,8 +180,11 @@ data "aws_iam_policy_document" "rds_dumps" {
     ]
 
     principals {
-      identifiers = [aws_iam_role.rds_dumps[0].arn]
-      type        = "AWS"
+      identifiers = concat(
+        [aws_iam_role.rds_dumps[0].arn],
+        var.rds_s3_kms_dump_key_additional_role_arns,
+      )
+      type = "AWS"
     }
   }
 
