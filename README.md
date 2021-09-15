@@ -317,6 +317,7 @@ The following resources _CAN_ be created:
 | rds\_backup\_window | Backup window | string | `"03:00-06:00"` | no |
 | rds\_ca\_cert\_identifier | The identifier of the CA certificate for the DB instance. | string | `"rds-ca-2019"` | no |
 | rds\_copy\_tags\_to\_snapshot | On delete, copy all Instance tags to the final snapshot (if final_snapshot_identifier is specified) | bool | `"true"` | no |
+| rds\_db\_subnet\_group\_description | Description of the DB subnet group to create | string | `""` | no |
 | rds\_db\_subnet\_group\_name | Subnet groups for RDS instance | string | `""` | no |
 | rds\_dbname\_override | RDS DB Name override in case the identifier is not wished as db name | string | `""` | no |
 | rds\_deletion\_protection | Protect RDS instance from deletion | string | `"true"` | no |
@@ -338,8 +339,12 @@ The following resources _CAN_ be created:
 | rds\_max\_allocated\_storage | Specifies the value for Storage Autoscaling | number | `"0"` | no |
 | rds\_multi\_az | Replication settings | string | `"true"` | no |
 | rds\_node\_type | VM type which should be taken for nodes in the RDS instance | string | `"db.t3.micro"` | no |
+| rds\_option\_group\_description | The description of the option group | string | `""` | no |
 | rds\_option\_group\_name | Option groups for database | string | `""` | no |
+| rds\_option\_group\_timeouts | Define maximum timeout for deletion of `aws_db_option_group` resource | map(string) | `{ "delete": "15m" }` | no |
+| rds\_option\_group\_use\_name\_prefix | Determines whether to use `option_group_name` as is or create a unique name beginning with the `option_group_name` as the prefix | bool | `"true"` | no |
 | rds\_options | A list of RDS Options to apply | any | `[]` | no |
+| rds\_parameter\_group\_description | Description of the DB parameter group to create | string | `""` | no |
 | rds\_parameter\_group\_name | Parameter group for database | string | `""` | no |
 | rds\_parameters | List of RDS parameters to apply | list(map(string)) | `[]` | no |
 | rds\_performance\_insights\_enabled | Specifies whether Performance Insights are enabled | bool | `"false"` | no |
