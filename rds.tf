@@ -65,6 +65,11 @@ module "rds" {
   db_subnet_group_name = var.rds_db_subnet_group_name
   ca_cert_identifier   = var.rds_ca_cert_identifier
 
+  db_subnet_group_description  = var.rds_db_subnet_group_description
+  parameter_group_description  = var.rds_parameter_group_description
+  option_group_description     = var.rds_option_group_description
+  option_group_use_name_prefix = var.rds_option_group_use_name_prefix
+
   identifier = lower(local.rds_identifier)
 
   publicly_accessible = false
@@ -118,7 +123,8 @@ module "rds" {
   parameters = var.rds_parameters
   options    = var.rds_options
 
-  timeouts = var.rds_timeouts
+  timeouts              = var.rds_timeouts
+  option_group_timeouts = var.rds_option_group_timeouts
 }
 
 

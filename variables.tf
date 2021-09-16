@@ -580,6 +580,14 @@ variable "rds_timeouts" {
   }
 }
 
+variable "rds_option_group_timeouts" {
+  description = "Define maximum timeout for deletion of `aws_db_option_group` resource"
+  type        = map(string)
+  default = {
+    delete = "15m"
+  }
+}
+
 # -------------------------------------------------------------------------------------------------
 # RDS instance engine
 # -------------------------------------------------------------------------------------------------
@@ -746,6 +754,31 @@ variable "rds_enhanced_monitoring_interval" {
   type        = number
   default     = 0
 }
+
+variable "rds_db_subnet_group_description" {
+  description = "Description of the DB subnet group to create"
+  type        = string
+  default     = ""
+}
+
+variable "rds_parameter_group_description" {
+  description = "Description of the DB parameter group to create"
+  type        = string
+  default     = ""
+}
+
+variable "rds_option_group_description" {
+  description = "The description of the option group"
+  type        = string
+  default     = ""
+}
+
+variable "rds_option_group_use_name_prefix" {
+  description = "Determines whether to use `option_group_name` as is or create a unique name beginning with the `option_group_name` as the prefix"
+  type        = bool
+  default     = true
+}
+
 
 # -------------------------------------------------------------------------------------------------
 # RDS instance networking
