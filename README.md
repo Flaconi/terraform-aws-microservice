@@ -352,6 +352,7 @@ The following resources _CAN_ be created:
 | rds\_port | TCP port where DB accept connections | string | `"3306"` | no |
 | rds\_s3\_dump\_allowed\_ips | List of CIDRs allowed to access data on the S3 bucket for RDS DB dumps | list(string) | `[]` | no |
 | rds\_s3\_dump\_name\_prefix | The S3 name prefix | string | `""` | no |
+| rds\_s3\_kms\_dump\_key\_additional\_role\_arns | List of IAM role ARNs that are able to access the KMS key used for encrypting RDS dump files in the S3 bucket | list(string) | `[]` | no |
 | rds\_skip\_final\_snapshot | Skip final snapshot on deletion | string | `"false"` | no |
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |
 | rds\_storage\_type | Storage type | string | `"gp2"` | no |

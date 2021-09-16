@@ -554,6 +554,12 @@ variable "rds_s3_dump_allowed_ips" {
   default     = []
 }
 
+variable "rds_s3_kms_dump_key_additional_role_arns" {
+  description = "List of IAM role ARNs that are able to access the KMS key used for encrypting RDS dump files in the S3 bucket"
+  type        = list(string)
+  default     = []
+}
+
 variable "rds_identifier_override" {
   description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""

@@ -1,3 +1,5 @@
+data "aws_caller_identity" "current" {}
+
 # -------------------------------------------------------------------------------------------------
 # IAM Policy Document
 # -------------------------------------------------------------------------------------------------
@@ -304,6 +306,23 @@ resource "aws_iam_user_policy" "kms" {
   policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
 }
 
+data "aws_iam_policy_document" "kms_key" {
+  count = local.kms_enabled ? 1 : 0
+
+  statement {
+    actions = [
+      "kms:*",
+    ]
+    resources = ["*"]
+    principals {
+      type = "AWS"
+      identifiers = concat(
+        ["arn:aws:iam::${data.aws_caller_identity.current.account_id}:root"],
+        var.rds_s3_kms_dump_key_additional_role_arns,
+      )
+    }
+  }
+}
 
 ##
 ## IAM S3 permissions

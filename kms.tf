@@ -6,6 +6,7 @@ locals {
 resource "aws_kms_key" "this" {
   count       = local.kms_enabled ? 1 : 0
   description = "KMS key for encrypting - ${var.env} - ${var.name}"
+  policy      = element(concat(data.aws_iam_policy_document.kms_key[*].json, []), 0)
 
   tags = local.tags
 }
