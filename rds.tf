@@ -168,11 +168,12 @@ data "aws_iam_policy_document" "rds_dumps" {
   statement {
     sid = "AllowReadWriteAccessWithRDSIAMRole"
     actions = [
-      "s3:PutObject",
-      "s3:GetObject",
-      "s3:ListMultipartUploadParts",
       "s3:AbortMultipartUpload",
+      "s3:GetBucketLocation",
+      "s3:GetObject",
       "s3:ListBucket",
+      "s3:ListMultipartUploadParts",
+      "s3:PutObject",
     ]
     resources = [
       aws_s3_bucket.rds_dumps[0].arn,
