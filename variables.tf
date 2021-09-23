@@ -560,6 +560,12 @@ variable "rds_s3_kms_dump_key_additional_role_arns" {
   default     = []
 }
 
+variable "rds_s3_dump_role_arn" {
+  description = "IAM role ARN to be associated with the RDS instance, for being able to access the S3 dump bucket(s). If this is set, the module will not create the role nor its policy but instead will directly associate the RDS instance with passed role. If this is not set, the module will handle the creation of the IAM policy and the role itself."
+  type        = string
+  default     = ""
+}
+
 variable "rds_identifier_override" {
   description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""
