@@ -357,6 +357,7 @@ The following resources _CAN_ be created:
 | rds\_skip\_final\_snapshot | Skip final snapshot on deletion | string | `"false"` | no |
 | rds\_storage\_encrypted | Enable encryption for RDS instance storage | string | `"true"` | no |
 | rds\_storage\_type | Storage type | string | `"gp2"` | no |
+| rds\_subnet\_cidr\_block\_filter | List of CIDR blocks to filter subnets of the VPC where the RDS component of the Microservice resides | list(string) | `[]` | no |
 | rds\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the RDS component of the Microservice resides | map | `{}` | no |
 | rds\_timeouts | (Optional) Updated Terraform resource management timeouts. Applies to `aws_db_instance` in particular to permit resource management times | map(string) | `{ "create": "40m", "delete": "40m", "update": "80m" }` | no |
 | rds\_use\_random\_password | with rds_use_random_password set to true the RDS database will be configured with a random password | string | `"true"` | no |
@@ -375,6 +376,7 @@ The following resources _CAN_ be created:
 | redis\_replicas\_count | Number of replica nodes in each node group | string | `"1"` | no |
 | redis\_shards\_count | Number of shards | string | `"1"` | no |
 | redis\_snapshot\_window | Redis snapshot window | string | `"00:00-05:00"` | no |
+| redis\_subnet\_cidr\_block\_filter | List of CIDR blocks to filter subnets of the VPC where the Redis component of the Microservice resides | list(string) | `[]` | no |
 | redis\_subnet\_tag\_filter | The Map to filter the subnets of the VPC where the Redis component of the Microservice resides | map | `{}` | no |
 | redis\_transit\_encryption\_enabled | Redis encrypt transit TLS | string | `"false"` | no |
 | s3\_enabled | S3 bucket creation and iam policy creation enabled | bool | `"false"` | no |

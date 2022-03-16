@@ -510,6 +510,12 @@ variable "redis_subnet_tag_filter" {
   default     = {}
 }
 
+variable "redis_subnet_cidr_block_filter" {
+  description = "List of CIDR blocks to filter subnets of the VPC where the Redis component of the Microservice resides"
+  type        = list(string)
+  default     = []
+}
+
 variable "redis_apply_immediately" {
   description = "Specifies whether any modifications are applied immediately, or during the next maintenance window."
   default     = false
@@ -811,6 +817,13 @@ variable "rds_subnet_tag_filter" {
   description = "The Map to filter the subnets of the VPC where the RDS component of the Microservice resides"
   default     = {}
 }
+
+variable "rds_subnet_cidr_block_filter" {
+  description = "List of CIDR blocks to filter subnets of the VPC where the RDS component of the Microservice resides"
+  type        = list(string)
+  default     = []
+}
+
 
 # -------------------------------------------------------------------------------------------------
 # RDS instance backup settings
