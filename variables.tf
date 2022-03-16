@@ -512,6 +512,7 @@ variable "redis_subnet_tag_filter" {
 
 variable "redis_subnet_cidr_block_filter" {
   description = "List of CIDR blocks to filter subnets of the VPC where the Redis component of the Microservice resides"
+  type        = list(string)
   default     = []
 }
 
@@ -819,6 +820,7 @@ variable "rds_subnet_tag_filter" {
 
 variable "rds_subnet_cidr_block_filter" {
   description = "List of CIDR blocks to filter subnets of the VPC where the RDS component of the Microservice resides"
+  type        = list(string)
   default     = []
 }
 
