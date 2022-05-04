@@ -3,10 +3,12 @@
 # -------------------------------------------------------------------------------------------------
 variable "env" {
   description = "The environment name to which this project will be applied against (e.g.: common, dev, prod, testing)"
+  type        = string
 }
 
 variable "name" {
   description = "The name of the microservice, the dependent resources will be created with this name interpolated"
+  type        = string
 }
 
 variable "tags" {
@@ -26,6 +28,7 @@ variable "rds_copy_tags_to_snapshot" {
 variable "vpc_tag_filter" {
   description = "The map of tags to match the VPC tags with where the RDS or Redis or other networked AWS component of the Microservice resides"
   default     = {}
+  type        = map(string)
 }
 
 variable "additional_sg_names_for_rds" {
@@ -40,6 +43,7 @@ variable "additional_sg_names_for_rds" {
 variable "iam_role_enabled" {
   description = "Set to false to prevent iam role creation"
   default     = false
+  type        = bool
 }
 
 variable "iam_role_principals_arns" {
@@ -54,16 +58,25 @@ variable "iam_role_principals_arns" {
 variable "iam_user_enabled" {
   description = "Set to false to prevent iam user creation"
   default     = false
+  type        = bool
 }
 
 variable "iam_user_path" {
   description = "Set the path for the iam user"
   default     = "/"
+  type        = string
 }
 
 variable "iam_inline_policies" {
   description = "Policies applied to the assuming role"
   default     = []
+  type = list(object({
+    name = string
+    statements = list(object({
+      actions   = list(string)
+      resources = list(string)
+    }))
+  }))
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -72,31 +85,37 @@ variable "iam_inline_policies" {
 variable "aws_route53_record_ttl" {
   description = "Time to live for DNS record used by the endpoints"
   default     = "60"
+  type        = string
 }
 
 variable "aws_route53_zone_endpoints_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis private endpoint"
   default     = false
+  type        = bool
 }
 
 variable "aws_route53_zone_public_endpoint_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis public endpoint, we need to set this to true"
   default     = true
+  type        = bool
 }
 
 variable "aws_route53_zone_private_endpoint_enabled" {
   description = "To enable the lookup of the domain used for RDS/Redis private endpoint, we need to set this to true"
   default     = true
+  type        = bool
 }
 
 variable "endpoints_domain" {
   description = "The domain / route53 zone we need to add a record with"
   default     = ""
+  type        = string
 }
 
 variable "aws_route53_rds_subdomain_override" {
   description = "To set a custom RDS DNS record subdomain instead of the RDS instance ID"
   default     = ""
+  type        = string
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -105,11 +124,13 @@ variable "aws_route53_rds_subdomain_override" {
 variable "dynamodb_enabled" {
   description = "Set to false to prevent the module from creating any dynamodb resources"
   default     = false
+  type        = bool
 }
 
 variable "dynamodb_name_override" {
   description = "define dynamodb_name_override to set a name differnt from var.name "
   default     = ""
+  type        = string
 }
 
 variable "dynamodb_hash_key" {
@@ -140,6 +161,10 @@ variable "dynamodb_range_key_type" {
 variable "dynamodb_attributes" {
   description = "Additional DynamoDB attributes in the form of a list of mapped values"
   default     = []
+  type = list(object({
+    name = string
+    type = string
+  }))
 }
 
 variable "dynamodb_global_secondary_index_map" {
@@ -216,11 +241,13 @@ variable "dynamodb_enable_autoscaler" {
 variable "dynamodb2_enabled" {
   description = "Set to false to prevent the module from creating any dynamodb resources"
   default     = false
+  type        = bool
 }
 
 variable "dynamodb2_name_override" {
   description = "define dynamodb2_name_override to set a name differnt from var.name"
   default     = ""
+  type        = string
 }
 
 variable "dynamodb2_hash_key" {
@@ -250,6 +277,10 @@ variable "dynamodb2_range_key_type" {
 variable "dynamodb2_attributes" {
   description = "Additional DynamoDB attributes in the form of a list of mapped values"
   default     = []
+  type = list(object({
+    name = string
+    type = string
+  }))
 }
 
 variable "dynamodb2_global_secondary_index_map" {
@@ -326,11 +357,13 @@ variable "dynamodb2_enable_autoscaler" {
 variable "dynamodb3_enabled" {
   description = "Set to false to prevent the module from creating any dynamodb resources"
   default     = false
+  type        = bool
 }
 
 variable "dynamodb3_name_override" {
   description = "define dynamodb3_name_override to set a name differnt from var.name"
   default     = ""
+  type        = string
 }
 
 variable "dynamodb3_hash_key" {
@@ -360,6 +393,10 @@ variable "dynamodb3_range_key_type" {
 variable "dynamodb3_attributes" {
   description = "Additional DynamoDB attributes in the form of a list of mapped values"
   default     = []
+  type = list(object({
+    name = string
+    type = string
+  }))
 }
 
 variable "dynamodb3_global_secondary_index_map" {
@@ -437,66 +474,79 @@ variable "dynamodb3_enable_autoscaler" {
 variable "redis_enabled" {
   description = "Set to false to prevent the module from creating any redis resources"
   default     = false
+  type        = bool
 }
 
 variable "redis_cluster_id_override" {
   description = "Redis cluster ID. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""
+  type        = string
 }
 
 variable "redis_port" {
   description = "Redis port"
   default     = "6379"
+  type        = string
 }
 
 variable "redis_instance_type" {
   description = "Redis instance type"
   default     = "cache.m4.large"
+  type        = string
 }
 
 variable "redis_shards_count" {
   description = "Number of shards"
   default     = 1
+  type        = number
 }
 
 variable "redis_group_engine_version" {
   description = "Redis engine version to be used"
   default     = "5.0.0"
+  type        = string
 }
 
 variable "redis_group_parameter_group_name" {
   description = "Redis parameter group name"
   default     = "default.redis5.0.cluster.on"
+  type        = string
 }
 
 variable "redis_snapshot_window" {
   description = "Redis snapshot window"
   default     = "00:00-05:00"
+  type        = string
 }
 
 variable "redis_maintenance_window" {
   description = "Redis snapshot window"
   default     = "mon:10:00-mon:12:00"
+  type        = string
 }
 
 variable "redis_auto_minor_version_upgrade" {
   description = "Redis allow auto minor version upgrade"
   default     = true
+  type        = bool
 }
 
 variable "redis_at_rest_encryption_enabled" {
   description = "Redis encrypt storage"
   default     = false
+  type        = bool
 }
 
 variable "redis_transit_encryption_enabled" {
   description = "Redis encrypt transit TLS"
   default     = false
+  type        = bool
 }
 
 variable "redis_replicas_count" {
   description = "Number of replica nodes in each node group"
   default     = 1
+  type        = number
 }
 
 variable "redis_allowed_subnet_cidrs" {
@@ -508,6 +558,7 @@ variable "redis_allowed_subnet_cidrs" {
 variable "redis_subnet_tag_filter" {
   description = "The Map to filter the subnets of the VPC where the Redis component of the Microservice resides"
   default     = {}
+  type        = map(string)
 }
 
 variable "redis_subnet_cidr_block_filter" {
@@ -519,6 +570,7 @@ variable "redis_subnet_cidr_block_filter" {
 variable "redis_apply_immediately" {
   description = "Specifies whether any modifications are applied immediately, or during the next maintenance window."
   default     = false
+  type        = bool
 }
 
 variable "redis_multi_az_enabled" {
@@ -575,11 +627,13 @@ variable "rds_s3_dump_role_arn" {
 variable "rds_identifier_override" {
   description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""
+  type        = string
 }
 
 variable "rds_dbname_override" {
   description = "RDS DB Name override in case the identifier is not wished as db name"
   default     = ""
+  type        = string
 }
 
 variable "rds_allowed_subnet_cidrs" {
@@ -651,6 +705,7 @@ variable "rds_node_type" {
 variable "rds_multi_az" {
   description = "Replication settings"
   default     = true
+  type        = bool
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -698,6 +753,7 @@ variable "rds_admin_pass" {
 variable "rds_use_random_password" {
   description = "with rds_use_random_password set to true the RDS database will be configured with a random password"
   default     = true
+  type        = bool
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -707,6 +763,7 @@ variable "rds_use_random_password" {
 variable "rds_iam_database_authentication_enabled" {
   description = "Enable / disable IAM database authentication"
   default     = "false"
+  type        = string
 }
 
 
@@ -816,6 +873,7 @@ variable "rds_db_subnet_group_name" {
 variable "rds_subnet_tag_filter" {
   description = "The Map to filter the subnets of the VPC where the RDS component of the Microservice resides"
   default     = {}
+  type        = map(string)
 }
 
 variable "rds_subnet_cidr_block_filter" {
@@ -831,6 +889,7 @@ variable "rds_subnet_cidr_block_filter" {
 variable "rds_final_snapshot_identifier_override" {
   description = "RDS final snapshot identifier override."
   default     = ""
+  type        = string
 }
 
 variable "rds_backup_retention_period" {
@@ -842,11 +901,13 @@ variable "rds_backup_retention_period" {
 variable "rds_deletion_protection" {
   description = "Protect RDS instance from deletion"
   default     = true
+  type        = bool
 }
 
 variable "rds_skip_final_snapshot" {
   description = "Skip final snapshot on deletion"
   default     = false
+  type        = bool
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -855,6 +916,7 @@ variable "rds_skip_final_snapshot" {
 variable "rds_storage_encrypted" {
   description = "Enable encryption for RDS instance storage"
   default     = true
+  type        = bool
 }
 
 variable "rds_kms_key_id" {
@@ -906,6 +968,12 @@ variable "s3_versioning_enabled" {
 variable "s3_lifecycle_rules" {
   description = "S3 Lifecycle rules"
   default     = []
+  type = list(object({
+    id              = string
+    enabled         = bool
+    prefix          = string
+    expiration_days = number
+  }))
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -914,46 +982,55 @@ variable "s3_lifecycle_rules" {
 variable "sqs1_enabled" {
   description = "Set to false to prevent the module from creating any sqs resources"
   default     = false
+  type        = bool
 }
 
 variable "sqs1_name_override" {
   description = "define sqs1_name_override to set a name differnt from var.name "
   default     = ""
+  type        = string
 }
 
 variable "sqs1_delay_seconds" {
   description = "define sqs1_delay_seconds "
   default     = 0
+  type        = number
 }
 
 variable "sqs1_fifo_queue" {
   description = "Boolean designating a FIFO queue"
   default     = false
+  type        = bool
 }
 
 variable "sqs1_max_message_size" {
   description = "The number of seconds Amazon SQS retains a message. Integer representing seconds, from 60 (1 minute) to 1209600 (14 days)"
   default     = 262144
+  type        = number
 }
 
 variable "sqs1_receive_wait_time_seconds" {
   description = "The time for which a ReceiveMessage call will wait for a message to arrive (long polling) before returning. An integer from 0 to 20 (seconds)"
   default     = 0
+  type        = number
 }
 
 variable "sqs1_redrive_policy" {
   description = "The JSON policy to set up the Dead Letter Queue, see AWS docs. Note: when specifying maxReceiveCount, you must specify it as an integer (5), and not a string (\"5\")"
   default     = ""
+  type        = string
 }
 
 variable "sqs1_visibility_timeout_seconds" {
   description = "The visibility timeout for the queue. An integer from 0 to 43200 (12 hours)"
   default     = 30
+  type        = number
 }
 
 variable "sqs1_dlq_enabled" {
   description = "Set to false to prevent the module from creating any sqs-dql resources"
   default     = false
+  type        = bool
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -962,21 +1039,25 @@ variable "sqs1_dlq_enabled" {
 variable "sqs2_enabled" {
   description = "Set to false to prevent the module from creating any sqs resources"
   default     = false
+  type        = bool
 }
 
 variable "sqs2_name_override" {
   description = "define sqs2_name_override to set a name differnt from var.name "
   default     = ""
+  type        = string
 }
 
 variable "sqs2_delay_seconds" {
   description = "define sqs2_delay_seconds "
   default     = 0
+  type        = number
 }
 
 variable "sqs2_fifo_queue" {
   description = "Boolean designating a FIFO queue"
   default     = false
+  type        = bool
 }
 
 variable "sqs2_max_message_size" {
