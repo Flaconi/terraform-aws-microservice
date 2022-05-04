@@ -3,7 +3,7 @@ locals {
   rds_dumps_enabled = var.rds_enabled && var.rds_enable_s3_dump
 
   rds_s3_bucket_policy_principal_identifiers = concat(
-    var.rds_s3_dump_role_arn == "" ? flatten(concat(
+    var.rds_s3_dump_role_arn == "" && local.rds_dumps_enabled ? flatten(concat(
       [aws_iam_role.rds_dumps[0].arn],
       var.rds_s3_kms_dump_key_additional_role_arns
       )) : flatten(concat(
