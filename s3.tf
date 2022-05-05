@@ -17,24 +17,10 @@ data "aws_kms_key" "s3" {
 resource "aws_s3_bucket" "this" {
   count  = var.s3_enabled ? 1 : 0
   bucket = local.s3_identifier_check[1]
-  acl    = "private"
 
   force_destroy = var.s3_force_destroy
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = local.s3_encryption_check[1]
-        sse_algorithm     = "aws:kms"
-      }
-    }
-  }
-
   tags = local.tags
-
-  versioning {
-    enabled = var.s3_versioning_enabled
-  }
 
   dynamic "lifecycle_rule" {
     for_each = var.s3_lifecycle_rules
@@ -49,7 +35,32 @@ resource "aws_s3_bucket" "this" {
       }
     }
   }
+}
 
+resource "aws_s3_bucket_acl" "this" {
+  count  = var.s3_enabled ? 1 : 0
+  bucket = aws_s3_bucket.this[count.index].id
+  acl    = "private"
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "this" {
+  count  = var.s3_enabled ? 1 : 0
+  bucket = aws_s3_bucket.this[count.index].bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = local.s3_encryption_check[1]
+      sse_algorithm     = "aws:kms"
+    }
+  }
+}
+
+resource "aws_s3_bucket_versioning" "this" {
+  count  = var.s3_enabled ? 1 : 0
+  bucket = aws_s3_bucket.this[count.index].id
+  versioning_configuration {
+    status = var.s3_versioning_enabled
+  }
 }
 
 
