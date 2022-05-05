@@ -52,7 +52,7 @@ resource "aws_s3_bucket_versioning" "this" {
 resource "aws_s3_bucket_lifecycle_configuration" "this" {
   depends_on = [aws_s3_bucket_versioning.this]
 
-  count  = var.s3_enabled ? 1 : 0
+  count  = var.s3_enabled && local.length_s3_lifecycle_rules > 0 ? 1 : 0
   bucket = aws_s3_bucket.this[count.index].id
 
   dynamic "rule" {
