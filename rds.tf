@@ -25,7 +25,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.3.0"
+  version = "4.9.0"
 
   create = var.rds_enabled
 
