@@ -60,7 +60,7 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
 
     content {
       id     = rule.value.id
-      status = lookup(rule.value, "status", "Enable")
+      status = lookup(rule.value, "status", "Enabled")
       filter {
         prefix = rule.value.prefix
       }
