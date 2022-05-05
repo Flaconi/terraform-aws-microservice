@@ -970,7 +970,7 @@ variable "s3_lifecycle_rules" {
   default     = []
   type = list(object({
     id              = string
-    enabled         = bool
+    status          = string
     prefix          = string
     expiration_days = number
   }))

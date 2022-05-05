@@ -21,20 +21,6 @@ resource "aws_s3_bucket" "this" {
   force_destroy = var.s3_force_destroy
 
   tags = local.tags
-
-  dynamic "lifecycle_rule" {
-    for_each = var.s3_lifecycle_rules
-    iterator = rule
-
-    content {
-      id      = rule.value.id
-      enabled = lookup(rule.value, "enabled", true)
-      prefix  = rule.value.prefix
-      expiration {
-        days = rule.value.expiration_days
-      }
-    }
-  }
 }
 
 resource "aws_s3_bucket_acl" "this" {
@@ -63,6 +49,27 @@ resource "aws_s3_bucket_versioning" "this" {
   }
 }
 
+resource "aws_s3_bucket_lifecycle_configuration" "this" {
+  depends_on = [aws_s3_bucket_versioning.this]
+
+  count  = var.s3_enabled ? 1 : 0
+  bucket = aws_s3_bucket.this[count.index].id
+
+  dynamic "rule" {
+    for_each = var.s3_lifecycle_rules
+
+    content {
+      id     = rule.value.id
+      status = lookup(rule.value, "status", "Enable")
+      filter {
+        prefix = rule.value.prefix
+      }
+      expiration {
+        days = rule.value.expiration_days
+      }
+    }
+  }
+}
 
 data "aws_iam_policy_document" "bucket_policy" {
   count = var.s3_enabled ? 1 : 0
