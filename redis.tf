@@ -35,9 +35,9 @@ resource "aws_elasticache_subnet_group" "this" {
 }
 
 resource "aws_elasticache_replication_group" "this" {
-  count                         = var.redis_enabled ? 1 : 0
-  replication_group_id          = local.redis_cluster_id
-  replication_group_description = "${local.redis_cluster_id} - TF Generated"
+  count                = var.redis_enabled ? 1 : 0
+  replication_group_id = local.redis_cluster_id
+  description          = "${local.redis_cluster_id} - TF Generated"
 
   # Network configuration
   subnet_group_name  = aws_elasticache_subnet_group.this[0].name
@@ -55,13 +55,11 @@ resource "aws_elasticache_replication_group" "this" {
   automatic_failover_enabled = true
   multi_az_enabled           = var.redis_multi_az_enabled
 
-  cluster_mode {
-    # Number of shards
-    num_node_groups = var.redis_shards_count
+  # Number of shards
+  num_node_groups = var.redis_shards_count
 
-    # Number of replica nodes in each node group.
-    replicas_per_node_group = var.redis_replicas_count
-  }
+  # Number of replica nodes in each node group.
+  replicas_per_node_group = var.redis_replicas_count
 
   # Store snapshots for two previous days
   snapshot_retention_limit   = 2
