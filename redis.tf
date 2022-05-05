@@ -31,7 +31,7 @@ resource "aws_elasticache_subnet_group" "this" {
   name  = "${local.redis_cluster_id}-redis-subnet-group"
 
   # IDs of subnets where the cluster should be deployed
-  subnet_ids = data.aws_subnet_ids.redis[0].ids
+  subnet_ids = data.aws_subnets.redis[0].ids
 }
 
 resource "aws_elasticache_replication_group" "this" {

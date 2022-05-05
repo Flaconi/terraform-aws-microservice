@@ -102,7 +102,7 @@ module "rds" {
 
   tags                       = local.tags
   copy_tags_to_snapshot      = var.rds_copy_tags_to_snapshot
-  subnet_ids                 = flatten(data.aws_subnet_ids.rds.*.ids)
+  subnet_ids                 = flatten(data.aws_subnets.rds.*.ids)
   final_snapshot_identifier  = local.rds_final_snapshot_identifier
   backup_retention_period    = var.rds_backup_retention_period
   auto_minor_version_upgrade = var.rds_auto_minor_version_upgrade
