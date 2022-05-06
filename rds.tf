@@ -25,7 +25,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.3.0"
+  version = "4.9.0"
 
   create = var.rds_enabled
 
@@ -51,7 +51,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "3.2.0"
+  version = "4.3.0"
 
   apply_immediately = var.rds_apply_immediately
 
@@ -85,10 +85,11 @@ module "rds" {
   family                = var.rds_family
   license_model         = var.rds_license_model
 
-  name     = local.rds_db_name
-  username = var.rds_admin_user
-  password = local.password
-  port     = var.rds_port
+  db_name                = local.rds_db_name
+  username               = var.rds_admin_user
+  password               = local.password
+  port                   = var.rds_port
+  create_random_password = false
 
   iam_database_authentication_enabled = var.rds_iam_database_authentication_enabled
 
@@ -102,8 +103,8 @@ module "rds" {
 
   tags                       = local.tags
   copy_tags_to_snapshot      = var.rds_copy_tags_to_snapshot
-  subnet_ids                 = flatten(data.aws_subnet_ids.rds.*.ids)
-  final_snapshot_identifier  = local.rds_final_snapshot_identifier
+  subnet_ids                 = flatten(data.aws_subnets.rds.*.ids)
+  snapshot_identifier        = local.rds_final_snapshot_identifier
   backup_retention_period    = var.rds_backup_retention_period
   auto_minor_version_upgrade = var.rds_auto_minor_version_upgrade
 

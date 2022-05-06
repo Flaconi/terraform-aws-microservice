@@ -126,24 +126,36 @@ resource "aws_s3_bucket" "rds_dumps" {
   count = local.rds_dumps_enabled ? 1 : 0
 
   bucket = "flaconi-${var.rds_s3_dump_name_prefix}-${local.rds_identifier}-rds-dumps"
-  acl    = "private"
 
   force_destroy = false
 
-  server_side_encryption_configuration {
-    rule {
-      apply_server_side_encryption_by_default {
-        kms_master_key_id = aws_kms_key.this[0].arn
-        sse_algorithm     = "aws:kms"
-      }
+  tags = local.tags
+}
+
+resource "aws_s3_bucket_server_side_encryption_configuration" "rds_dumps" {
+  count  = local.rds_dumps_enabled ? 1 : 0
+  bucket = aws_s3_bucket.rds_dumps[count.index].bucket
+
+  rule {
+    apply_server_side_encryption_by_default {
+      kms_master_key_id = aws_kms_key.this[0].arn
+      sse_algorithm     = "aws:kms"
     }
   }
+}
 
-  tags = local.tags
-
-  versioning {
-    enabled = true
+resource "aws_s3_bucket_versioning" "rds_dumps" {
+  count  = local.rds_dumps_enabled ? 1 : 0
+  bucket = aws_s3_bucket.rds_dumps[count.index].id
+  versioning_configuration {
+    status = "Enabled"
   }
+}
+
+resource "aws_s3_bucket_acl" "rds_dumps" {
+  count  = local.rds_dumps_enabled ? 1 : 0
+  bucket = aws_s3_bucket.rds_dumps[count.index].id
+  acl    = "private"
 }
 
 resource "aws_iam_role_policy" "rds_dumps_role" {

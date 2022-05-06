@@ -21,13 +21,10 @@ data "aws_iam_policy_document" "assume_role_principals" {
   count = (var.iam_role_enabled ? signum(
     var.iam_user_enabled ? 1 : 0 + length(var.iam_role_principals_arns),
   ) : 0)
-  source_json = element(
-    concat(
-      data.aws_iam_policy_document.assume_role_service.*.json,
-      [""],
-    ),
-    0,
-  )
+
+  source_policy_documents = [
+    data.aws_iam_policy_document.assume_role_service[0].json
+  ]
 
   statement {
     effect  = "Allow"

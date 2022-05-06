@@ -4,10 +4,13 @@ data "aws_vpc" "this" {
   tags = var.vpc_tag_filter
 }
 
-data "aws_subnet_ids" "redis" {
+data "aws_subnets" "redis" {
   count = var.redis_enabled ? 1 : 0
 
-  vpc_id = data.aws_vpc.this[0].id
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.this[0].id]
+  }
 
   dynamic "filter" {
     for_each = length(var.redis_subnet_cidr_block_filter) > 0 ? [1] : []
@@ -20,10 +23,13 @@ data "aws_subnet_ids" "redis" {
   tags = var.redis_subnet_tag_filter
 }
 
-data "aws_subnet_ids" "rds" {
+data "aws_subnets" "rds" {
   count = var.rds_enabled ? 1 : 0
 
-  vpc_id = data.aws_vpc.this[0].id
+  filter {
+    name   = "vpc-id"
+    values = [data.aws_vpc.this[0].id]
+  }
 
   dynamic "filter" {
     for_each = length(var.rds_subnet_cidr_block_filter) > 0 ? [1] : []

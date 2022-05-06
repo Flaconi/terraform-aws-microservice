@@ -1503,9 +1503,9 @@ Default: `true`
 
 Description: S3 Versioning enabled
 
-Type: `bool`
+Type: `string`
 
-Default: `true`
+Default: `"Enabled"`
 
 ### <a name="input_s3_lifecycle_rules"></a> [s3\_lifecycle\_rules](#input\_s3\_lifecycle\_rules)
 
@@ -1516,7 +1516,7 @@ Type:
 ```hcl
 list(object({
     id              = string
-    enabled         = bool
+    status          = string
     prefix          = string
     expiration_days = number
   }))

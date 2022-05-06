@@ -13,13 +13,13 @@ module "ms_sample_s3" {
   s3_lifecycle_rules = [
     {
       id      = "all-cleanup"
-      enabled = true
+      status = "Enabled"
       prefix  = ""
       expiration_days = 90
     },
     {
       id      = "tmp"
-      enabled = true
+      status = "Enabled"
       prefix  = "tmp/"
       expiration_days = 1
     }

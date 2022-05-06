@@ -10,4 +10,6 @@ locals {
     [module.rds_sg.security_group_id],
     flatten(data.aws_security_groups.for_rds[*].ids),
   )
+
+  length_s3_lifecycle_rules = length(var.s3_lifecycle_rules)
 }

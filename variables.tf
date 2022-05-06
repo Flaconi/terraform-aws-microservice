@@ -961,8 +961,8 @@ variable "s3_force_destroy" {
 
 variable "s3_versioning_enabled" {
   description = "S3 Versioning enabled"
-  type        = bool
-  default     = true
+  type        = string
+  default     = "Enabled"
 }
 
 variable "s3_lifecycle_rules" {
@@ -970,7 +970,7 @@ variable "s3_lifecycle_rules" {
   default     = []
   type = list(object({
     id              = string
-    enabled         = bool
+    status          = string
     prefix          = string
     expiration_days = number
   }))
