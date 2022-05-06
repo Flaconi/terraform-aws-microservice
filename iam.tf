@@ -276,6 +276,7 @@ resource "aws_iam_user_policy" "dynamodb3_role_policy" {
 data "aws_iam_policy_document" "kms_permissions" {
   count = local.kms_enabled && var.iam_role_enabled ? 1 : 0
 
+  version = "2012-10-17"
   statement {
     effect = "Allow"
     actions = [
@@ -285,7 +286,7 @@ data "aws_iam_policy_document" "kms_permissions" {
       "kms:GenerateDataKey*",
       "kms:DescribeKey"
     ]
-    resources = [element(concat(aws_kms_key.this.*.arn, [""]), 0)]
+    resources = [aws_kms_key.this[0].arn]
   }
 }
 
@@ -293,20 +294,21 @@ resource "aws_iam_role_policy" "kms" {
   count  = var.iam_role_enabled && local.kms_enabled ? 1 : 0
   name   = "kms-permissions"
   role   = element(concat(aws_iam_role.this.*.name, [""]), 0)
-  policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
+  policy = data.aws_iam_policy_document.kms_permissions[0].json
 }
 
 resource "aws_iam_user_policy" "kms" {
   count  = var.iam_user_enabled && local.kms_enabled ? 1 : 0
   name   = "kms-permissions"
   user   = concat(aws_iam_user.this.*.name, [""])[0]
-  policy = element(concat(data.aws_iam_policy_document.kms_permissions.*.json, [""]), 0)
+  policy = data.aws_iam_policy_document.kms_permissions[0].json
 }
 
 data "aws_iam_policy_document" "kms_key" {
   count = local.kms_enabled ? 1 : 0
 
   statement {
+    sid       = "Enable IAM User Permissions"
     actions = [
       "kms:*",
     ]

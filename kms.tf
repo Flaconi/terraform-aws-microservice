@@ -6,13 +6,12 @@ locals {
 resource "aws_kms_key" "this" {
   count       = local.kms_enabled ? 1 : 0
   description = "KMS key for encrypting - ${var.env} - ${var.name}"
-  policy      = element(concat(data.aws_iam_policy_document.kms_key[*].json, []), 0)
-
+  policy      = data.aws_iam_policy_document.kms_key[0].json
   tags = local.tags
 }
 
 resource "aws_kms_alias" "this" {
   count         = local.kms_enabled ? 1 : 0
   name          = format("alias/%s/microservice/%s", var.env, var.name)
-  target_key_id = element(concat(aws_kms_key.this.*.id, [""]), 0)
+  target_key_id = aws_kms_key.this[0].id
 }
