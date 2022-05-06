@@ -7,7 +7,7 @@ resource "aws_kms_key" "this" {
   count       = local.kms_enabled ? 1 : 0
   description = "KMS key for encrypting - ${var.env} - ${var.name}"
   policy      = data.aws_iam_policy_document.kms_key[0].json
-  tags = local.tags
+  tags        = local.tags
 }
 
 resource "aws_kms_alias" "this" {

@@ -308,7 +308,7 @@ data "aws_iam_policy_document" "kms_key" {
   count = local.kms_enabled ? 1 : 0
 
   statement {
-    sid       = "Enable IAM User Permissions"
+    sid = "Enable IAM User Permissions"
     actions = [
       "kms:*",
     ]
