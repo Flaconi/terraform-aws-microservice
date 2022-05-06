@@ -1419,6 +1419,14 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_rds_db_snapshot_name"></a> [rds\_db\_snapshot\_name](#input\_rds\_db\_snapshot\_name)
+
+Description: Specifies whether or not to create this database from a snapshot.
+
+Type: `string`
+
+Default: `""`
+
 ### <a name="input_rds_backup_retention_period"></a> [rds\_backup\_retention\_period](#input\_rds\_backup\_retention\_period)
 
 Description: Retention period for DB snapshots in days
