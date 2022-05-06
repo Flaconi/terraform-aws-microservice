@@ -40,6 +40,7 @@ output "ms_sample_rds_rds_this_db_instance_username" {
 
 output "ms_sample_rds_rds_this_db_instance_password" {
   value = module.ms_sample_rds.rds_this_db_instance_password
+  sensitive = true
 }
 
 output "ms_sample_rds_rds_this_db_instance_port" {

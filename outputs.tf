@@ -17,6 +17,7 @@ output "this_iam_role_arn" {
 output "this_user_name" {
   description = "IAM user name"
   value       = element(concat(aws_iam_user.this.*.name, [""]), 0)
+  sensitive   = true
 }
 
 output "this_user_arn" {
@@ -41,6 +42,7 @@ output "this_aws_iam_access_key_secret" {
 output "dynamodb_table_name" {
   description = "DynamoDB table name"
   value       = module.dynamodb.table_name
+  sensitive   = true
 }
 
 output "dynamodb_table_id" {
