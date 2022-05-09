@@ -19,7 +19,6 @@ output "ms_sample_iam_and_dynamodb_this_aws_iam_access_key_secret" {
 output "ms_sample_iam_and_dynamodb_dynamodb_table_name" {
   value       = module.ms_sample_iam_and_dynamodb.dynamodb_table_name
   description = "DynamoDB table name"
-  sensitive = true
 }
 
 output "ms_sample_iam_and_dynamodb_dynamodb_table_id" {
