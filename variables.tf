@@ -892,6 +892,12 @@ variable "rds_final_snapshot_identifier_override" {
   type        = string
 }
 
+variable "rds_db_snapshot_name" {
+  description = "Specifies whether or not to create this database from a snapshot."
+  default     = ""
+  type        = string
+}
+
 variable "rds_backup_retention_period" {
   description = "Retention period for DB snapshots in days"
   type        = string
