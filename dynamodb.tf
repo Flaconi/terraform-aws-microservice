@@ -22,6 +22,7 @@ module "dynamodb" {
   range_key      = var.dynamodb_range_key
   range_key_type = var.dynamodb_range_key_type
   enabled        = var.dynamodb_enabled
+  billing_mode   = var.dynamodb_billing
 
   dynamodb_attributes        = var.dynamodb_attributes
   global_secondary_index_map = var.dynamodb_global_secondary_index_map

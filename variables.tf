@@ -127,6 +127,12 @@ variable "dynamodb_enabled" {
   type        = bool
 }
 
+variable "dynamodb_billing" {
+  description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
+  default     = "PROVISIONED"
+  type        = string
+}
+
 variable "dynamodb_name_override" {
   description = "define dynamodb_name_override to set a name differnt from var.name "
   default     = ""
