@@ -127,6 +127,12 @@ variable "dynamodb_enabled" {
   type        = bool
 }
 
+variable "dynamodb_billing" {
+  description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
+  default     = "PROVISIONED"
+  type        = string
+}
+
 variable "dynamodb_name_override" {
   description = "define dynamodb_name_override to set a name differnt from var.name "
   default     = ""
@@ -244,6 +250,12 @@ variable "dynamodb2_enabled" {
   type        = bool
 }
 
+variable "dynamodb2_billing" {
+  description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
+  default     = "PROVISIONED"
+  type        = string
+}
+
 variable "dynamodb2_name_override" {
   description = "define dynamodb2_name_override to set a name differnt from var.name"
   default     = ""
@@ -358,6 +370,12 @@ variable "dynamodb3_enabled" {
   description = "Set to false to prevent the module from creating any dynamodb resources"
   default     = false
   type        = bool
+}
+
+variable "dynamodb3_billing" {
+  description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
+  default     = "PROVISIONED"
+  type        = string
 }
 
 variable "dynamodb3_name_override" {

@@ -23,6 +23,7 @@ module "dynamodb3" {
   range_key      = var.dynamodb3_range_key
   range_key_type = var.dynamodb3_range_key_type
   enabled        = var.dynamodb3_enabled
+  billing_mode   = var.dynamodb3_billing
 
   dynamodb_attributes        = var.dynamodb3_attributes
   global_secondary_index_map = var.dynamodb3_global_secondary_index_map

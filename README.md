@@ -421,6 +421,14 @@ Type: `bool`
 
 Default: `false`
 
+### <a name="input_dynamodb_billing"></a> [dynamodb\_billing](#input\_dynamodb\_billing)
+
+Description: DynamoDB Billing mode. Can be PROVISIONED or PAY\_PER\_REQUEST
+
+Type: `string`
+
+Default: `"PROVISIONED"`
+
 ### <a name="input_dynamodb_name_override"></a> [dynamodb\_name\_override](#input\_dynamodb\_name\_override)
 
 Description: define dynamodb\_name\_override to set a name differnt from var.name
@@ -577,6 +585,14 @@ Type: `bool`
 
 Default: `false`
 
+### <a name="input_dynamodb2_billing"></a> [dynamodb2\_billing](#input\_dynamodb2\_billing)
+
+Description: DynamoDB Billing mode. Can be PROVISIONED or PAY\_PER\_REQUEST
+
+Type: `string`
+
+Default: `"PROVISIONED"`
+
 ### <a name="input_dynamodb2_name_override"></a> [dynamodb2\_name\_override](#input\_dynamodb2\_name\_override)
 
 Description: define dynamodb2\_name\_override to set a name differnt from var.name
@@ -732,6 +748,14 @@ Description: Set to false to prevent the module from creating any dynamodb resou
 Type: `bool`
 
 Default: `false`
+
+### <a name="input_dynamodb3_billing"></a> [dynamodb3\_billing](#input\_dynamodb3\_billing)
+
+Description: DynamoDB Billing mode. Can be PROVISIONED or PAY\_PER\_REQUEST
+
+Type: `string`
+
+Default: `"PROVISIONED"`
 
 ### <a name="input_dynamodb3_name_override"></a> [dynamodb3\_name\_override](#input\_dynamodb3\_name\_override)
 
