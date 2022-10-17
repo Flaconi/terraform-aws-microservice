@@ -133,6 +133,12 @@ variable "dynamodb_billing" {
   type        = string
 }
 
+variable "dynamodb_table_class" {
+  description = "Storage class of the table"
+  default     = "STANDARD"
+  type        = string
+}
+
 variable "dynamodb_name_override" {
   description = "define dynamodb_name_override to set a name differnt from var.name "
   default     = ""
@@ -256,6 +262,12 @@ variable "dynamodb2_billing" {
   type        = string
 }
 
+variable "dynamodb2_table_class" {
+  description = "Storage class of the table"
+  default     = "STANDARD"
+  type        = string
+}
+
 variable "dynamodb2_name_override" {
   description = "define dynamodb2_name_override to set a name differnt from var.name"
   default     = ""
@@ -375,6 +387,12 @@ variable "dynamodb3_enabled" {
 variable "dynamodb3_billing" {
   description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
   default     = "PROVISIONED"
+  type        = string
+}
+
+variable "dynamodb3_table_class" {
+  description = "Storage class of the table"
+  default     = "STANDARD"
   type        = string
 }
 

@@ -432,6 +432,14 @@ Type: `string`
 
 Default: `"PROVISIONED"`
 
+### <a name="input_dynamodb_table_class"></a> [dynamodb\_table\_class](#input\_dynamodb\_table\_class)
+
+Description: Storage class of the table
+
+Type: `string`
+
+Default: `"STANDARD"`
+
 ### <a name="input_dynamodb_name_override"></a> [dynamodb\_name\_override](#input\_dynamodb\_name\_override)
 
 Description: define dynamodb\_name\_override to set a name differnt from var.name
@@ -596,6 +604,14 @@ Type: `string`
 
 Default: `"PROVISIONED"`
 
+### <a name="input_dynamodb2_table_class"></a> [dynamodb2\_table\_class](#input\_dynamodb2\_table\_class)
+
+Description: Storage class of the table
+
+Type: `string`
+
+Default: `"STANDARD"`
+
 ### <a name="input_dynamodb2_name_override"></a> [dynamodb2\_name\_override](#input\_dynamodb2\_name\_override)
 
 Description: define dynamodb2\_name\_override to set a name differnt from var.name
@@ -759,6 +775,14 @@ Description: DynamoDB Billing mode. Can be PROVISIONED or PAY\_PER\_REQUEST
 Type: `string`
 
 Default: `"PROVISIONED"`
+
+### <a name="input_dynamodb3_table_class"></a> [dynamodb3\_table\_class](#input\_dynamodb3\_table\_class)
+
+Description: Storage class of the table
+
+Type: `string`
+
+Default: `"STANDARD"`
 
 ### <a name="input_dynamodb3_name_override"></a> [dynamodb3\_name\_override](#input\_dynamodb3\_name\_override)
 
