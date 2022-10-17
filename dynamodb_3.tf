@@ -13,7 +13,7 @@ resource "null_resource" "dynamodb3_checker" {
 
 module "dynamodb3" {
   source  = "cloudposse/dynamodb/aws"
-  version = "0.29.5"
+  version = "0.30.0"
 
   namespace      = ""
   stage          = ""
