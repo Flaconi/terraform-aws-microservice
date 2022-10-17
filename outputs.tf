@@ -341,22 +341,22 @@ output "this_aws_s3_bucket_arn" {
 # -------------------------------------------------------------------------------------------------
 output "sqs1_queue_name" {
   description = "SQS queue name"
-  value       = module.sqs1.this_sqs_queue_name
+  value       = module.sqs1.sqs_queue_name
 }
 
 output "sqs1_queue_id" {
   description = "SQS queue ID"
-  value       = module.sqs1.this_sqs_queue_id
+  value       = module.sqs1.sqs_queue_id
 }
 
 output "sqs1_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs1.this_sqs_queue_arn
+  value       = module.sqs1.sqs_queue_arn
 }
 
 output "sqs1_dlq_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs1-dlq.this_sqs_queue_arn
+  value       = module.sqs1-dlq.sqs_queue_arn
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -364,22 +364,22 @@ output "sqs1_dlq_queue_arn" {
 # -------------------------------------------------------------------------------------------------
 output "sqs2_queue_name" {
   description = "SQS queue name"
-  value       = module.sqs2.this_sqs_queue_name
+  value       = module.sqs2.sqs_queue_name
 }
 
 output "sqs2_queue_id" {
   description = "SQS queue ID"
-  value       = module.sqs2.this_sqs_queue_id
+  value       = module.sqs2.sqs_queue_id
 }
 
 output "sqs2_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs2.this_sqs_queue_arn
+  value       = module.sqs2.sqs_queue_arn
 }
 
 output "sqs2_dlq_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs2-dlq.this_sqs_queue_arn
+  value       = module.sqs2-dlq.sqs_queue_arn
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -387,22 +387,22 @@ output "sqs2_dlq_queue_arn" {
 # -------------------------------------------------------------------------------------------------
 output "sqs3_queue_name" {
   description = "SQS queue name"
-  value       = module.sqs3.this_sqs_queue_name
+  value       = module.sqs3.sqs_queue_name
 }
 
 output "sqs3_queue_id" {
   description = "SQS queue ID"
-  value       = module.sqs3.this_sqs_queue_id
+  value       = module.sqs3.sqs_queue_id
 }
 
 output "sqs3_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs3.this_sqs_queue_arn
+  value       = module.sqs3.sqs_queue_arn
 }
 
 output "sqs3_dlq_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs3-dlq.this_sqs_queue_arn
+  value       = module.sqs3-dlq.sqs_queue_arn
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -410,22 +410,22 @@ output "sqs3_dlq_queue_arn" {
 # -------------------------------------------------------------------------------------------------
 output "sqs4_queue_name" {
   description = "SQS queue name"
-  value       = module.sqs4.this_sqs_queue_name
+  value       = module.sqs4.sqs_queue_name
 }
 
 output "sqs4_queue_id" {
   description = "SQS queue ID"
-  value       = module.sqs4.this_sqs_queue_id
+  value       = module.sqs4.sqs_queue_id
 }
 
 output "sqs4_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs4.this_sqs_queue_arn
+  value       = module.sqs4.sqs_queue_arn
 }
 
 output "sqs4_dlq_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs4-dlq.this_sqs_queue_arn
+  value       = module.sqs4-dlq.sqs_queue_arn
 }
 
 # -------------------------------------------------------------------------------------------------
@@ -433,20 +433,20 @@ output "sqs4_dlq_queue_arn" {
 # -------------------------------------------------------------------------------------------------
 output "sqs5_queue_name" {
   description = "SQS queue name"
-  value       = module.sqs5.this_sqs_queue_name
+  value       = module.sqs5.sqs_queue_name
 }
 
 output "sqs5_queue_id" {
   description = "SQS queue ID"
-  value       = module.sqs5.this_sqs_queue_id
+  value       = module.sqs5.sqs_queue_id
 }
 
 output "sqs5_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs5.this_sqs_queue_arn
+  value       = module.sqs5.sqs_queue_arn
 }
 
 output "sqs5_dlq_queue_arn" {
   description = "SQS queue ARN"
-  value       = module.sqs5-dlq.this_sqs_queue_arn
+  value       = module.sqs5-dlq.sqs_queue_arn
 }

@@ -233,7 +233,7 @@ data "aws_iam_policy_document" "sqs1_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs1.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs1.sqs_queue_name}",
     ]
 
     actions = [
@@ -246,7 +246,7 @@ data "aws_iam_policy_document" "sqs1_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs1.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs1.sqs_queue_name}",
     ]
 
     actions = [
@@ -283,7 +283,7 @@ data "aws_iam_policy_document" "sqs2_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs2.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs2.sqs_queue_name}",
     ]
 
     actions = [
@@ -296,7 +296,7 @@ data "aws_iam_policy_document" "sqs2_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs2.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs2.sqs_queue_name}",
     ]
 
     actions = [
@@ -333,7 +333,7 @@ data "aws_iam_policy_document" "sqs3_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs3.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs3.sqs_queue_name}",
     ]
 
     actions = [
@@ -346,7 +346,7 @@ data "aws_iam_policy_document" "sqs3_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs3.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs3.sqs_queue_name}",
     ]
 
     actions = [
@@ -383,7 +383,7 @@ data "aws_iam_policy_document" "sqs4_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs4.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs4.sqs_queue_name}",
     ]
 
     actions = [
@@ -396,7 +396,7 @@ data "aws_iam_policy_document" "sqs4_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs4.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs4.sqs_queue_name}",
     ]
 
     actions = [
@@ -433,7 +433,7 @@ data "aws_iam_policy_document" "sqs5_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs5.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs5.sqs_queue_name}",
     ]
 
     actions = [
@@ -446,7 +446,7 @@ data "aws_iam_policy_document" "sqs5_full_access" {
     effect = "Allow"
 
     resources = [
-      "arn:aws:sqs:*:*:${module.sqs5.this_sqs_queue_name}",
+      "arn:aws:sqs:*:*:${module.sqs5.sqs_queue_name}",
     ]
 
     actions = [

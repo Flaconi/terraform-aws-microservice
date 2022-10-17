@@ -4,7 +4,7 @@ locals {
 
 module "sqs5" {
   source  = "terraform-aws-modules/sqs/aws"
-  version = "~> 2.0"
+  version = "3.4.1"
 
   create = var.sqs5_enabled ? "true" : "false"
   name   = local.sqs5_name
@@ -13,13 +13,13 @@ module "sqs5" {
   fifo_queue                 = var.sqs5_fifo_queue
   max_message_size           = var.sqs5_max_message_size
   receive_wait_time_seconds  = var.sqs5_receive_wait_time_seconds
-  redrive_policy             = var.sqs5_dlq_enabled ? "{\"deadLetterTargetArn\":\"${module.sqs5-dlq.this_sqs_queue_arn}\",\"maxReceiveCount\":4}" : var.sqs5_redrive_policy
+  redrive_policy             = var.sqs5_dlq_enabled ? "{\"deadLetterTargetArn\":\"${module.sqs5-dlq.sqs_queue_arn}\",\"maxReceiveCount\":4}" : var.sqs5_redrive_policy
   visibility_timeout_seconds = var.sqs5_visibility_timeout_seconds
 }
 
 module "sqs5-dlq" {
   source  = "terraform-aws-modules/sqs/aws"
-  version = "~> 2.0"
+  version = "3.4.1"
 
   create = var.sqs5_dlq_enabled ? "true" : "false"
   name   = "${local.sqs5_name}-deadletter"
