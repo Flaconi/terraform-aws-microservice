@@ -932,6 +932,178 @@ Type: `bool`
 
 Default: `true`
 
+### <a name="input_dynamodb4_enabled"></a> [dynamodb4\_enabled](#input\_dynamodb4\_enabled)
+
+Description: Set to false to prevent the module from creating any dynamodb resources
+
+Type: `bool`
+
+Default: `false`
+
+### <a name="input_dynamodb4_billing"></a> [dynamodb4\_billing](#input\_dynamodb4\_billing)
+
+Description: DynamoDB Billing mode. Can be PROVISIONED or PAY\_PER\_REQUEST
+
+Type: `string`
+
+Default: `"PROVISIONED"`
+
+### <a name="input_dynamodb4_table_class"></a> [dynamodb4\_table\_class](#input\_dynamodb4\_table\_class)
+
+Description: Storage class of the table
+
+Type: `string`
+
+Default: `"STANDARD"`
+
+### <a name="input_dynamodb4_name_override"></a> [dynamodb4\_name\_override](#input\_dynamodb4\_name\_override)
+
+Description: define dynamodb4\_name\_override to set a name differnt from var.name
+
+Type: `string`
+
+Default: `""`
+
+### <a name="input_dynamodb4_hash_key"></a> [dynamodb4\_hash\_key](#input\_dynamodb4\_hash\_key)
+
+Description: DynamoDB table Hash Key
+
+Type: `string`
+
+Default: `""`
+
+### <a name="input_dynamodb4_hash_key_type"></a> [dynamodb4\_hash\_key\_type](#input\_dynamodb4\_hash\_key\_type)
+
+Description: Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data
+
+Type: `string`
+
+Default: `"S"`
+
+### <a name="input_dynamodb4_range_key"></a> [dynamodb4\_range\_key](#input\_dynamodb4\_range\_key)
+
+Description: DynamoDB table Range Key
+
+Type: `string`
+
+Default: `""`
+
+### <a name="input_dynamodb4_range_key_type"></a> [dynamodb4\_range\_key\_type](#input\_dynamodb4\_range\_key\_type)
+
+Description: Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data
+
+Type: `string`
+
+Default: `"S"`
+
+### <a name="input_dynamodb4_attributes"></a> [dynamodb4\_attributes](#input\_dynamodb4\_attributes)
+
+Description: Additional DynamoDB attributes in the form of a list of mapped values
+
+Type:
+
+```hcl
+list(object({
+    name = string
+    type = string
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_dynamodb4_global_secondary_index_map"></a> [dynamodb4\_global\_secondary\_index\_map](#input\_dynamodb4\_global\_secondary\_index\_map)
+
+Description: Additional global secondary indexes in the form of a list of mapped values
+
+Type:
+
+```hcl
+list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_dynamodb4_local_secondary_index_map"></a> [dynamodb4\_local\_secondary\_index\_map](#input\_dynamodb4\_local\_secondary\_index\_map)
+
+Description: Additional local secondary indexes in the form of a list of mapped values
+
+Type:
+
+```hcl
+list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
+```
+
+Default: `[]`
+
+### <a name="input_dynamodb4_autoscale_write_target"></a> [dynamodb4\_autoscale\_write\_target](#input\_dynamodb4\_autoscale\_write\_target)
+
+Description: The target value for DynamoDB write autoscaling
+
+Type: `number`
+
+Default: `50`
+
+### <a name="input_dynamodb4_autoscale_read_target"></a> [dynamodb4\_autoscale\_read\_target](#input\_dynamodb4\_autoscale\_read\_target)
+
+Description: The target value for DynamoDB read autoscaling
+
+Type: `number`
+
+Default: `50`
+
+### <a name="input_dynamodb4_autoscale_min_read_capacity"></a> [dynamodb4\_autoscale\_min\_read\_capacity](#input\_dynamodb4\_autoscale\_min\_read\_capacity)
+
+Description: DynamoDB autoscaling min read capacity
+
+Type: `number`
+
+Default: `5`
+
+### <a name="input_dynamodb4_autoscale_max_read_capacity"></a> [dynamodb4\_autoscale\_max\_read\_capacity](#input\_dynamodb4\_autoscale\_max\_read\_capacity)
+
+Description: DynamoDB autoscaling max read capacity
+
+Type: `number`
+
+Default: `20`
+
+### <a name="input_dynamodb4_autoscale_min_write_capacity"></a> [dynamodb4\_autoscale\_min\_write\_capacity](#input\_dynamodb4\_autoscale\_min\_write\_capacity)
+
+Description: DynamoDB autoscaling min write capacity
+
+Type: `number`
+
+Default: `5`
+
+### <a name="input_dynamodb4_autoscale_max_write_capacity"></a> [dynamodb4\_autoscale\_max\_write\_capacity](#input\_dynamodb4\_autoscale\_max\_write\_capacity)
+
+Description: DynamoDB autoscaling max write capacity
+
+Type: `number`
+
+Default: `20`
+
+### <a name="input_dynamodb4_enable_autoscaler"></a> [dynamodb4\_enable\_autoscaler](#input\_dynamodb4\_enable\_autoscaler)
+
+Description: Flag to enable/disable DynamoDB autoscaling
+
+Type: `bool`
+
+Default: `true`
+
 ### <a name="input_redis_enabled"></a> [redis\_enabled](#input\_redis\_enabled)
 
 Description: Set to false to prevent the module from creating any redis resources
@@ -1964,6 +2136,13 @@ Default: `false`
 | <a name="output_dynamodb3_table_name"></a> [dynamodb3\_table\_name](#output\_dynamodb3\_table\_name) | DynamoDB table name |
 | <a name="output_dynamodb3_table_stream_arn"></a> [dynamodb3\_table\_stream\_arn](#output\_dynamodb3\_table\_stream\_arn) | DynamoDB table stream ARN |
 | <a name="output_dynamodb3_table_stream_label"></a> [dynamodb3\_table\_stream\_label](#output\_dynamodb3\_table\_stream\_label) | DynamoDB table stream label |
+| <a name="output_dynamodb4_global_secondary_index_names"></a> [dynamodb4\_global\_secondary\_index\_names](#output\_dynamodb4\_global\_secondary\_index\_names) | DynamoDB secondary index names |
+| <a name="output_dynamodb4_local_secondary_index_names"></a> [dynamodb4\_local\_secondary\_index\_names](#output\_dynamodb4\_local\_secondary\_index\_names) | DynamoDB local index names |
+| <a name="output_dynamodb4_table_arn"></a> [dynamodb4\_table\_arn](#output\_dynamodb4\_table\_arn) | DynamoDB table ARN |
+| <a name="output_dynamodb4_table_id"></a> [dynamodb4\_table\_id](#output\_dynamodb4\_table\_id) | DynamoDB table ID |
+| <a name="output_dynamodb4_table_name"></a> [dynamodb4\_table\_name](#output\_dynamodb4\_table\_name) | DynamoDB table name |
+| <a name="output_dynamodb4_table_stream_arn"></a> [dynamodb4\_table\_stream\_arn](#output\_dynamodb4\_table\_stream\_arn) | DynamoDB table stream ARN |
+| <a name="output_dynamodb4_table_stream_label"></a> [dynamodb4\_table\_stream\_label](#output\_dynamodb4\_table\_stream\_label) | DynamoDB table stream label |
 | <a name="output_dynamodb_global_secondary_index_names"></a> [dynamodb\_global\_secondary\_index\_names](#output\_dynamodb\_global\_secondary\_index\_names) | DynamoDB secondary index names |
 | <a name="output_dynamodb_local_secondary_index_names"></a> [dynamodb\_local\_secondary\_index\_names](#output\_dynamodb\_local\_secondary\_index\_names) | DynamoDB local index names |
 | <a name="output_dynamodb_table_arn"></a> [dynamodb\_table\_arn](#output\_dynamodb\_table\_arn) | DynamoDB table ARN |
