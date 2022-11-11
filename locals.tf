@@ -18,7 +18,7 @@ locals {
     var.dynamodb_enabled && var.iam_role_enabled ? ["arn:aws:dynamodb:*:*:table/${module.dynamodb.table_id}"] : [],
     var.dynamodb2_enabled && var.iam_role_enabled ? ["arn:aws:dynamodb:*:*:table/${module.dynamodb2.table_id}"] : [],
     var.dynamodb3_enabled && var.iam_role_enabled ? ["arn:aws:dynamodb:*:*:table/${module.dynamodb3.table_id}"] : [],
-    var.dynamodb4_enabled && var.iam_role_enabled ? ["arn:aws:dynamodb:*:*:table/${module.dynamodb3.table_id}"] : [],
+    var.dynamodb4_enabled && var.iam_role_enabled ? ["arn:aws:dynamodb:*:*:table/${module.dynamodb4.table_id}"] : [],
   )
   dynamodb_tables_records = [for t in toset(local.dynamodb_tables_arns) : "${t}/*"]
 }
