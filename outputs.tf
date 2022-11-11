@@ -149,7 +149,43 @@ output "dynamodb3_table_stream_label" {
   value       = module.dynamodb3.table_stream_label
 }
 
+# -------------------------------------------------------------------------------------------------
+# DynamoDB 4
+# -------------------------------------------------------------------------------------------------
+output "dynamodb4_table_name" {
+  description = "DynamoDB table name"
+  value       = module.dynamodb4.table_name
+}
 
+output "dynamodb4_table_id" {
+  description = "DynamoDB table ID"
+  value       = module.dynamodb4.table_id
+}
+
+output "dynamodb4_table_arn" {
+  description = "DynamoDB table ARN"
+  value       = module.dynamodb4.table_arn
+}
+
+output "dynamodb4_global_secondary_index_names" {
+  description = "DynamoDB secondary index names"
+  value       = [module.dynamodb4.global_secondary_index_names]
+}
+
+output "dynamodb4_local_secondary_index_names" {
+  description = "DynamoDB local index names"
+  value       = [module.dynamodb4.local_secondary_index_names]
+}
+
+output "dynamodb4_table_stream_arn" {
+  description = "DynamoDB table stream ARN"
+  value       = module.dynamodb4.table_stream_arn
+}
+
+output "dynamodb4_table_stream_label" {
+  description = "DynamoDB table stream label"
+  value       = module.dynamodb4.table_stream_label
+}
 
 # -------------------------------------------------------------------------------------------------
 # Redis

@@ -503,6 +503,133 @@ variable "dynamodb3_enable_autoscaler" {
   description = "Flag to enable/disable DynamoDB autoscaling"
 }
 
+# -------------------------------------------------------------------------------------------------
+# DynamoDB 4 Allows for a second table in Dynamodb
+# -------------------------------------------------------------------------------------------------
+
+variable "dynamodb4_enabled" {
+  description = "Set to false to prevent the module from creating any dynamodb resources"
+  default     = false
+  type        = bool
+}
+
+variable "dynamodb4_billing" {
+  description = "DynamoDB Billing mode. Can be PROVISIONED or PAY_PER_REQUEST"
+  default     = "PROVISIONED"
+  type        = string
+}
+
+variable "dynamodb4_table_class" {
+  description = "Storage class of the table"
+  default     = "STANDARD"
+  type        = string
+}
+
+variable "dynamodb4_name_override" {
+  description = "define dynamodb4_name_override to set a name differnt from var.name"
+  default     = ""
+  type        = string
+}
+
+variable "dynamodb4_hash_key" {
+  description = "DynamoDB table Hash Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb4_hash_key_type" {
+  type        = string
+  default     = "S"
+  description = "Hash Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+variable "dynamodb4_range_key" {
+  description = "DynamoDB table Range Key"
+  type        = string
+  default     = ""
+}
+
+variable "dynamodb4_range_key_type" {
+  type        = string
+  default     = "S"
+  description = "Range Key type, which must be a scalar type: `S`, `N`, or `B` for (S)tring, (N)umber or (B)inary data"
+}
+
+variable "dynamodb4_attributes" {
+  description = "Additional DynamoDB attributes in the form of a list of mapped values"
+  default     = []
+  type = list(object({
+    name = string
+    type = string
+  }))
+}
+
+variable "dynamodb4_global_secondary_index_map" {
+  description = "Additional global secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    hash_key           = string
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+    read_capacity      = number
+    write_capacity     = number
+  }))
+  default = []
+}
+
+variable "dynamodb4_local_secondary_index_map" {
+  description = "Additional local secondary indexes in the form of a list of mapped values"
+  type = list(object({
+    name               = string
+    non_key_attributes = list(string)
+    projection_type    = string
+    range_key          = string
+  }))
+  default = []
+}
+
+variable "dynamodb4_autoscale_write_target" {
+  type        = number
+  default     = 50
+  description = "The target value for DynamoDB write autoscaling"
+}
+
+variable "dynamodb4_autoscale_read_target" {
+  type        = number
+  default     = 50
+  description = "The target value for DynamoDB read autoscaling"
+}
+
+variable "dynamodb4_autoscale_min_read_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min read capacity"
+}
+
+variable "dynamodb4_autoscale_max_read_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max read capacity"
+}
+
+variable "dynamodb4_autoscale_min_write_capacity" {
+  type        = number
+  default     = 5
+  description = "DynamoDB autoscaling min write capacity"
+}
+
+variable "dynamodb4_autoscale_max_write_capacity" {
+  type        = number
+  default     = 20
+  description = "DynamoDB autoscaling max write capacity"
+}
+
+variable "dynamodb4_enable_autoscaler" {
+  type        = bool
+  default     = true
+  description = "Flag to enable/disable DynamoDB autoscaling"
+}
 
 # -------------------------------------------------------------------------------------------------
 # Redis
