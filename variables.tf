@@ -1137,12 +1137,7 @@ variable "s3_versioning_enabled" {
 variable "s3_lifecycle_rules" {
   description = "S3 Lifecycle rules"
   default     = []
-  type = list(object({
-    id              = string
-    status          = string
-    prefix          = string
-    expiration_days = number
-  }))
+  type        = any
 }
 
 # -------------------------------------------------------------------------------------------------

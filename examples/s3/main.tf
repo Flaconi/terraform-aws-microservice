@@ -15,13 +15,28 @@ module "ms_sample_s3" {
       id              = "all-cleanup"
       status          = "Enabled"
       prefix          = ""
-      expiration_days = 90
+      expiration = {
+        days = 90
+      }
     },
     {
       id              = "tmp"
       status          = "Enabled"
       prefix          = "tmp/"
-      expiration_days = 1
+      expiration = {
+        days = 1
+      }
+    },
+    {
+      id              = "MoveAllToGlacierAfterTwoWeeks"
+      status          = "Enabled"
+      prefix          = ""
+      transition = [
+        {
+          days          = 28
+          storage_class = "GLACIER"
+        }
+      ]
     }
   ]
 
