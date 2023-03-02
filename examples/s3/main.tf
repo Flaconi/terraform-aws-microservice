@@ -12,25 +12,25 @@ module "ms_sample_s3" {
 
   s3_lifecycle_rules = [
     {
-      id              = "all-cleanup"
-      status          = "Enabled"
-      prefix          = ""
-      expiration = {
+      id     = "all-cleanup"
+      status = "Enabled"
+      prefix = ""
+      expiration = [{
         days = 90
-      }
+      }]
     },
     {
-      id              = "tmp"
-      status          = "Enabled"
-      prefix          = "tmp/"
-      expiration = {
+      id     = "tmp"
+      status = "Enabled"
+      prefix = "tmp/"
+      expiration = [{
         days = 1
-      }
+      }]
     },
     {
-      id              = "MoveAllToGlacierAfterTwoWeeks"
-      status          = "Enabled"
-      prefix          = ""
+      id     = "MoveAllToGlacierAfterTwoWeeks"
+      status = "Enabled"
+      prefix = ""
       transition = [
         {
           days          = 28

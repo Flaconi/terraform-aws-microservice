@@ -260,7 +260,7 @@ The following resources _CAN_ be created:
 
 | Name | Version |
 |------|---------|
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.0 |
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
 | <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
 | <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.0 |
 | <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
@@ -1742,7 +1742,25 @@ Default: `"Enabled"`
 
 Description: S3 Lifecycle rules
 
-Type: `any`
+Type:
+
+```hcl
+list(object({
+    id     = string
+    status = optional(string, "Enabled")
+    prefix = string
+    expiration = optional(list(object({
+      days                         = optional(number, 365)
+      date                         = optional(string)
+      expired_object_delete_marker = optional(bool, true)
+    })), [])
+    transition = optional(list(object({
+      days          = optional(number)
+      date          = optional(string)
+      storage_class = string
+    })), [])
+  }))
+```
 
 Default: `[]`
 
