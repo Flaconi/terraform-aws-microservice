@@ -64,8 +64,15 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
       filter {
         prefix = rule.value.prefix
       }
-      expiration {
-        days = rule.value.expiration_days
+
+      dynamic "expiration" {
+        for_each = length(keys(lookup(rule.value, "expiration", {}))) == 0 ? [] : [lookup(rule.value, "expiration", {})]
+
+        content {
+          date                         = lookup(expiration.value, "date", null)
+          days                         = lookup(expiration.value, "days", null)
+          expired_object_delete_marker = lookup(expiration.value, "expired_object_delete_marker", null)
+        }
       }
     }
   }
