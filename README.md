@@ -13,6 +13,8 @@ This Terraform module can create typical resources needed for most microservices
 * [IAM](examples/iam/)
 * [RDS](examples/rds/)
 * [Redis](examples/redis/)
+* [S3](examples/s3/)
+* [SQS](examples/sqs/)
 
 ## Usage
 
@@ -1750,7 +1752,7 @@ list(object({
     status = optional(string, "Enabled")
     prefix = string
     expiration = optional(list(object({
-      days                         = optional(number, 365)
+      days                         = optional(number)
       date                         = optional(string)
       expired_object_delete_marker = optional(bool, true)
     })), [])

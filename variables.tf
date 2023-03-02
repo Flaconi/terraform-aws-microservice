@@ -1142,7 +1142,7 @@ variable "s3_lifecycle_rules" {
     status = optional(string, "Enabled")
     prefix = string
     expiration = optional(list(object({
-      days                         = optional(number, 365)
+      days                         = optional(number)
       date                         = optional(string)
       expired_object_delete_marker = optional(bool, true)
     })), [])
