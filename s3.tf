@@ -74,6 +74,14 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
           expired_object_delete_marker = lookup(expiration.value, "expired_object_delete_marker", null)
         }
       }
+      dynamic "transition" {
+        for_each = lookup(rule.value, "transition", [])
+        content {
+          date          = lookup(transition.value, "date", null)
+          days          = lookup(transition.value, "days", null)
+          storage_class = transition.value.storage_class
+        }
+      }
     }
   }
 }
