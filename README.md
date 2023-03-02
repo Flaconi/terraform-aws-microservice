@@ -1742,16 +1742,7 @@ Default: `"Enabled"`
 
 Description: S3 Lifecycle rules
 
-Type:
-
-```hcl
-list(object({
-    id              = string
-    status          = string
-    prefix          = string
-    expiration_days = number
-  }))
-```
+Type: `any`
 
 Default: `[]`
 
