@@ -1152,6 +1152,29 @@ variable "s3_lifecycle_rules" {
       storage_class = string
     })), [])
   }))
+
+  validation {
+    condition = length(var.s3_lifecycle_rules) > 0 ? alltrue([
+      for k, v in var.s3_lifecycle_rules : (length(v["expiration"]) <= 1)
+    ]) : true
+    error_message = "Only one `expiration` block is allowed."
+  }
+
+  validation {
+    condition = length(var.s3_lifecycle_rules) > 0 ? alltrue(flatten([
+      for k, v in var.s3_lifecycle_rules : [
+        for bk, bv in v["expiration"] : (bv["days"] == null || bv["date"] == null)
+    ]])) : true
+    error_message = "Either `days` or `date` value should be set for `expiration`, but not both."
+  }
+
+  validation {
+    condition = length(var.s3_lifecycle_rules) > 0 ? alltrue(flatten([
+      for k, v in var.s3_lifecycle_rules : [
+        for bk, bv in v["transition"] : (bv["days"] == null || bv["date"] == null)
+    ]])) : true
+    error_message = "Either `days` or `date` value should be set for `transition`, but not both."
+  }
 }
 
 # -------------------------------------------------------------------------------------------------
