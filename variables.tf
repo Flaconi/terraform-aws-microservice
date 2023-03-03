@@ -1144,7 +1144,7 @@ variable "s3_lifecycle_rules" {
     expiration = optional(list(object({
       days                         = optional(number)
       date                         = optional(string)
-      expired_object_delete_marker = optional(bool, true)
+      expired_object_delete_marker = optional(bool)
     })), [])
     transition = optional(list(object({
       days          = optional(number)
