@@ -52,7 +52,7 @@ resource "aws_s3_bucket_versioning" "this" {
 resource "aws_s3_bucket_lifecycle_configuration" "this" {
   depends_on = [aws_s3_bucket_versioning.this]
 
-  count  = var.s3_enabled && local.length_s3_lifecycle_rules > 0 ? 1 : 0
+  count  = var.s3_enabled && length(var.s3_lifecycle_rules) > 0 ? 1 : 0
   bucket = aws_s3_bucket.this[count.index].id
 
   dynamic "rule" {
@@ -60,25 +60,26 @@ resource "aws_s3_bucket_lifecycle_configuration" "this" {
 
     content {
       id     = rule.value.id
-      status = lookup(rule.value, "status", "Enabled")
+      status = rule.value.status
       filter {
         prefix = rule.value.prefix
       }
 
       dynamic "expiration" {
-        for_each = length(keys(lookup(rule.value, "expiration", {}))) == 0 ? [] : [lookup(rule.value, "expiration", {})]
+        for_each = rule.value.expiration
 
         content {
-          date                         = lookup(expiration.value, "date", null)
-          days                         = lookup(expiration.value, "days", null)
-          expired_object_delete_marker = lookup(expiration.value, "expired_object_delete_marker", null)
+          date                         = expiration.value.date
+          days                         = expiration.value.days
+          expired_object_delete_marker = expiration.value.expired_object_delete_marker
         }
       }
+
       dynamic "transition" {
-        for_each = lookup(rule.value, "transition", [])
+        for_each = rule.value.transition
         content {
-          date          = lookup(transition.value, "date", null)
-          days          = lookup(transition.value, "days", null)
+          date          = transition.value.date
+          days          = transition.value.days
           storage_class = transition.value.storage_class
         }
       }
