@@ -182,3 +182,41 @@ resource "aws_db_instance_role_association" "this" {
   feature_name           = "S3_INTEGRATION"
   role_arn               = var.rds_s3_dump_role_arn == "" ? aws_iam_role.rds_dumps[0].arn : var.rds_s3_dump_role_arn
 }
+
+resource "aws_s3_bucket_lifecycle_configuration" "rds_dumps" {
+  depends_on = [aws_s3_bucket_versioning.rds_dumps]
+
+  count  = local.rds_dumps_enabled && length(var.rds_s3_dump_lifecycle_rules) > 0 ? 1 : 0
+  bucket = aws_s3_bucket.rds_dumps[count.index].id
+
+  dynamic "rule" {
+    for_each = var.rds_s3_dump_lifecycle_rules
+
+    content {
+      id     = rule.value.id
+      status = rule.value.status
+      filter {
+        prefix = rule.value.prefix
+      }
+
+      dynamic "expiration" {
+        for_each = rule.value.expiration
+
+        content {
+          date                         = expiration.value.date
+          days                         = expiration.value.days
+          expired_object_delete_marker = expiration.value.expired_object_delete_marker
+        }
+      }
+
+      dynamic "transition" {
+        for_each = rule.value.transition
+        content {
+          date          = transition.value.date
+          days          = transition.value.days
+          storage_class = transition.value.storage_class
+        }
+      }
+    }
+  }
+}
