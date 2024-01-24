@@ -20,6 +20,36 @@ module "ms_sample_rds" {
   # rds_enabled enables RDS
   rds_enabled = true
 
+  rds_s3_dump_lifecycle_rules = [
+    {
+      id     = "all-cleanup"
+      status = "Enabled"
+      prefix = ""
+      expiration = [{
+        days = 90
+      }]
+    },
+    {
+      id     = "tmp"
+      status = "Enabled"
+      prefix = "tmp/"
+      expiration = [{
+        days = 1
+      }]
+    },
+    {
+      id     = "MoveAllToGlacierAfterTwoWeeks"
+      status = "Enabled"
+      prefix = ""
+      transition = [
+        {
+          days          = 28
+          storage_class = "GLACIER"
+        }
+      ]
+    }
+  ]
+
   # rds_allowed_subnet_cidrs specifices the allowed subnets
   #rds_allowed_subnet_cidrs = ["127.0.0.1/32"]
 

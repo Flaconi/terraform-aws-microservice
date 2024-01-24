@@ -1312,6 +1312,32 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_rds_s3_dump_lifecycle_rules"></a> [rds\_s3\_dump\_lifecycle\_rules](#input\_rds\_s3\_dump\_lifecycle\_rules)
+
+Description: RDS S3 Dump Lifecycle rules
+
+Type:
+
+```hcl
+list(object({
+    id     = string
+    status = optional(string, "Enabled")
+    prefix = string
+    expiration = optional(list(object({
+      days                         = optional(number)
+      date                         = optional(string)
+      expired_object_delete_marker = optional(bool)
+    })), [])
+    transition = optional(list(object({
+      days          = optional(number)
+      date          = optional(string)
+      storage_class = string
+    })), [])
+  }))
+```
+
+Default: `[]`
+
 ### <a name="input_rds_identifier_override"></a> [rds\_identifier\_override](#input\_rds\_identifier\_override)
 
 Description: RDS identifier override. Use only lowercase, numbers and -, \_., only use when it needs to be different from var.name

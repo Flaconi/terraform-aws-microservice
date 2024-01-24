@@ -787,6 +787,51 @@ variable "rds_s3_dump_role_arn" {
   default     = ""
 }
 
+variable "rds_s3_dump_lifecycle_rules" {
+  description = "RDS S3 Dump Lifecycle rules"
+  default     = []
+  type = list(object({
+    id     = string
+    status = optional(string, "Enabled")
+    prefix = string
+    expiration = optional(list(object({
+      days                         = optional(number)
+      date                         = optional(string)
+      expired_object_delete_marker = optional(bool)
+    })), [])
+    transition = optional(list(object({
+      days          = optional(number)
+      date          = optional(string)
+      storage_class = string
+    })), [])
+  }))
+
+  validation {
+    condition = length(var.rds_s3_dump_lifecycle_rules) > 0 ? alltrue([
+      for k, v in var.rds_s3_dump_lifecycle_rules : (length(v["expiration"]) <= 1)
+    ]) : true
+    error_message = "Only one `expiration` block is allowed."
+  }
+
+  validation {
+    condition = length(var.rds_s3_dump_lifecycle_rules) > 0 ? alltrue(flatten([
+      for k, v in var.rds_s3_dump_lifecycle_rules : [
+        for bk, bv in v["expiration"] : (bv["days"] == null || bv["date"] == null)
+      ]
+    ])) : true
+    error_message = "Either `days` or `date` value should be set for `expiration`, but not both."
+  }
+
+  validation {
+    condition = length(var.rds_s3_dump_lifecycle_rules) > 0 ? alltrue(flatten([
+      for k, v in var.rds_s3_dump_lifecycle_rules : [
+        for bk, bv in v["transition"] : (bv["days"] == null || bv["date"] == null)
+      ]
+    ])) : true
+    error_message = "Either `days` or `date` value should be set for `transition`, but not both."
+  }
+}
+
 variable "rds_identifier_override" {
   description = "RDS identifier override. Use only lowercase, numbers and -, _., only use when it needs to be different from var.name"
   default     = ""
@@ -1164,7 +1209,8 @@ variable "s3_lifecycle_rules" {
     condition = length(var.s3_lifecycle_rules) > 0 ? alltrue(flatten([
       for k, v in var.s3_lifecycle_rules : [
         for bk, bv in v["expiration"] : (bv["days"] == null || bv["date"] == null)
-    ]])) : true
+      ]
+    ])) : true
     error_message = "Either `days` or `date` value should be set for `expiration`, but not both."
   }
 
@@ -1172,7 +1218,8 @@ variable "s3_lifecycle_rules" {
     condition = length(var.s3_lifecycle_rules) > 0 ? alltrue(flatten([
       for k, v in var.s3_lifecycle_rules : [
         for bk, bv in v["transition"] : (bv["days"] == null || bv["date"] == null)
-    ]])) : true
+      ]
+    ])) : true
     error_message = "Either `days` or `date` value should be set for `transition`, but not both."
   }
 }
