@@ -251,9 +251,9 @@ The following resources _CAN_ be created:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.40 |
+| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.6 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -263,9 +263,9 @@ The following resources _CAN_ be created:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.40 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.2 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
