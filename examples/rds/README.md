@@ -35,7 +35,7 @@ No inputs.
 | <a name="output_ms_sample_rds_rds_this_db_instance_availability_zone"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_availability\_zone](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_availability\_zone) | n/a |
 | <a name="output_ms_sample_rds_rds_this_db_instance_endpoint"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_endpoint](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_endpoint) | n/a |
 | <a name="output_ms_sample_rds_rds_this_db_instance_hosted_zone_id"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_hosted\_zone\_id](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_hosted\_zone\_id) | n/a |
-| <a name="output_ms_sample_rds_rds_this_db_instance_id"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_id](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_id) | n/a |
+| <a name="output_ms_sample_rds_rds_this_db_instance_identifier"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_identifier](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_identifier) | n/a |
 | <a name="output_ms_sample_rds_rds_this_db_instance_resource_id"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_resource\_id](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_resource\_id) | n/a |
 | <a name="output_ms_sample_rds_rds_this_db_instance_status"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_status](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_status) | n/a |
 | <a name="output_ms_sample_rds_rds_this_db_instance_name"></a> [ms\_sample\_rds\_rds\_this\_db\_instance\_name](#output\_ms\_sample\_rds\_rds\_this\_db\_instance\_name) | n/a |

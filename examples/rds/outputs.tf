@@ -18,8 +18,8 @@ output "ms_sample_rds_rds_this_db_instance_hosted_zone_id" {
   value = module.ms_sample_rds.rds_this_db_instance_hosted_zone_id
 }
 
-output "ms_sample_rds_rds_this_db_instance_id" {
-  value = module.ms_sample_rds.rds_this_db_instance_id
+output "ms_sample_rds_rds_this_db_instance_identifier" {
+  value = module.ms_sample_rds.rds_this_db_instance_identifier
 }
 
 output "ms_sample_rds_rds_this_db_instance_resource_id" {
