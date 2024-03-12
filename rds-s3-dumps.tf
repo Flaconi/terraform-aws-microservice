@@ -178,7 +178,7 @@ resource "aws_iam_role" "rds_dumps" {
 resource "aws_db_instance_role_association" "this" {
   count = local.rds_dumps_enabled ? 1 : 0
 
-  db_instance_identifier = module.rds.db_instance_id
+  db_instance_identifier = module.rds.db_instance_identifier
   feature_name           = "S3_INTEGRATION"
   role_arn               = var.rds_s3_dump_role_arn == "" ? aws_iam_role.rds_dumps[0].arn : var.rds_s3_dump_role_arn
 }

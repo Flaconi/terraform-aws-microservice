@@ -251,9 +251,9 @@ The following resources _CAN_ be created:
 
 | Name | Version |
 |------|---------|
-| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 4.0 |
-| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.0 |
-| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.0 |
+| <a name="provider_aws"></a> [aws](#provider\_aws) | ~> 5.40 |
+| <a name="provider_null"></a> [null](#provider\_null) | ~> 3.2 |
+| <a name="provider_random"></a> [random](#provider\_random) | ~> 3.6 |
 
 <!-- TFDOCS_PROVIDER_END -->
 
@@ -263,9 +263,9 @@ The following resources _CAN_ be created:
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | >= 1.3 |
-| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 4.0 |
-| <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.0 |
-| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.0 |
+| <a name="requirement_aws"></a> [aws](#requirement\_aws) | ~> 5.40 |
+| <a name="requirement_null"></a> [null](#requirement\_null) | ~> 3.2 |
+| <a name="requirement_random"></a> [random](#requirement\_random) | ~> 3.6 |
 
 <!-- TFDOCS_REQUIREMENTS_END -->
 
@@ -2196,7 +2196,7 @@ Default: `false`
 | <a name="output_rds_this_db_instance_availability_zone"></a> [rds\_this\_db\_instance\_availability\_zone](#output\_rds\_this\_db\_instance\_availability\_zone) | The availability zone of the RDS instance |
 | <a name="output_rds_this_db_instance_endpoint"></a> [rds\_this\_db\_instance\_endpoint](#output\_rds\_this\_db\_instance\_endpoint) | The connection endpoint |
 | <a name="output_rds_this_db_instance_hosted_zone_id"></a> [rds\_this\_db\_instance\_hosted\_zone\_id](#output\_rds\_this\_db\_instance\_hosted\_zone\_id) | The canonical hosted zone ID of the DB instance (to be used in a Route 53 Alias record) |
-| <a name="output_rds_this_db_instance_id"></a> [rds\_this\_db\_instance\_id](#output\_rds\_this\_db\_instance\_id) | The RDS instance ID |
+| <a name="output_rds_this_db_instance_identifier"></a> [rds\_this\_db\_instance\_identifier](#output\_rds\_this\_db\_instance\_identifier) | The RDS instance Identifier |
 | <a name="output_rds_this_db_instance_name"></a> [rds\_this\_db\_instance\_name](#output\_rds\_this\_db\_instance\_name) | The database name |
 | <a name="output_rds_this_db_instance_password"></a> [rds\_this\_db\_instance\_password](#output\_rds\_this\_db\_instance\_password) | The database password (this password may be old, because Terraform doesn't track it after initial creation) |
 | <a name="output_rds_this_db_instance_port"></a> [rds\_this\_db\_instance\_port](#output\_rds\_this\_db\_instance\_port) | The database port |

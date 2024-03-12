@@ -25,7 +25,7 @@ locals {
 
 module "rds_sg" {
   source  = "terraform-aws-modules/security-group/aws"
-  version = "4.13.1"
+  version = "5.1.1"
 
   create = var.rds_enabled
 
@@ -51,7 +51,7 @@ resource "random_string" "password" {
 # -------------------------------------------------------------------------------------------------
 module "rds" {
   source  = "terraform-aws-modules/rds/aws"
-  version = "5.1.0"
+  version = "6.5.2"
 
   apply_immediately = var.rds_apply_immediately
 
@@ -85,11 +85,11 @@ module "rds" {
   family                = var.rds_family
   license_model         = var.rds_license_model
 
-  db_name                = local.rds_db_name
-  username               = var.rds_admin_user
-  password               = local.password
-  port                   = var.rds_port
-  create_random_password = false
+  db_name                     = local.rds_db_name
+  username                    = var.rds_admin_user
+  password                    = local.password
+  port                        = var.rds_port
+  manage_master_user_password = false
 
   iam_database_authentication_enabled = var.rds_iam_database_authentication_enabled
 
