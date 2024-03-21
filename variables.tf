@@ -804,6 +804,15 @@ variable "rds_s3_dump_lifecycle_rules" {
       date          = optional(string)
       storage_class = string
     })), [])
+    noncurrent_version_expiration = optional(list(object({
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+    })), [])
+    noncurrent_version_transition = optional(list(object({
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+      storage_class             = string
+    })), [])
   }))
 
   validation {
@@ -1195,6 +1204,15 @@ variable "s3_lifecycle_rules" {
       days          = optional(number)
       date          = optional(string)
       storage_class = string
+    })), [])
+    noncurrent_version_expiration = optional(list(object({
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+    })), [])
+    noncurrent_version_transition = optional(list(object({
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+      storage_class             = string
     })), [])
   }))
 
