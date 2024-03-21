@@ -1334,13 +1334,13 @@ list(object({
       storage_class = string
     })), [])
     noncurrent_version_expiration = optional(list(object({
-      noncurrent_days          = optional(number)
-      newer_noncurrent_versions          = optional(string)
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
     })), [])
     noncurrent_version_transition = optional(list(object({
-      noncurrent_days          = optional(number)
-      newer_noncurrent_versions          = optional(string)
-      storage_class = string
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+      storage_class             = string
     })), [])
   }))
 ```
@@ -1797,13 +1797,13 @@ list(object({
       storage_class = string
     })), [])
     noncurrent_version_expiration = optional(list(object({
-      noncurrent_days          = optional(number)
-      newer_noncurrent_versions          = optional(string)
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
     })), [])
     noncurrent_version_transition = optional(list(object({
-      noncurrent_days          = optional(number)
-      newer_noncurrent_versions          = optional(string)
-      storage_class = string
+      noncurrent_days           = optional(number)
+      newer_noncurrent_versions = optional(string)
+      storage_class             = string
     })), [])
   }))
 ```
