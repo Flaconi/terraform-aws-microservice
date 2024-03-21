@@ -217,6 +217,23 @@ resource "aws_s3_bucket_lifecycle_configuration" "rds_dumps" {
           storage_class = transition.value.storage_class
         }
       }
+
+      dynamic "noncurrent_version_expiration" {
+        for_each = rule.value.noncurrent_version_expiration
+        content {
+          noncurrent_days           = noncurrent_version_expiration.value.noncurrent_days
+          newer_noncurrent_versions = noncurrent_version_expiration.value.newer_noncurrent_versions
+        }
+      }
+
+      dynamic "noncurrent_version_transition" {
+        for_each = rule.value.noncurrent_version_transition
+        content {
+          noncurrent_days           = noncurrent_version_transition.value.noncurrent_days
+          newer_noncurrent_versions = noncurrent_version_transition.value.newer_noncurrent_versions
+          storage_class             = noncurrent_version_transition.value.storage_class
+        }
+      }
     }
   }
 }
