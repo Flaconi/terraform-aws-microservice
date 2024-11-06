@@ -4,7 +4,7 @@
 locals {
   public_endpoint_enabled  = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_public_endpoint_enabled
   private_endpoint_enabled = var.aws_route53_zone_endpoints_enabled && var.aws_route53_zone_private_endpoint_enabled
-  subdomain_name           = length(var.aws_route53_rds_subdomain_override) > 0 ? var.aws_route53_rds_subdomain_override : join(".", [module.rds.db_instance_id, local.rds_dns_subdomains[var.rds_engine]])
+  subdomain_name           = length(var.aws_route53_rds_subdomain_override) > 0 ? var.aws_route53_rds_subdomain_override : join(".", [module.rds.db_instance_identifier, local.rds_dns_subdomains[var.rds_engine]])
 }
 
 data "aws_route53_zone" "public_endpoint" {
