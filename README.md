@@ -1312,6 +1312,23 @@ Type: `string`
 
 Default: `""`
 
+### <a name="input_rds_s3_dump_block_public_access"></a> [rds\_s3\_dump\_block\_public\_access](#input\_rds\_s3\_dump\_block\_public\_access)
+
+Description: Object that defines which public access should be blocked
+
+Type: `object({})`
+
+Default:
+
+```json
+{
+  "block_public_acls": true,
+  "block_public_policy": true,
+  "ignore_public_acls": true,
+  "restrict_public_buckets": true
+}
+```
+
 ### <a name="input_rds_s3_dump_lifecycle_rules"></a> [rds\_s3\_dump\_lifecycle\_rules](#input\_rds\_s3\_dump\_lifecycle\_rules)
 
 Description: RDS S3 Dump Lifecycle rules

@@ -787,6 +787,22 @@ variable "rds_s3_dump_role_arn" {
   default     = ""
 }
 
+variable "rds_s3_dump_block_public_access" {
+  description = "Object that defines which public access should be blocked"
+  type        = object({
+    block_public_acls       = bool
+    block_public_policy     = bool
+    ignore_public_acls      = bool
+    restrict_public_buckets = bool
+  })
+  default = {
+    block_public_acls       = true
+    block_public_policy     = true
+    ignore_public_acls      = true
+    restrict_public_buckets = true
+  }
+}
+
 variable "rds_s3_dump_lifecycle_rules" {
   description = "RDS S3 Dump Lifecycle rules"
   default     = []

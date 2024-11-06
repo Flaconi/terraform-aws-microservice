@@ -158,6 +158,17 @@ resource "aws_s3_bucket_acl" "rds_dumps" {
   acl    = "private"
 }
 
+resource "aws_s3_bucket_public_access_block" "archive" {
+  count = local.rds_dumps_enabled ? 1 : 0
+
+  bucket = aws_s3_bucket.rds_dumps[count.index].id
+
+  block_public_acls       = var.rds_s3_dump_block_public_access.block_public_acls
+  block_public_policy     = var.rds_s3_dump_block_public_access.block_public_policy
+  ignore_public_acls      = var.rds_s3_dump_block_public_access.ignore_public_acls
+  restrict_public_buckets = var.rds_s3_dump_block_public_access.restrict_public_buckets
+}
+
 resource "aws_iam_role_policy" "rds_dumps_role" {
   count = local.rds_dumps_enabled && var.rds_s3_dump_role_arn == "" ? 1 : 0
 
