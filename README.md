@@ -1316,7 +1316,16 @@ Default: `""`
 
 Description: Object that defines which public access should be blocked
 
-Type: `object({})`
+Type:
+
+```hcl
+object({
+    block_public_acls       = bool
+    block_public_policy     = bool
+    ignore_public_acls      = bool
+    restrict_public_buckets = bool
+  })
+```
 
 Default:
 

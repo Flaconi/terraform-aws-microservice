@@ -789,7 +789,7 @@ variable "rds_s3_dump_role_arn" {
 
 variable "rds_s3_dump_block_public_access" {
   description = "Object that defines which public access should be blocked"
-  type        = object({
+  type = object({
     block_public_acls       = bool
     block_public_policy     = bool
     ignore_public_acls      = bool
