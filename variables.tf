@@ -947,7 +947,7 @@ variable "rds_multi_az" {
 variable "rds_storage_type" {
   description = "Storage type"
   type        = string
-  default     = "gp2"
+  default     = "gp3"
 }
 
 variable "rds_allocated_storage" {
