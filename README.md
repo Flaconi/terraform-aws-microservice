@@ -1495,7 +1495,7 @@ Description: Storage type
 
 Type: `string`
 
-Default: `"gp2"`
+Default: `"gp3"`
 
 ### <a name="input_rds_allocated_storage"></a> [rds\_allocated\_storage](#input\_rds\_allocated\_storage)
 
