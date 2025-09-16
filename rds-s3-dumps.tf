@@ -66,6 +66,31 @@ data "aws_iam_policy_document" "rds_dumps" {
       }
     }
   }
+
+  statement {
+    sid    = "denyInsecureTransport"
+    effect = "Deny"
+
+    actions = [
+      "s3:*",
+    ]
+
+    resources = [
+      aws_s3_bucket.rds_dumps[0].arn,
+      "${aws_s3_bucket.rds_dumps[0].arn}/*",
+    ]
+
+    principals {
+      type        = "*"
+      identifiers = ["*"]
+    }
+
+    condition {
+      test     = "Bool"
+      variable = "aws:SecureTransport"
+      values   = ["false"]
+    }
+  }
 }
 
 data "aws_iam_policy_document" "rds_dumps_role_trust" {
